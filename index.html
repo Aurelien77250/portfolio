@@ -4,8 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Aurélien GAILLARD | BTS SIO SISR</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1d3557;   /* Bleu foncé */
+            --secondary: #457b9d; /* Bleu moyen */
+            --accent: #e63946;    /* Rouge */
+            --light: #f1faee;     /* Blanc cassé */
+            --dark: #1d3557;
+            --text: #333;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
+        body { line-height: 1.6; color: var(--text); background-color: #f4f4f9; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* HEADER */
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: auto; padding: 1rem 20px; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .nav-links a { margin-left: 20px; font-weight: 500; color: var(--dark); }
+        .nav-links a:hover { color: var(--secondary); }
+
+        /* HERO */
+        .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 160px 20px 100px; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; }
+        .btn { background: var(--white); color: var(--primary); padding: 12px 30px; border-radius: 50px; font-weight: bold; border: 2px solid var(--white); display: inline-block; margin-top: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn:hover { background: transparent; color: var(--white); }
+
+        /* SECTIONS */
+        section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); display: inline-block; border-bottom: 4px solid var(--secondary); padding-bottom: 10px; }
+
+        /* BLOCS BLANCS */
+        .white-card, .project-detail, .veille-container, .about-text {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        /* --- STYLE SPÉCIFIQUE ENTREPRISE --- */
+        .entreprise-header { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 30px; }
+        .logo-box { flex: 1; max-width: 250px; text-align: center; }
+        .logo-box img { width: 100%; height: auto; border-radius: 5px; }
+        .text-box { flex: 2; min-width: 300px; text-align: justify; }
+        
+        /* Modification ici pour centrer l'image unique */
+        .boutiques-photos { display: flex; justify-content: center; margin-top: 30px; }
+        .boutiques-photos img { width: 60%; min-width: 300px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; }
+        .organigramme-container { text-align: center; margin-top: 30px; }
+        .organigramme-container img { max-width: 100%; height: auto; border: 1px solid #eee; border-radius: 8px; }
+
+        /* ABOUT & SKILLS */
+        .about-container { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+        .about-text { flex: 1; min-width: 300px; }
+        .skills-grid { flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 20px; }
+        .skill-card { background: var(--white); padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-bottom: 3px solid var(--secondary); transition: transform 0.2s; }
+        .skill-card:hover { transform: translateY(-5px); }
+        .skill-card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; display: block; }
+
+        /* TIMELINE */
+        .timeline { position: relative; max-width: 800px; margin: auto; }
+        .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: #ddd; border-radius: 2px; }
+        .timeline-item { background: var(--white); padding: 25px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; margin-left: 50px; border-left: 5px solid var(--primary); }
+        .timeline-item::before { content: ''; position: absolute; left: -39px; top: 30px; width: 16px; height: 16px; background: var(--secondary); border-radius: 50%; border: 3px solid white; }
+        .timeline-date { color: var(--secondary); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;}
+        .timeline-title { font-size: 1.3rem; margin: 5px 0 10px 0; color: var(--primary); }
+
+        /* PROJETS */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .project-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; text-decoration: none !important; height: 100%; }
+        .project-card:hover { transform: translateY(-7px); box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
+        .project-header { background: var(--primary); color: white; padding: 20px; }
+        .project-header h3 { font-size: 1.3rem; margin-bottom: 5px; }
+        .project-header span { font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; float: right; }
+        .project-body { padding: 25px; flex-grow: 1; color: var(--text); }
+        .project-tech { margin-top: 20px; font-size: 0.9rem; color: var(--secondary); font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
+
+        /* VEILLE */
+        .veille-method { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        .veille-step { flex: 1; background: var(--light); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #ddd; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { flex-direction: column; gap: 15px; }
+            .nav-links { margin: 0; }
+            .nav-links a { margin: 0 10px; }
+            .entreprise-header { flex-direction: column; }
+            .logo-box { max-width: 150px; }
+            .boutiques-photos img { width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
@@ -24,7 +122,7 @@
 
     <section class="hero">
         <h1>Technicien Supérieur Systèmes & Réseaux</h1>
-        [cite_start]<p>Étudiant en BTS SIO - Option SISR [cite: 2]</p>
+        <p>Étudiant en BTS SIO - Option SISR</p>
         <a href="#contact" class="btn">Me contacter</a>
     </section>
 
@@ -35,9 +133,9 @@
         <div class="about-container">
             <div class="about-text">
                 <h3><i class="fas fa-user-circle"></i> Mon Profil</h3>
-                <p style="margin-top: 15px;">Passionné depuis toujours par les technologies numériques, j’ai choisi de me spécialiser dans les systèmes informatiques et les réseaux. [cite_start]Mon parcours en alternance me permet de mettre immédiatement en pratique les compétences acquises en cours[cite: 5].</p>
+                <p style="margin-top: 15px;">Passionné depuis toujours par les technologies numériques, j’ai choisi de me spécialiser dans les systèmes informatiques et les réseaux. Mon parcours en alternance me permet de mettre immédiatement en pratique les compétences acquises en cours.</p>
                 <br>
-                [cite_start]<p><strong><i class="fas fa-bullseye"></i> Mon objectif :</strong> Devenir un administrateur réseau compétent et engagé, capable de répondre aux enjeux de sécurité et de gestion d’infrastructure[cite: 6].</p>
+                <p><strong><i class="fas fa-bullseye"></i> Mon objectif :</strong> Devenir un administrateur réseau compétent et engagé, capable de répondre aux enjeux de sécurité et de gestion d’infrastructure.</p>
             </div>
             
             <div class="skills-grid" id="skills">
@@ -57,25 +155,39 @@
         <div class="section-title">
             <h2>Mon Entreprise d'Accueil</h2>
         </div>
+        
         <div class="white-card">
-            <div class="entreprise-wrapper">
-                <div class="entreprise-col">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">🍵 Le Palais des Thés</h3>
-                    [cite_start]<p>Maison de thé française fondée en 1986. Spécialisée dans l’importation directe de thés d’exception, l’entreprise propose plus de 250 références et dispose de 84 boutiques à travers le monde[cite: 14].</p>
-                    <p style="margin-top:10px;">En pleine expansion, elle prévoit de nouvelles ouvertures d'ici 2026.</p>
+            <div class="entreprise-header">
+                <div class="logo-box">
+                    <img src="logo_pdt.png" alt="Logo Palais des Thés">
                 </div>
+                <div class="text-box">
+                    <p>Le Palais des Thés est une maison de thé française fondée en 1986 par François-Xavier Delmas à Paris. Spécialisée dans l’importation directe de thés d’exception, l’entreprise propose plus de 250 thés et infusions, ainsi que des accessoires de dégustation.</p>
+                    <p style="margin-top:10px;">Elle dispose de 84 boutiques à travers le monde, dont 78 en France, et prévoit d’en ouvrir une trentaine supplémentaires d’ici 2026. En 2022, le chiffre d’affaires de l’entreprise a atteint 89,5 millions d’euros, marquant une croissance de 41,4 % par rapport à 2020.</p>
+                </div>
+            </div>
+            
+            <div class="boutiques-photos">
+                <img src="boutique_2.png" alt="Devanture boutique Palais des Thés">
+            </div>
+        </div>
+
+        <div class="white-card">
+            <h3 style="color: var(--primary); border-bottom: 2px solid var(--secondary); display: inline-block; margin-bottom: 20px;">Service Support Informatique</h3>
+            
+            <div class="service-it-text">
+                <p style="margin-bottom: 15px;">Au sein du support informatique, nous sommes chargés de différentes missions.</p>
                 
-                <div class="entreprise-col">
-                    <div class="info-box">
-                        <h4 style="margin-bottom: 15px; color: var(--primary);">💻 Mes Missions IT</h4>
-                        <ul>
-                            <li><i class="fas fa-headset"></i> Support utilisateurs (Siège & Boutiques)</li>
-                            <li><i class="fas fa-box-open"></i> Déploiement matériel (Ouvertures boutiques)</li>
-                            <li><i class="fas fa-user-shield"></i> Administration Active Directory</li>
-                            <li><i class="fas fa-server"></i> Maintenance réseau Cisco</li>
-                        </ul>
-                    </div>
-                </div>
+                <p style="margin-bottom: 15px;">Dans un premier temps, nous avons pour principal mission <strong>le support auprès des utilisateurs</strong> du siège de Palais des Thés mais également auprès des boutiques du groupe.</p>
+                
+                <p style="margin-bottom: 15px;">Etant donné qu'il s'agit d'une entreprise commerciale, nous sommes chargés de <strong>la préparation et de l'installation du matériel informatique</strong> au sein des boutiques dans le cadre des nouvelles ouvertures de boutique (Caisses, laptop, TPE, balances...).</p>
+                
+                <p>En tant qu'apprenti technicien informatique, je possède des droits administrateur sur toutes les applications ainsi que sur le domaine. Je suis également chargé de <strong>faire le lien entre nous et les différents prestataires</strong> et d'assurer le bon fonctionnement du réseau à travers la maintenance de nos différents équipements Cisco.</p>
+            </div>
+
+            <div class="organigramme-container">
+                <h4 style="margin-bottom: 15px; color: var(--secondary);">Organigramme du service</h4>
+                <img src="organigramme.png" alt="Organigramme Service Informatique">
             </div>
         </div>
     </section>
@@ -88,17 +200,17 @@
             <div class="timeline-item">
                 <div class="timeline-date">Sept 2024 - Aujourd'hui</div>
                 <h3 class="timeline-title">Technicien Support - Palais des Thés</h3>
-                <p>Alternance. [cite_start]Assistance utilisateurs, administration Active Directory, participation à la sécurisation du réseau et déploiements boutiques[cite: 8].</p>
+                <p>Alternance. Assistance utilisateurs, administration Active Directory, participation à la sécurisation du réseau et déploiements boutiques.</p>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">Fév 2024 - Sept 2024</div>
                 <h3 class="timeline-title">Technicien Support - TENEXA</h3>
-                [cite_start]<p>Support N1/N2, configuration de postes, rédaction de documentations internes et gestion de stocks[cite: 9].</p>
+                <p>Support N1/N2, configuration de postes, rédaction de documentations internes et gestion de stocks.</p>
             </div>
             <div class="timeline-item" style="border-left-color: var(--accent);">
                 <div class="timeline-date">2024 - 2026</div>
                 <h3 class="timeline-title">BTS SIO Option SISR</h3>
-                <p>IEF2I – Vincennes. [cite_start]Certifications : MS-900 (Obtenue), Cisco CCNA (En cours)[cite: 10].</p>
+                <p>IEF2I – Vincennes. Certifications : MS-900 (Obtenue), Cisco CCNA (En cours).</p>
             </div>
         </div>
     </section>
@@ -109,51 +221,22 @@
             <p>Cliquez sur une carte pour voir les détails</p>
         </div>
         <div class="projects-grid">
-            
             <a href="projet-rh.html" class="project-card">
-                <div class="project-header">
-                    <h3>Outil Ticketing RH</h3>
-                    <span>Palais des Thés</span>
-                </div>
-                <div class="project-body">
-                    [cite_start]<p>Conception d'un outil de centralisation des demandes RH[cite: 32].</p>
-                    <div class="project-tech">Freshservice • Monday • Gestion Projet</div>
-                </div>
+                <div class="project-header"><h3>Outil Ticketing RH</h3><span>Palais des Thés</span></div>
+                <div class="project-body"><p>Conception d'un outil de centralisation des demandes RH.</p><div class="project-tech">Freshservice • Monday • Gestion Projet</div></div>
             </a>
-
             <a href="projet-cyber.html" class="project-card">
-                <div class="project-header">
-                    <h3>Atelier Phishing</h3>
-                    <span>Palais des Thés</span>
-                </div>
-                <div class="project-body">
-                    [cite_start]<p>Création d'un atelier de sensibilisation cybersécurité suite à un audit[cite: 42].</p>
-                    <div class="project-tech">Cybersécurité • Pédagogie • Audit</div>
-                </div>
+                <div class="project-header"><h3>Atelier Phishing</h3><span>Palais des Thés</span></div>
+                <div class="project-body"><p>Création d'un atelier de sensibilisation cybersécurité suite à un audit.</p><div class="project-tech">Cybersécurité • Pédagogie • Audit</div></div>
             </a>
-
             <a href="projet-cisco.html" class="project-card">
-                <div class="project-header">
-                    <h3>Infrastructure LAN/VLAN</h3>
-                    <span>Formation</span>
-                </div>
-                <div class="project-body">
-                    [cite_start]<p>Architecture réseau sécurisée, segmentation VLAN et routage[cite: 27].</p>
-                    <div class="project-tech">Cisco Packet Tracer • Routing • Switching</div>
-                </div>
+                <div class="project-header"><h3>Infrastructure LAN/VLAN</h3><span>Formation</span></div>
+                <div class="project-body"><p>Architecture réseau sécurisée, segmentation VLAN et routage.</p><div class="project-tech">Cisco Packet Tracer • Routing • Switching</div></div>
             </a>
-
             <a href="projet-stock.html" class="project-card">
-                <div class="project-header">
-                    <h3>App Gestion Stock</h3>
-                    <span>Formation</span>
-                </div>
-                <div class="project-body">
-                    [cite_start]<p>Développement d'une application CRUD avec authentification[cite: 20].</p>
-                    <div class="project-tech">Python • SQL • Tkinter</div>
-                </div>
+                <div class="project-header"><h3>App Gestion Stock</h3><span>Formation</span></div>
+                <div class="project-body"><p>Développement d'une application CRUD avec authentification.</p><div class="project-tech">Python • SQL • Tkinter</div></div>
             </a>
-
         </div>
     </section>
 
@@ -162,14 +245,14 @@
             <h2>Veille Technologique</h2>
         </div>
         <div class="veille-container">
-            [cite_start]<h3 style="border:none;">Sujet : Le processeur Majorana 1 (Informatique Quantique) [cite: 51]</h3>
-            <p style="margin-top: 15px;"><strong>Majorana 1</strong> est le premier prototype de processeur quantique topologique développé par Microsoft. [cite_start]Il repose sur l’utilisation de qubits topologiques et l’observation d'un état de Majorana, rendant les calculs plus stables et résistants aux erreurs[cite: 51].</p>
+            <h3 style="border:none; color: var(--primary);">Sujet : Le processeur Majorana 1 (Informatique Quantique)</h3>
+            <p style="margin-top: 15px;"><strong>Majorana 1</strong> est le premier prototype de processeur quantique topologique développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et l’observation d'un état de Majorana, rendant les calculs plus stables et résistants aux erreurs.</p>
             
-            <h4 style="margin-top: 30px; color: var(--primary);">Ma Méthodologie :</h4>
+            <h4 style="margin-top: 30px; color: var(--secondary);"><i class="fas fa-search"></i> Ma Méthodologie :</h4>
             <div class="veille-method">
-                <div class="veille-step"><strong>1. [cite_start]Définir</strong><br>Périmètre & Mots-clés [cite: 50]</div>
-                <div class="veille-step"><strong>2. [cite_start]Sourcer</strong><br>Pearltrees, Google Alerts [cite: 50]</div>
-                <div class="veille-step"><strong>3. [cite_start]Analyser</strong><br>Critique & Synthèse [cite: 50]</div>
+                <div class="veille-step"><strong>1. Définir</strong><br>Périmètre & Mots-clés</div>
+                <div class="veille-step"><strong>2. Sourcer</strong><br>Pearltrees, Google Alerts</div>
+                <div class="veille-step"><strong>3. Analyser</strong><br>Critique & Synthèse</div>
                 <div class="veille-step"><strong>4. Diffuser</strong><br>Intégration au Portfolio</div>
             </div>
             
