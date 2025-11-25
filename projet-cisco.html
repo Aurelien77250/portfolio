@@ -2,31 +2,169 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Projet Cisco - Aurélien GAILLARD</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet VLAN - Aurélien GAILLARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- STYLE INTEGRÉ (Même base que Stock) --- */
+        :root { --primary: #1d3557; --secondary: #457b9d; --white: #ffffff; --text: #333; --light: #f1faee; --accent: #e63946; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: var(--text); line-height: 1.6; margin: 0; }
+        
+        /* Header */
+        header { background: var(--white); padding: 15px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
+        .nav-links a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Contenu */
+        section { max-width: 950px; margin: 100px auto 50px; padding: 20px; }
+        .project-detail { background: var(--white); padding: 50px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        /* Titres */
+        h1 { color: #000; text-align: center; font-size: 2rem; margin-bottom: 40px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; text-decoration: underline; text-underline-offset: 8px; }
+        h3 { color: var(--primary); text-align: center; margin-top: 50px; margin-bottom: 30px; font-size: 1.8rem; text-transform: uppercase; }
+        
+        /* Encadré Contexte (Cadre Bleu) */
+        .context-box {
+            border: 2px solid #4285f4;
+            padding: 25px;
+            margin: 30px 0;
+            background-color: #fff;
+            color: #000;
+            text-align: justify;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Introduction Text */
+        .intro-text { text-align: justify; margin-bottom: 40px; }
+
+        /* Prérequis (Logo Centré) */
+        .prereq-container { text-align: center; margin-bottom: 40px; }
+        .prereq-img { max-width: 300px; height: auto; }
+
+        /* --- NOUVEAU STYLE PROCÉDURE (CARTES) --- */
+        .procedure-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .step-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .step-card:hover { transform: translateY(-5px); }
+        .step-num { font-size: 1.2rem; font-weight: 800; color: var(--secondary); margin-bottom: 10px; display: block; }
+        .step-title { font-weight: bold; color: #000; font-size: 1.1rem; margin-bottom: 8px; }
+        .step-desc { font-size: 0.95rem; color: #555; }
+
+        /* Images Rendu Final */
+        .render-title { text-align: center; font-size: 1.5rem; font-weight: bold; text-decoration: underline; margin-top: 50px; margin-bottom: 30px; }
+        .project-img { width: 100%; max-width: 900px; margin: 20px auto; display: block; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 1px solid #ddd;}
+        .img-caption { text-align: center; font-style: italic; color: #666; margin-bottom: 40px; }
+    </style>
 </head>
 <body>
-    <header><nav><div class="logo">Aurélien GAILLARD</div><div class="nav-links"><a href="index.html">Retour Accueil</a></div></nav></header>
+    <header>
+        <nav>
+            <div class="logo">Aurélien GAILLARD</div>
+            <div class="nav-links"><a href="index.html"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a></div>
+        </nav>
+    </header>
 
-    <section style="margin-top: 60px;">
-        <a href="index.html#projects" class="back-btn">← Retour aux projets</a>
+    <section>
         <div class="project-detail">
-            <h1>Architecture LAN & VLAN</h1>
-            <p><strong>Cadre :</strong> Cours Administration Système et Réseau (BTS SIO)[cite: 27].</p>
             
-            <h3>🔌 Objectifs Techniques</h3>
-            <p>Concevoir un réseau local structuré intégrant la notion de VLAN (Virtual LAN) pour segmenter le trafic et améliorer la sécurité[cite: 28, 29].</p>
+            <div class="context-box">
+                Dans le cadre de ma formation en BTS Services Informatiques aux Organisations (BTS SIO), j’ai eu l’opportunité de réaliser plusieurs projets concrets, à la fois en autonomie et en équipe. Ces projets m’ont permis de mettre en pratique les compétences techniques acquises en cours, que ce soit dans le développement d’applications, l’administration de réseaux, ou encore la gestion de bases de données. Chaque projet m’a permis de développer mon sens de l’analyse, ma rigueur et mes capacités à résoudre des problèmes techniques en conditions réelles.
+            </div>
 
-            <h3>🛠️ Étapes de configuration</h3>
-            <ul>
-                <li><strong>Architecture :</strong> Mise en place des switchs, PC et routeur sous <em>Cisco Packet Tracer</em>[cite: 30].</li>
-                <li><strong>VLAN :</strong> Création de 4 VLANs distincts et assignation des ports (Access/Trunk)[cite: 30].</li>
-                <li><strong>Adressage :</strong> Configuration des IP statiques pour chaque sous-réseau[cite: 31].</li>
-                <li><strong>Routage :</strong> Configuration "Router-on-a-stick" (sous-interfaces) pour permettre la communication inter-VLAN[cite: 31].</li>
-            </ul>
+            <h1>Création d'un réseau LAN et création de VLAN</h1>
 
-            <h3>✅ Tests</h3>
-            <p>Validation de la connectivité via des tests de Ping entre machines d'un même VLAN et entre VLANs différents via le routeur.</p>
+            <div class="intro-text">
+                <p>Dans le cadre du cours d’Administration Système et Réseau du BTS SIO, nous avons réalisé un TP sur Cisco Packet Tracer portant sur la création d’un réseau LAN. L’objectif de cet exercice était de concevoir et configurer un réseau local structuré, en intégrant notamment la notion de VLAN (Virtual LAN). Grâce à cette activité, nous avons appris à segmenter le réseau pour améliorer la sécurité et la gestion du trafic, en configurant les commutateurs, les ports, ainsi que le routage inter-VLAN.</p>
+            </div>
+
+            <div style="text-align: center; font-size: 1.2rem; margin-bottom: 10px; font-weight:bold; text-decoration: underline;">Prérequis :</div>
+            <div class="prereq-container">
+                <img src="cisco_logo_new.png" alt="Logo Cisco Packet Tracer" class="prereq-img">
+            </div>
+
+            <h3 style="text-decoration: underline;">Procédure Technique :</h3>
+
+            <div class="procedure-grid">
+                <div class="step-card">
+                    <span class="step-num">Étape 1</span>
+                    <div class="step-title">Architecture Physique</div>
+                    <div class="step-desc">
+                        Mise en place des équipements sous Packet Tracer : 
+                        <ul>
+                            <li>1 Switch principal</li>
+                            <li>Plusieurs PC clients</li>
+                            <li>1 Routeur (pour le routage Inter-VLAN)</li>
+                            <li>Câblage (droit) entre les équipements.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-num">Étape 2</span>
+                    <div class="step-title">Création des VLANs</div>
+                    <div class="step-desc">
+                        Accès au switch en ligne de commande (CLI) pour créer la segmentation logique :
+                        <br><strong>Action :</strong> Création de 4 VLANs distincts.
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-num">Étape 3</span>
+                    <div class="step-title">Assignation des Ports</div>
+                    <div class="step-desc">
+                        Association des équipements aux bons réseaux virtuels.
+                        <br><strong>Action :</strong> Configurer chaque port du switch en mode "Access" et l'attribuer au VLAN correspondant.
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-num">Étape 4</span>
+                    <div class="step-title">Adressage IP</div>
+                    <div class="step-desc">
+                        Configuration de la couche réseau.
+                        <br><strong>Action :</strong> Attribuer une IP statique à chaque PC selon son sous-réseau (ex: 192.168.10.2 pour le VLAN 10).
+                    </div>
+                </div>
+
+                <div class="step-card" style="border-left-color: var(--accent);">
+                    <span class="step-num" style="color: var(--accent);">Étape 5 (Complexe)</span>
+                    <div class="step-title">Routage Inter-VLAN</div>
+                    <div class="step-desc">
+                        Configuration du "Router-on-a-stick" :
+                        <ul>
+                            <li>Liaison <strong>Trunk</strong> entre Switch et Routeur.</li>
+                            <li>Création de <strong>sous-interfaces</strong> (Gig0/0.10, etc).</li>
+                            <li>Activation de l'encapsulation dot1Q.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card" style="border-left-color: #28a745;">
+                    <span class="step-num" style="color: #28a745;">Étape 6</span>
+                    <div class="step-title">Tests & Validation</div>
+                    <div class="step-desc">
+                        Vérification de la connectivité :
+                        <ul>
+                            <li>Ping intra-VLAN (OK)</li>
+                            <li>Ping inter-VLAN via le routeur (OK)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="render-title">Rendu Final</div>
+
+            <img src="cisco_final_new.png" alt="Topologie Réseau Finale" class="project-img">
+            <p class="img-caption">Figure : Architecture réseau finale segmentée et fonctionnelle</p>
+
         </div>
     </section>
 </body>
