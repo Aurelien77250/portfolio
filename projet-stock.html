@@ -26,7 +26,7 @@
         
         /* Encadré Contexte (Cadre Bleu) */
         .context-box {
-            border: 2px solid #4285f4; /* Bleu type Word/Google */
+            border: 2px solid #4285f4;
             padding: 25px;
             margin: 30px 0;
             background-color: #fff;
@@ -44,16 +44,25 @@
         .prereq-item { text-align: center; flex: 1; min-width: 150px; }
         .prereq-item i { font-size: 4rem; margin-bottom: 10px; display: block; }
         .prereq-item span { font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
-        /* Couleurs spécifiques pour les logos */
         .fa-python { color: #FFD43B; }
         .fa-code { color: #007ACC; }
         .fa-database { color: #00758F; }
 
-        /* Procédure (Liste) */
-        .procedure-step { margin-bottom: 25px; }
-        .step-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 10px; color: #000; }
-        .step-list { list-style-type: square; padding-left: 20px; color: #444; }
-        .step-list li { margin-bottom: 5px; }
+        /* --- NOUVEAU STYLE PROCÉDURE (CARTES) --- */
+        .procedure-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .step-card {
+            background: #f8f9fa;
+            border-left: 5px solid #FFD43B; /* Jaune Python */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .step-card:hover { transform: translateY(-5px); }
+        .step-num { font-size: 1.2rem; font-weight: 800; color: var(--secondary); margin-bottom: 10px; display: block; }
+        .step-title { font-weight: bold; color: #000; font-size: 1.1rem; margin-bottom: 8px; }
+        .step-desc { font-size: 0.95rem; color: #555; }
+        .step-desc ul { padding-left: 20px; margin-top: 5px; }
 
         /* Images Rendu Final */
         .render-title { text-align: center; font-size: 1.5rem; font-weight: bold; text-decoration: underline; margin-top: 50px; margin-bottom: 30px; }
@@ -82,7 +91,7 @@
                 <p>Dans le cadre du cours de développement du BTS SIO, nous avons réalisé une application de gestion de stock. Ce projet comprenait la mise en place d’un système d’inscription et de connexion sécurisé, permettant aux utilisateurs d’accéder à l’application selon leur profil. L’objectif était de gérer les produits en stock, avec des fonctionnalités comme l’ajout, la modification et la suppression d’articles, tout en assurant une interface simple et fonctionnelle.</p>
             </div>
 
-            <div style="text-align: center; font-size: 1.2rem; margin-bottom: 20px;">Prérequis :</div>
+            <div style="text-align: center; font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; text-decoration: underline;">Prérequis :</div>
             <div class="prereq-grid">
                 <div class="prereq-item">
                     <i class="fab fa-python"></i>
@@ -98,66 +107,92 @@
                 </div>
             </div>
 
-            <h3 style="text-decoration: underline;">Procédure :</h3>
+            <h3 style="text-decoration: underline;">Procédure Technique :</h3>
 
-            <div class="procedure-step">
-                <div class="step-title">1) Préparer l’environnement de travail</div>
-                <ul class="step-list">
-                    <li>Installer Python</li>
-                    <li>Créer un nouveau dossier de projet</li>
-                </ul>
-            </div>
+            <div class="procedure-grid">
+                <div class="step-card">
+                    <span class="step-num">Étape 1</span>
+                    <div class="step-title">Environnement</div>
+                    <div class="step-desc">
+                        Préparation du poste de travail :
+                        <ul>
+                            <li>Installation de l'interpréteur Python.</li>
+                            <li>Création de l'arborescence du projet.</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="procedure-step">
-                <div class="step-title">2) Définir la structure du projet</div>
-                <ul class="step-list">
-                    <li>Créer les fichiers suivants : Stock.py / Inscription / Connexion</li>
-                    <li>Création de la base de données "stock"</li>
-                </ul>
-            </div>
+                <div class="step-card">
+                    <span class="step-num">Étape 2</span>
+                    <div class="step-title">Structure & BDD</div>
+                    <div class="step-desc">
+                        Initialisation des fichiers et données :
+                        <ul>
+                            <li>Fichiers : <code>Stock.py</code>, <code>Inscription</code>, <code>Connexion</code>.</li>
+                            <li>Création de la base de données SQL "stock".</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="procedure-step">
-                <div class="step-title">3) Créer le système d’inscription/connexion</div>
-                <ul class="step-list">
-                    <li>Permettre à un utilisateur de s’inscrire (nom d’utilisateur + mot de passe)</li>
-                    <li>Enregistrer les utilisateurs dans une base de données</li>
-                    <li>Permettre la connexion en vérifiant les identifiants</li>
-                </ul>
-            </div>
+                <div class="step-card">
+                    <span class="step-num">Étape 3</span>
+                    <div class="step-title">Authentification</div>
+                    <div class="step-desc">
+                        Sécurisation de l'accès à l'application :
+                        <ul>
+                            <li>Module d'inscription (User + MDP).</li>
+                            <li>Vérification des identifiants (Login).</li>
+                            <li>Stockage en base de données.</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="procedure-step">
-                <div class="step-title">4) Créer les fonctions de gestion de stock (stock.py)</div>
-                <ul class="step-list">
-                    <li>Ajouter un produit (nom, quantité, prix)</li>
-                    <li>Modifier ou supprimer un produit</li>
-                    <li>Lister tous les produits en stock</li>
-                </ul>
-            </div>
+                <div class="step-card">
+                    <span class="step-num">Étape 4</span>
+                    <div class="step-title">Fonctions Backend</div>
+                    <div class="step-desc">
+                        Développement du coeur de l'application (CRUD) :
+                        <ul>
+                            <li>Ajouter un produit (Nom, Qté, Prix).</li>
+                            <li>Modifier ou Supprimer un article.</li>
+                            <li>Lister le stock complet.</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="procedure-step">
-                <div class="step-title">5) Distinction en fonction des utilisateurs</div>
-                <ul class="step-list">
-                    <li>Demander à l’utilisateur de se connecter ou s’inscrire</li>
-                    <li>Une fois connecté, afficher un menu avec les actions disponibles : ajouter, modifier, supprimer, afficher les produits</li>
-                    <li>Sauvegarder les modifications dans le fichier ou la base de données</li>
-                </ul>
-            </div>
+                <div class="step-card">
+                    <span class="step-num">Étape 5</span>
+                    <div class="step-title">Logique Utilisateur</div>
+                    <div class="step-desc">
+                        Gestion de l'expérience utilisateur :
+                        <ul>
+                            <li>Menu conditionnel (Connexion requise).</li>
+                            <li>Actions disponibles selon le profil.</li>
+                            <li>Sauvegarde persistante des données.</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="procedure-step">
-                <div class="step-title">6) Ajouter des améliorations</div>
-                <ul class="step-list">
-                    <li>Interface graphique avec Tkinter</li>
-                    <li>Export des données en CSV</li>
-                </ul>
+                <div class="step-card" style="border-left-color: #28a745;">
+                    <span class="step-num" style="color: #28a745;">Étape 6</span>
+                    <div class="step-title">Améliorations</div>
+                    <div class="step-desc">
+                        Finalisation du projet :
+                        <ul>
+                            <li>Interface graphique (GUI) avec <strong>Tkinter</strong>.</li>
+                            <li>Fonctionnalité d'export en CSV.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="render-title">Rendu final</div>
 
             <img src="stock_connexion_new.png" alt="Interface de Connexion" class="project-img">
-            <p class="img-caption">Figure 1 : Interface de connexion [cite: 3]</p>
+            <p class="img-caption">Figure 1 : Interface de connexion</p>
 
             <img src="stock_interface_new.png" alt="Interface de Gestion" class="project-img">
-            <p class="img-caption">Figure 2 : Interface principale de gestion de stock [cite: 6]</p>
+            <p class="img-caption">Figure 2 : Interface principale de gestion de stock</p>
 
         </div>
     </section>
