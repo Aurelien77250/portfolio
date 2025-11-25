@@ -28,6 +28,9 @@
         .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
         .nav-links a { margin-left: 20px; font-weight: 500; color: var(--dark); }
         .nav-links a:hover { color: var(--secondary); }
+        /* Style spécial pour le lien E6 */
+        .link-e6 { color: var(--accent) !important; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; }
+        .link-e6:hover { background: var(--accent); color: white !important; }
 
         /* HERO */
         .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 160px 20px 100px; text-align: center; }
@@ -55,7 +58,6 @@
         .logo-box img { width: 100%; height: auto; border-radius: 5px; }
         .text-box { flex: 2; min-width: 300px; text-align: justify; }
         
-        /* IMAGE BOUTIQUE (Réduite à 45%) */
         .boutiques-photos { display: flex; justify-content: center; margin-top: 30px; }
         .boutiques-photos img { 
             width: 45%;  
@@ -66,7 +68,6 @@
 
         .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; }
         
-        /* ORGANIGRAMME (Réduit de moitié) */
         .organigramme-container { text-align: center; margin-top: 30px; }
         .organigramme-container img { 
             width: 40%; 
@@ -92,8 +93,8 @@
         .timeline-date { color: var(--secondary); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;}
         .timeline-title { font-size: 1.3rem; margin: 5px 0 10px 0; color: var(--primary); }
 
-        /* PROJETS */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* PROJETS & GRIDS */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; }
         .project-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; text-decoration: none !important; height: 100%; }
         .project-card:hover { transform: translateY(-7px); box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
         .project-header { background: var(--primary); color: white; padding: 20px; }
@@ -101,6 +102,9 @@
         .project-header span { font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; float: right; }
         .project-body { padding: 25px; flex-grow: 1; color: var(--text); }
         .project-tech { margin-top: 20px; font-size: 0.9rem; color: var(--secondary); font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
+        
+        /* Sous-titres Projets */
+        .project-category-title { color: var(--secondary); font-size: 1.5rem; margin-bottom: 20px; border-left: 5px solid var(--accent); padding-left: 15px; }
 
         /* VEILLE */
         .veille-method { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
@@ -111,7 +115,7 @@
             .hero h1 { font-size: 2rem; }
             nav { flex-direction: column; gap: 15px; }
             .nav-links { margin: 0; }
-            .nav-links a { margin: 0 10px; }
+            .nav-links a { margin: 5px 10px; display: inline-block; }
             .entreprise-header { flex-direction: column; }
             .logo-box { max-width: 150px; }
             .boutiques-photos img { width: 90%; }
@@ -130,6 +134,7 @@
                 <a href="#parcours">Expériences</a>
                 <a href="#projects">Projets</a>
                 <a href="#veille">Veille</a>
+                <a href="#e6" class="link-e6">Projets E6</a> 
             </div>
         </nav>
     </header>
@@ -173,35 +178,29 @@
         <div class="white-card">
             <div class="entreprise-header">
                 <div class="logo-box">
-                    [cite_start]<img src="logo_pdt.png" alt="Logo Palais des Thés [cite: 1]">
+                    <img src="logo_pdt.png" alt="Logo Palais des Thés">
                 </div>
                 <div class="text-box">
-                    [cite_start]<p>Le Palais des Thés est une maison de thé française fondée en 1986 par François-Xavier Delmas à Paris. Spécialisée dans l’importation directe de thés d’exception, l’entreprise propose plus de 250 thés et infusions, ainsi que des accessoires de dégustation[cite: 14].</p>
-                    [cite_start]<p style="margin-top:10px;">Elle dispose de 84 boutiques à travers le monde, dont 78 en France, et prévoit d’en ouvrir une trentaine supplémentaires d’ici 2026. En 2022, le chiffre d’affaires de l’entreprise a atteint 89,5 millions d’euros, marquant une croissance de 41,4 % par rapport à 2020[cite: 14].</p>
+                    <p>Le Palais des Thés est une maison de thé française fondée en 1986 par François-Xavier Delmas à Paris. Spécialisée dans l’importation directe de thés d’exception, l’entreprise propose plus de 250 thés et infusions, ainsi que des accessoires de dégustation.</p>
+                    <p style="margin-top:10px;">Elle dispose de 84 boutiques à travers le monde, dont 78 en France, et prévoit d’en ouvrir une trentaine supplémentaires d’ici 2026. En 2022, le chiffre d’affaires de l’entreprise a atteint 89,5 millions d’euros, marquant une croissance de 41,4 % par rapport à 2020.</p>
                 </div>
             </div>
-            
             <div class="boutiques-photos">
-                [cite_start]<img src="boutique_2.png" alt="Devanture boutique Palais des Thés [cite: 14]">
+                <img src="boutique_2.png" alt="Devanture boutique Palais des Thés">
             </div>
         </div>
 
         <div class="white-card">
             <h3 style="color: var(--primary); border-bottom: 2px solid var(--secondary); display: inline-block; margin-bottom: 20px;">Service Support Informatique</h3>
-            
             <div class="service-it-text">
-                [cite_start]<p style="margin-bottom: 15px;">Au sein du support informatique, nous sommes chargés de différentes missions[cite: 14].</p>
-                
-                [cite_start]<p style="margin-bottom: 15px;">Dans un premier temps, nous avons pour principal mission <strong>le support auprès des utilisateurs</strong> du siège de Palais des Thés mais également auprès des boutiques du groupe[cite: 14].</p>
-                
-                [cite_start]<p style="margin-bottom: 15px;">Etant donné qu'il s'agit d'une entreprise commerciale, nous sommes chargés de <strong>la préparation et de l'installation du matériel informatique</strong> au sein des boutiques dans le cadre des nouvelles ouvertures de boutique (Caisses, laptop, TPE, balances...)[cite: 14].</p>
-                
-                <p>En tant qu'apprenti technicien informatique, je possède des droits administrateur sur toutes les applications ainsi que sur le domaine. [cite_start]Je suis également chargé de <strong>faire le lien entre nous et les différents prestataires</strong> et d'assurer le bon fonctionnement du réseau à travers la maintenance de nos différents équipements Cisco[cite: 15, 16].</p>
+                <p style="margin-bottom: 15px;">Au sein du support informatique, nous sommes chargés de différentes missions.</p>
+                <p style="margin-bottom: 15px;">Dans un premier temps, nous avons pour principal mission <strong>le support auprès des utilisateurs</strong> du siège de Palais des Thés mais également auprès des boutiques du groupe.</p>
+                <p style="margin-bottom: 15px;">Etant donné qu'il s'agit d'une entreprise commerciale, nous sommes chargés de <strong>la préparation et de l'installation du matériel informatique</strong> au sein des boutiques dans le cadre des nouvelles ouvertures de boutique (Caisses, laptop, TPE, balances...).</p>
+                <p>En tant qu'apprenti technicien informatique, je possède des droits administrateur sur toutes les applications ainsi que sur le domaine. Je suis également chargé de <strong>faire le lien entre nous et les différents prestataires</strong> et d'assurer le bon fonctionnement du réseau à travers la maintenance de nos différents équipements Cisco.</p>
             </div>
-
             <div class="organigramme-container">
                 <h4 style="margin-bottom: 15px; color: var(--secondary);">Organigramme du service</h4>
-                [cite_start]<img src="organigramme.png" alt="Organigramme Service Informatique [cite: 17]">
+                <img src="organigramme.png" alt="Organigramme Service Informatique">
             </div>
         </div>
     </section>
@@ -214,30 +213,27 @@
             <div class="timeline-item">
                 <div class="timeline-date">Sept 2024 - Aujourd'hui</div>
                 <h3 class="timeline-title">Technicien Support - Palais des Thés</h3>
-                [cite_start]<p>Alternance. Assistance utilisateurs, administration Active Directory, participation à la sécurisation du réseau et déploiements boutiques[cite: 8].</p>
+                <p>Alternance. Assistance utilisateurs, administration Active Directory, participation à la sécurisation du réseau et déploiements boutiques.</p>
             </div>
             <div class="timeline-item">
                 <div class="timeline-date">Fév 2024 - Sept 2024</div>
                 <h3 class="timeline-title">Technicien Support - TENEXA</h3>
-                [cite_start]<p>Support N1/N2, configuration de postes, rédaction de documentations internes et gestion de stocks[cite: 9].</p>
+                <p>Support N1/N2, configuration de postes, rédaction de documentations internes et gestion de stocks.</p>
             </div>
-            
             <div class="timeline-item" style="border-left-color: var(--accent);">
                 <div class="timeline-date">2024 - 2026</div>
                 <h3 class="timeline-title">BTS SIO – Spécialité SISR</h3>
-                <p>IEF2I – Vincennes. [cite_start]<br><strong>Certifications :</strong> Microsoft MS-900 (obtenue), Cisco CCNA (en cours)[cite: 10].</p>
+                <p>IEF2I – Vincennes. <br><strong>Certifications :</strong> Microsoft MS-900 (obtenue), Cisco CCNA (en cours).</p>
             </div>
-            
             <div class="timeline-item" style="border-left-color: var(--accent);">
                 <div class="timeline-date">2023 - 2024</div>
                 <h3 class="timeline-title">Formation technicien support</h3>
-                [cite_start]<p>FITEC [cite: 10]</p>
+                <p>FITEC</p>
             </div>
-
             <div class="timeline-item" style="border-left-color: var(--accent);">
                 <div class="timeline-date">2019</div>
                 <h3 class="timeline-title">Baccalauréat STMG option Gestion Finance</h3>
-                [cite_start]<p>Lycée Étienne Bezout [cite: 10]</p>
+                <p>Lycée Étienne Bezout</p>
             </div>
         </div>
     </section>
@@ -245,8 +241,10 @@
     <section id="projects">
         <div class="section-title">
             <h2>Mes Projets</h2>
-            <p>Cliquez sur une carte pour voir les détails</p>
+            <p>Découvrez mes réalisations en entreprise et en formation</p>
         </div>
+        
+        <h3 class="project-category-title">Projets en Entreprise</h3>
         <div class="projects-grid">
             <a href="projet-rh.html" class="project-card">
                 <div class="project-header"><h3>Outil Ticketing RH</h3><span>Palais des Thés</span></div>
@@ -256,6 +254,10 @@
                 <div class="project-header"><h3>Atelier Phishing</h3><span>Palais des Thés</span></div>
                 <div class="project-body"><p>Création d'un atelier de sensibilisation cybersécurité suite à un audit.</p><div class="project-tech">Cybersécurité • Pédagogie • Audit</div></div>
             </a>
+        </div>
+
+        <h3 class="project-category-title">Projets de Formation (E4)</h3>
+        <div class="projects-grid">
             <a href="projet-cisco.html" class="project-card">
                 <div class="project-header"><h3>Infrastructure LAN/VLAN</h3><span>Formation</span></div>
                 <div class="project-body"><p>Architecture réseau sécurisée, segmentation VLAN et routage.</p><div class="project-tech">Cisco Packet Tracer • Routing • Switching</div></div>
@@ -267,20 +269,31 @@
         </div>
     </section>
 
+    <section id="e6">
+        <div class="section-title">
+            <h2>Dossier E6 (Projets)</h2>
+        </div>
+        <div class="white-card" style="text-align: center; color: #777;">
+            <i class="fas fa-folder-open" style="font-size: 3rem; margin-bottom: 20px; color: #ccc;"></i>
+            <h3>Section en cours de construction</h3>
+            <p>Cette section sera complétée ultérieurement avec les documents de l'épreuve E6.</p>
+        </div>
+    </section>
+
     <section id="veille">
         <div class="section-title">
             <h2>Veille Technologique</h2>
         </div>
         <div class="veille-container">
             <h3 style="border:none; color: var(--primary);">Sujet : Le processeur Majorana 1 (Informatique Quantique)</h3>
-            [cite_start]<p style="margin-top: 15px;"><strong>Majorana 1</strong> est le premier prototype de processeur quantique topologique développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et l’observation d'un état de Majorana, rendant les calculs plus stables et résistants aux erreurs[cite: 51, 52, 53].</p>
+            <p style="margin-top: 15px;"><strong>Majorana 1</strong> est le premier prototype de processeur quantique topologique développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et l’observation d'un état de Majorana, rendant les calculs plus stables et résistants aux erreurs.</p>
             
             <h4 style="margin-top: 30px; color: var(--secondary);"><i class="fas fa-search"></i> Ma Méthodologie :</h4>
             <div class="veille-method">
-                <div class="veille-step"><strong>1. [cite_start]Définir</strong><br>Périmètre & Mots-clés [cite: 50]</div>
-                <div class="veille-step"><strong>2. [cite_start]Sourcer</strong><br>Pearltrees, Google Alerts [cite: 50]</div>
-                <div class="veille-step"><strong>3. [cite_start]Analyser</strong><br>Critique & Synthèse [cite: 50]</div>
-                <div class="veille-step"><strong>4. [cite_start]Diffuser</strong><br>Intégration au Portfolio [cite: 47]</div>
+                <div class="veille-step"><strong>1. Définir</strong><br>Périmètre & Mots-clés</div>
+                <div class="veille-step"><strong>2. Sourcer</strong><br>Pearltrees, Google Alerts</div>
+                <div class="veille-step"><strong>3. Analyser</strong><br>Critique & Synthèse</div>
+                <div class="veille-step"><strong>4. Diffuser</strong><br>Intégration au Portfolio</div>
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
