@@ -58,6 +58,7 @@
         .logo-box img { width: 100%; height: auto; border-radius: 5px; }
         .text-box { flex: 2; min-width: 300px; text-align: justify; }
         
+        /* IMAGE BOUTIQUE */
         .boutiques-photos { display: flex; justify-content: center; margin-top: 30px; }
         .boutiques-photos img { 
             width: 45%;  
@@ -68,6 +69,7 @@
 
         .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; }
         
+        /* ORGANIGRAMME */
         .organigramme-container { text-align: center; margin-top: 30px; }
         .organigramme-container img { 
             width: 40%; 
@@ -103,13 +105,20 @@
         .project-body { padding: 25px; flex-grow: 1; color: var(--text); }
         .project-tech { margin-top: 20px; font-size: 0.9rem; color: var(--secondary); font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
         
-        /* Sous-titres Projets */
         .project-category-title { color: var(--secondary); font-size: 1.5rem; margin-bottom: 20px; border-left: 5px solid var(--accent); padding-left: 15px; }
 
-        /* VEILLE */
-        .veille-method { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        .veille-step { flex: 1; background: var(--light); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #ddd; }
+        /* VEILLE (MODIFIÉE) */
+        .veille-section { margin-bottom: 40px; }
+        .veille-subtitle { color: var(--primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .veille-subtitle i { margin-right: 15px; color: var(--accent); font-size: 1.8rem; }
+        .veille-list { list-style: none; padding-left: 10px; }
+        .veille-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .veille-list li::before { content: "•"; color: var(--secondary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
+        .veille-text { text-align: justify; margin-bottom: 20px; }
         
+        .source-link { color: var(--secondary); font-weight: bold; text-decoration: underline; }
+        .source-link:hover { color: var(--accent); }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
@@ -133,8 +142,8 @@
                 <a href="#entreprise">Entreprise</a>
                 <a href="#parcours">Expériences</a>
                 <a href="#projects">Projets</a>
+                <a href="#projets-e6" class="link-e6">Projets E6</a> 
                 <a href="#veille">Veille</a>
-                <a href="#e6" class="link-e6">Projets E6</a> 
             </div>
         </nav>
     </header>
@@ -156,7 +165,6 @@
                 <br>
                 <p><strong><i class="fas fa-bullseye"></i> Mon objectif :</strong> Devenir un administrateur réseau compétent et engagé, capable de répondre aux enjeux de sécurité et de gestion d’infrastructure.</p>
             </div>
-            
             <div class="skills-grid" id="skills">
                 <div class="skill-card"><i class="fab fa-windows"></i><h4>Windows Server</h4></div>
                 <div class="skill-card"><i class="fab fa-linux"></i><h4>Linux (Debian)</h4></div>
@@ -256,7 +264,7 @@
             </a>
         </div>
 
-        <h3 class="project-category-title">Projets de Formation </h3>
+        <h3 class="project-category-title">Projets de Formation (E4)</h3>
         <div class="projects-grid">
             <a href="projet-cisco.html" class="project-card">
                 <div class="project-header"><h3>Infrastructure LAN/VLAN</h3><span>Formation</span></div>
@@ -269,9 +277,10 @@
         </div>
     </section>
 
-    <section id="e6">
+    <section id="projets-e6">
         <div class="section-title">
-            <h2>Dossier E6 (Projets)</h2>
+            <h2 style="color: var(--accent); border-bottom-color: var(--primary);">Projets en Entreprise (E6)</h2>
+            <p>Réalisations en milieu professionnel</p>
         </div>
         <div class="white-card" style="text-align: center; color: #777;">
             <i class="fas fa-folder-open" style="font-size: 3rem; margin-bottom: 20px; color: #ccc;"></i>
@@ -283,21 +292,82 @@
     <section id="veille">
         <div class="section-title">
             <h2>Veille Technologique</h2>
+            <p>Anticiper, analyser, comprendre les innovations</p>
         </div>
         <div class="veille-container">
-            <h3 style="border:none; color: var(--primary);">Sujet : Le processeur Majorana 1 (Informatique Quantique)</h3>
-            <p style="margin-top: 15px;"><strong>Majorana 1</strong> est le premier prototype de processeur quantique topologique développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et l’observation d'un état de Majorana, rendant les calculs plus stables et résistants aux erreurs.</p>
             
-            <h4 style="margin-top: 30px; color: var(--secondary);"><i class="fas fa-search"></i> Ma Méthodologie :</h4>
-            <div class="veille-method">
-                <div class="veille-step"><strong>1. Définir</strong><br>Périmètre & Mots-clés</div>
-                <div class="veille-step"><strong>2. Sourcer</strong><br>Pearltrees, Google Alerts</div>
-                <div class="veille-step"><strong>3. Analyser</strong><br>Critique & Synthèse</div>
-                <div class="veille-step"><strong>4. Diffuser</strong><br>Intégration au Portfolio</div>
+            <div class="veille-section">
+                <h3 class="veille-subtitle"><i class="fas fa-question-circle"></i> Qu'est-ce qu'une veille technologique ?</h3>
+                <div class="veille-text">
+                    [cite_start]La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique. Elle permet <strong>d’anticiper les changements, d’identifier les opportunités</strong> et de rester compétitif dans un environnement en constante évolution[cite: 47, 48].
+                </div>
             </div>
-            
+
+            <div class="veille-section">
+                <h3 class="veille-subtitle"><i class="fas fa-compass"></i> Ma méthodologie de veille</h3>
+                [cite_start]<div class="veille-text">Pour mener cette veille sur le <strong>processeur Majorana 1</strong>, j’ai adopté une approche structurée[cite: 50]:</div>
+                <ul class="veille-list">
+                    <li><strong>Définition du périmètre :</strong> Choix d’un sujet précis et pertinent</li>
+                    <li><strong>Identification des sources :</strong> Blogs, publications académiques, sites spécialisés</li>
+                    <li><strong>Collecte régulière :</strong> Recherches hebdomadaires et suivi des alertes</li>
+                    <li><strong>Analyse critique :</strong> Comparaison des points de vue et validation des sources</li>
+                </ul>
+            </div>
+
+            <div class="veille-section">
+                <h3 class="veille-subtitle"><i class="fas fa-tools"></i> Outils utilisés</h3>
+                <ul class="veille-list">
+                    <li><strong>🔍 Google Alerts :</strong> Alertes sur des mots-clés ciblés</li>
+                    <li><strong>📁 Pearltrees :</strong> Regroupement d’articles, images et vidéos liés au sujet</li>
+                </ul>
+            </div>
+
+            <hr style="margin: 40px 0; border: 0; border-top: 2px solid #eee;">
+
+            <div class="veille-section">
+                <h3 class="veille-subtitle" style="color: var(--primary); font-size: 2rem; border:none; text-align: center; display: block;">📄 Sujet traité : Le processeur Majorana 1</h3>
+                
+                <div class="veille-text">
+                    [cite_start]<strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>, une quasi-particule stable et résistante aux erreurs[cite: 51].
+                </div>
+                <div class="veille-text">
+                    [cite_start]Cette technologie pourrait révolutionner l’informatique quantique grâce à sa stabilité exceptionnelle, essentielle pour corriger les erreurs de calcul qui freinent encore le développement de cette industrie[cite: 52].
+                </div>
+
+                <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-atom"></i> C’est quoi exactement ?</h4>
+                <div class="veille-text">
+                    Le processeur est le fruit de plus de 20 ans de recherche chez Microsoft, notamment via l’équipe <strong>StationQ</strong>. [cite_start]Il s’agit d’un processeur quantique topologique dont l’objectif principal est de résoudre l’un des plus grands défis du domaine : la <strong>correction d’erreur</strong>[cite: 53].
+                </div>
+
+                <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-dna"></i> Technologie utilisée</h4>
+                <div class="veille-text">
+                    Contrairement aux qubits classiques utilisés par IBM ou Google, les <strong>qubits topologiques</strong> de Majorana 1 exploitent des <strong>quasi-particules de Majorana</strong>. Ces dernières n’encodent pas l’information en un seul point, mais la répartissent dans une structure étendue. [cite_start]Ce mécanisme les rend naturellement plus résistantes aux perturbations et erreurs[cite: 54].
+                </div>
+            </div>
+
+            <div class="veille-section">
+                <h3 class="veille-subtitle"><i class="fas fa-thumbtack"></i> Thématiques surveillées</h3>
+                <ul class="veille-list">
+                    <li>Cybersécurité : ransomware, EDR, sécurité cloud</li>
+                    <li>Cloud computing : AWS, Azure, solutions hybrides</li>
+                    <li>Composants matériels : processeurs quantiques, ARM vs x86</li>
+                    [cite_start]<li>Innovation quantique : Qubits topologiques, supraconducteurs [cite: 55]</li>
+                </ul>
+            </div>
+
+            <div class="veille-section">
+                <h3 class="veille-subtitle"><i class="fas fa-book-open"></i> Sources principales</h3>
+                <ul class="veille-list">
+                    <li><a href="https://www.microsoft.com/en-us/quantum/" target="_blank" class="source-link">Microsoft Quantum</a></li>
+                    <li><a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-link">CERT-FR</a></li>
+                    <li><a href="https://korben.info/" target="_blank" class="source-link">Korben</a></li>
+                    <li><a href="https://futura-sciences.com/" target="_blank" class="source-link">Futura Sciences</a></li>
+                    [cite_start]<li><a href="https://www.zdnet.fr/" target="_blank" class="source-link">ZDNet</a> [cite: 56]</li>
+                </ul>
+            </div>
+
             <div style="text-align: center; margin-top: 40px;">
-                <a href="https://www.pearltrees.com/aurelien77" target="_blank" class="btn" style="background: var(--secondary); color: white; border: none; box-shadow:none;">Voir mon Pearltrees</a>
+                <a href="https://www.pearltrees.com/aurelien77" target="_blank" class="btn" style="background: var(--secondary); color: white; border: none; box-shadow:none;">Voir mon Pearltrees complet</a>
             </div>
         </div>
     </section>
@@ -315,4 +385,3 @@
 
 </body>
 </html>
-
