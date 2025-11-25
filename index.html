@@ -55,13 +55,26 @@
         .logo-box img { width: 100%; height: auto; border-radius: 5px; }
         .text-box { flex: 2; min-width: 300px; text-align: justify; }
         
-        /* Modification ici pour centrer l'image unique */
+        /* IMAGE BOUTIQUE (Réduite à 45%) */
         .boutiques-photos { display: flex; justify-content: center; margin-top: 30px; }
-        .boutiques-photos img { width: 60%; min-width: 300px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .boutiques-photos img { 
+            width: 45%;  /* TAILLE REDUITE ICI */
+            min-width: 300px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        }
 
         .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; }
+        
+        /* ORGANIGRAMME (Réduit de moitié) */
         .organigramme-container { text-align: center; margin-top: 30px; }
-        .organigramme-container img { max-width: 100%; height: auto; border: 1px solid #eee; border-radius: 8px; }
+        .organigramme-container img { 
+            width: 40%; /* TAILLE REDUITE SIGNIFICATIVEMENT ICI */
+            max-width: 500px;
+            height: auto; 
+            border: 1px solid #eee; 
+            border-radius: 8px; 
+        }
 
         /* ABOUT & SKILLS */
         .about-container { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
@@ -101,7 +114,8 @@
             .nav-links a { margin: 0 10px; }
             .entreprise-header { flex-direction: column; }
             .logo-box { max-width: 150px; }
-            .boutiques-photos img { width: 100%; }
+            .boutiques-photos img { width: 90%; }
+            .organigramme-container img { width: 90%; }
         }
     </style>
 </head>
