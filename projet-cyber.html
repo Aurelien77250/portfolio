@@ -2,30 +2,96 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet Cyber - Aurélien GAILLARD</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- STYLE INTEGRÉ --- */
+        :root { --primary: #1d3557; --secondary: #457b9d; --white: #ffffff; --text: #333; --light: #f1faee; --accent: #e63946; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: var(--text); line-height: 1.6; margin: 0; }
+        
+        /* Header */
+        header { background: var(--white); padding: 15px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
+        .nav-links a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Contenu */
+        section { max-width: 950px; margin: 100px auto 50px; padding: 20px; }
+        .project-detail { background: var(--white); padding: 50px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        /* Titres Principaux (Soulignés comme sur ton image) */
+        h1 { color: #000; text-align: center; font-size: 2.5rem; margin-bottom: 50px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;}
+        h3 { color: #000; text-align: center; font-size: 2rem; margin-top: 50px; margin-bottom: 30px; text-transform: uppercase; font-weight: 800; text-decoration: underline; text-underline-offset: 8px;}
+        
+        /* Section Contexte (Mise en page Flex) */
+        .contexte-container { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-bottom: 40px; }
+        .orange-logo { font-size: 2.5rem; line-height: 1.2; font-weight: bold; color: #f16e00; flex: 1; min-width: 200px; text-align: center; }
+        .orange-logo span { color: #000; display: block; }
+        .contexte-text { flex: 2; min-width: 300px; text-align: justify; font-size: 1rem; }
+
+        /* Section Mission (Cadre Bleu) */
+        .mission-box {
+            border: 2px solid #4285f4; /* Bleu vif */
+            padding: 30px;
+            margin: 20px 0;
+            background-color: #fff;
+            color: #000;
+            font-weight: 500;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* Section Comment (Liste centrée sans puces) */
+        .comment-list { text-align: center; font-weight: 600; font-size: 1.1rem; color: #333; }
+        .comment-list div { margin-bottom: 15px; }
+
+        /* Images */
+        .project-img { width: 100%; max-width: 900px; margin: 30px auto; display: block; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    </style>
 </head>
 <body>
-    <header><nav><div class="logo">Aurélien GAILLARD</div><div class="nav-links"><a href="index.html">Retour Accueil</a></div></nav></header>
+    <header>
+        <nav>
+            <div class="logo">Aurélien GAILLARD</div>
+            <div class="nav-links"><a href="index.html"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a></div>
+        </nav>
+    </header>
 
-    <section style="margin-top: 60px;">
-        <a href="index.html#projects" class="back-btn">← Retour aux projets</a>
+    <section>
         <div class="project-detail">
-            <h1>Atelier Sensibilisation Phishing</h1>
-            <p><strong>Contexte :</strong> Suite à un audit de sécurité réalisé par Orange[cite: 39].</p>
             
-            <h3>🛡️ La Mission</h3>
-            <p>Face à l'augmentation des cyberattaques, ma mission a été de concevoir et d'animer un atelier pour renforcer la vigilance des collaborateurs face au phishing (hameçonnage)[cite: 42].</p>
+            <h3>CONTEXTE</h3>
+            <div class="contexte-container">
+                <div class="orange-logo">
+                    Orange<br><span>Cyberdefense</span>
+                </div>
+                <div class="contexte-text">
+                    <p>Face à l’augmentation des cyberattaques, l’entreprise a décidé de faire réaliser un audit de sécurité du réseau en collaboration avec Orange. Cet audit a permis d’identifier plusieurs axes d’amélioration en matière de cybersécurité. À l’issue de cette analyse, un rapport détaillant des recommandations a été remis. [cite_start]Suite à ce rapport, il m’a été confié la mission de concevoir un atelier de sensibilisation au phishing, que je serai amené à animer auprès des collaborateurs afin de renforcer la vigilance et les bonnes pratiques face à ce type de menace. [cite: 39, 40, 41, 42]</p>
+                </div>
+            </div>
 
-            <h3>💻 Mise en œuvre</h3>
-            <ul>
-                <li><strong>Recherche :</strong> Sélection d'exemples concrets et typiques de tentatives de phishing[cite: 44].</li>
-                <li><strong>Création de contenu :</strong> Élaboration d'un Quiz interactif et d'un support de présentation[cite: 46].</li>
-                <li><strong>Organisation :</strong> Création d'un formulaire d'inscription et réservation des salles[cite: 46].</li>
-            </ul>
+            <h3>MA MISSION</h3>
+            <div class="mission-box">
+                <p>Dans le cadre de cette mission, je suis chargé d’élaborer entièrement l’atelier de sensibilisation au phishing. Cela inclut la recherche et la sélection d’exemples concrets et typiques de tentatives de phishing, afin d’apprendre aux collaborateurs à les reconnaître facilement. [cite_start]L’objectif est de les former à adopter les bons réflexes en cas de suspicion, notamment en matière de détection et de signalement de ces menaces, pour renforcer la sécurité globale de l’entreprise. [cite: 43, 44, 45]</p>
+            </div>
 
-            <h3>🎯 Objectifs pédagogiques</h3>
-            <p>Apprendre aux collaborateurs à détecter les menaces, adopter les bons réflexes de signalement et renforcer la sécurité globale de l'entreprise[cite: 45].</p>
+            <h3>COMMENT ?</h3>
+            <div class="comment-list">
+                [cite_start]<div>Recherche de Quiz concernant le phishing [cite: 46]</div>
+                [cite_start]<div>Création d'un formulaire d'inscription aux ateliers [cite: 46]</div>
+                [cite_start]<div>Création d'un support de présentation [cite: 46]</div>
+                [cite_start]<div>Réservation des salles de réunion [cite: 46]</div>
+            </div>
+
+            <h3>AVANCE DU PROJET</h3>
+            
+            <div style="background: #1d3557; color: white; padding: 10px; font-weight: bold; border-radius: 5px 5px 0 0; margin-top: 20px;">
+                1. SENSIBILISER ET FORMER
+            </div>
+            
+            <img src="cyber_suivi.png" alt="Tableau de suivi du projet" class="project-img" style="margin-top:0;">
+            
         </div>
     </section>
 </body>
