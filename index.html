@@ -2,133 +2,196 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Aurélien GAILLARD | BTS SIO SISR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Portfolio - Aurélien GAILLARD | BTS SIO SISR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* --- VARIABLES & THEME --- */
         :root {
-            --primary: #1d3557;   /* Bleu foncé */
-            --secondary: #457b9d; /* Bleu moyen */
-            --accent: #e63946;    /* Rouge */
-            --light: #f1faee;     /* Blanc cassé */
-            --dark: #1d3557;
-            --text: #333;
-            --white: #ffffff;
+            /* Couleurs Mode Clair (Défaut) */
+            --bg-body: #f4f4f9;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --primary: #1d3557;
+            --secondary: #457b9d;
+            --accent: #e63946;
+            --light-bg: #f1faee;
+            --border: #eeeeee;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        /* Couleurs Mode Sombre */
+        body.dark-mode {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-secondary: #aaaaaa;
+            --primary: #a8dadc; /* Plus clair pour le contraste */
+            --secondary: #457b9d;
+            --accent: #ff6b6b;
+            --light-bg: #2c2c2c;
+            --border: #333333;
+            --shadow: rgba(0,0,0,0.5);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
-        body { line-height: 1.6; color: var(--text); background-color: #f4f4f9; }
+        body { line-height: 1.6; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.3s, color 0.3s; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* HEADER */
-        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        /* --- HEADER & NAV --- */
+        header { background: var(--bg-card); box-shadow: 0 2px 10px var(--shadow); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.3s; }
         nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: auto; padding: 1rem 20px; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
-        .nav-links a { margin-left: 20px; font-weight: 500; color: var(--dark); }
+        
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent); } /* Logo en accent pour ressortir */
+        
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { margin-left: 20px; font-weight: 500; color: var(--text-main); }
         .nav-links a:hover { color: var(--secondary); }
-        /* Style spécial pour le lien E6 */
-        .link-e6 { color: var(--accent) !important; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; }
+        
+        /* Bouton Projets E6 spécial */
+        .link-e6 { border: 2px solid var(--accent); padding: 5px 15px; border-radius: 20px; color: var(--accent) !important; font-weight: bold; }
         .link-e6:hover { background: var(--accent); color: white !important; }
 
-        /* HERO */
-        .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 160px 20px 100px; text-align: center; }
-        .hero h1 { font-size: 3rem; margin-bottom: 15px; }
-        .btn { background: var(--white); color: var(--primary); padding: 12px 30px; border-radius: 50px; font-weight: bold; border: 2px solid var(--white); display: inline-block; margin-top: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn:hover { background: transparent; color: var(--white); }
+        /* Boutons Contrôle (Dark mode & Burger) */
+        .nav-controls { display: flex; align-items: center; gap: 15px; margin-left: 20px; }
+        .theme-toggle { cursor: pointer; font-size: 1.2rem; color: var(--text-main); background: none; border: none; }
+        .burger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text-main); }
 
-        /* SECTIONS */
+        /* --- HERO SECTION --- */
+        .hero { background: linear-gradient(135deg, #1d3557, #457b9d); color: white; padding: 160px 20px 100px; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; }
+        .btn { background: white; color: #1d3557; padding: 12px 30px; border-radius: 50px; font-weight: bold; border: 2px solid white; display: inline-block; margin-top: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .btn:hover { background: transparent; color: white; }
+
+        /* --- SECTIONS --- */
         section { padding: 80px 20px; max-width: 1100px; margin: auto; }
         .section-title { text-align: center; margin-bottom: 60px; }
         .section-title h2 { font-size: 2.5rem; color: var(--primary); display: inline-block; border-bottom: 4px solid var(--secondary); padding-bottom: 10px; }
+        .section-title p { color: var(--text-secondary); margin-top: 10px; }
 
-        /* BLOCS BLANCS */
+        /* BLOCS (Cartes blanches/sombres) */
         .white-card, .project-detail, .veille-container, .about-text {
-            background: var(--white);
+            background: var(--bg-card);
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px var(--shadow);
             margin-bottom: 30px;
+            transition: background 0.3s;
         }
 
-        /* --- STYLE SPÉCIFIQUE ENTREPRISE --- */
+        /* --- ENTREPRISE --- */
         .entreprise-header { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 30px; }
         .logo-box { flex: 1; max-width: 250px; text-align: center; }
         .logo-box img { width: 100%; height: auto; border-radius: 5px; }
-        .text-box { flex: 2; min-width: 300px; text-align: justify; }
+        .text-box { flex: 2; min-width: 300px; text-align: justify; color: var(--text-main); }
         
-        /* IMAGE BOUTIQUE (45%) */
         .boutiques-photos { display: flex; justify-content: center; margin-top: 30px; }
-        .boutiques-photos img { 
-            width: 45%;  
-            min-width: 300px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-        }
+        .boutiques-photos img { width: 45%; min-width: 300px; border-radius: 8px; box-shadow: 0 4px 10px var(--shadow); }
 
-        .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; }
-        
-        /* ORGANIGRAMME (40%) */
+        .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; color: var(--text-main); }
         .organigramme-container { text-align: center; margin-top: 30px; }
-        .organigramme-container img { 
-            width: 40%; 
-            max-width: 500px;
-            height: auto; 
-            border: 1px solid #eee; 
-            border-radius: 8px; 
-        }
+        .organigramme-container img { width: 40%; max-width: 500px; border: 1px solid var(--border); border-radius: 8px; }
 
-        /* ABOUT & SKILLS */
+        /* --- ABOUT & SKILLS --- */
         .about-container { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
-        .about-text { flex: 1; min-width: 300px; }
+        .about-text { flex: 1; min-width: 300px; color: var(--text-main); }
         .skills-grid { flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 20px; }
-        .skill-card { background: var(--white); padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-bottom: 3px solid var(--secondary); transition: transform 0.2s; }
+        .skill-card { background: var(--bg-card); padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 4px 10px var(--shadow); border-bottom: 3px solid var(--secondary); transition: transform 0.2s; }
         .skill-card:hover { transform: translateY(-5px); }
         .skill-card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; display: block; }
+        .skill-card h4 { color: var(--text-main); }
 
-        /* TIMELINE */
+        /* --- PARCOURS (Timeline) --- */
         .timeline { position: relative; max-width: 800px; margin: auto; }
-        .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: #ddd; border-radius: 2px; }
-        .timeline-item { background: var(--white); padding: 25px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; margin-left: 50px; border-left: 5px solid var(--primary); }
+        .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: var(--border); border-radius: 2px; }
+        .timeline-item { background: var(--bg-card); padding: 25px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 4px 10px var(--shadow); position: relative; margin-left: 50px; border-left: 5px solid var(--primary); }
         .timeline-item::before { content: ''; position: absolute; left: -39px; top: 30px; width: 16px; height: 16px; background: var(--secondary); border-radius: 50%; border: 3px solid white; }
         .timeline-date { color: var(--secondary); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;}
         .timeline-title { font-size: 1.3rem; margin: 5px 0 10px 0; color: var(--primary); }
+        .timeline-item p { color: var(--text-main); }
 
-        /* PROJETS & GRIDS */
+        /* --- PROJETS (Grid) --- */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; }
-        .project-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; text-decoration: none !important; height: 100%; }
-        .project-card:hover { transform: translateY(-7px); box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
-        .project-header { background: var(--primary); color: white; padding: 20px; }
+        .project-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px var(--shadow); transition: transform 0.3s; display: flex; flex-direction: column; height: 100%; border: 1px solid var(--border); }
+        .project-card:hover { transform: translateY(-7px); box-shadow: 0 10px 20px var(--shadow); }
+        .project-header { background: var(--primary); color: white; padding: 20px; } /* Reste bleu même en dark mode pour le contraste */
         .project-header h3 { font-size: 1.3rem; margin-bottom: 5px; }
         .project-header span { font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; float: right; }
-        .project-body { padding: 25px; flex-grow: 1; color: var(--text); }
-        .project-tech { margin-top: 20px; font-size: 0.9rem; color: var(--secondary); font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; }
-        
-        .project-category-title { color: var(--secondary); font-size: 1.5rem; margin-bottom: 20px; border-left: 5px solid var(--accent); padding-left: 15px; }
+        .project-body { padding: 25px; flex-grow: 1; color: var(--text-main); }
+        .project-tech { margin-top: 20px; font-size: 0.9rem; color: var(--secondary); font-weight: bold; border-top: 1px solid var(--border); padding-top: 15px; }
 
-        /* VEILLE */
+        /* --- VEILLE --- */
         .veille-section { margin-bottom: 40px; }
-        .veille-subtitle { color: var(--primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .veille-subtitle { color: var(--primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         .veille-subtitle i { margin-right: 15px; color: var(--accent); font-size: 1.8rem; }
-        .veille-list { list-style: none; padding-left: 10px; }
+        .veille-list { list-style: none; padding-left: 10px; color: var(--text-main); }
         .veille-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
         .veille-list li::before { content: "•"; color: var(--secondary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
-        .veille-text { text-align: justify; margin-bottom: 20px; }
+        .veille-text { text-align: justify; margin-bottom: 20px; color: var(--text-main); }
         
         .source-link { color: var(--secondary); font-weight: bold; text-decoration: underline; }
         .source-link:hover { color: var(--accent); }
 
-        /* RESPONSIVE */
+        .veille-method { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        .veille-step { flex: 1; background: var(--light-bg); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid var(--border); color: var(--text-main); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: white; text-align: center; padding: 40px; margin-top: 50px; }
+        .socials a { color: white; font-size: 1.5rem; margin: 0 10px; }
+
+        /* --- RESPONSIVE MOBILE (Adaptation Téléphone) --- */
         @media (max-width: 768px) {
+            /* Header Mobile */
+            .burger { display: block; }
+            
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                top: 70px;
+                background-color: var(--bg-card);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%; /* Pleine largeur */
+                transform: translateX(100%); /* Caché par défaut */
+                transition: transform 0.3s ease-in;
+                box-shadow: 0 5px 15px var(--shadow);
+                padding-bottom: 20px;
+                border-top: 1px solid var(--border);
+            }
+            
+            .nav-links.nav-active {
+                transform: translateX(0%); /* Visible quand actif */
+            }
+
+            .nav-links a {
+                margin: 20px 0;
+                font-size: 1.2rem;
+            }
+
+            /* Hero Mobile */
             .hero h1 { font-size: 2rem; }
-            nav { flex-direction: column; gap: 15px; }
-            .nav-links { margin: 0; }
-            .nav-links a { margin: 5px 10px; display: inline-block; }
+            .hero { padding: 120px 20px 60px; }
+
+            /* Sections & Cartes Mobile */
+            section { padding: 40px 15px; }
+            .section-title h2 { font-size: 2rem; }
+            
+            /* Entreprise Mobile */
             .entreprise-header { flex-direction: column; }
             .logo-box { max-width: 150px; }
-            .boutiques-photos img { width: 90%; }
-            .organigramme-container img { width: 90%; }
+            .boutiques-photos img, .organigramme-container img { width: 100%; } /* Pleine largeur sur mobile */
+            
+            /* Timeline Mobile */
+            .timeline::before { left: 10px; }
+            .timeline-item { margin-left: 30px; padding: 15px; }
+            .timeline-item::before { left: -29px; }
+
+            /* Grilles Mobile */
+            .projects-grid, .phases-grid, .skills-grid { grid-template-columns: 1fr; } /* 1 colonne */
         }
     </style>
 </head>
@@ -137,12 +200,23 @@
     <header>
         <nav>
             <div class="logo">Aurélien GAILLARD</div>
-            <div class="nav-links">
+            
+            <div class="nav-links" id="navLinks">
                 <a href="#about">Profil</a>
                 <a href="#entreprise">Entreprise</a>
                 <a href="#parcours">Expériences</a>
+                <a href="#projets-e6" class="link-e6">Projets E6</a>
                 <a href="#projects">Projets</a>
-                <a href="#projets-e6" class="link-e6">Projets E6</a> <a href="#veille">Veille</a>
+                <a href="#veille">Veille</a>
+            </div>
+
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" title="Changer de thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="burger" id="burgerMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </nav>
     </header>
@@ -164,7 +238,6 @@
                 <br>
                 <p><strong><i class="fas fa-bullseye"></i> Mon objectif :</strong> Devenir un administrateur réseau compétent et engagé, capable de répondre aux enjeux de sécurité et de gestion d’infrastructure.</p>
             </div>
-            
             <div class="skills-grid" id="skills">
                 <div class="skill-card"><i class="fab fa-windows"></i><h4>Windows Server</h4></div>
                 <div class="skill-card"><i class="fab fa-linux"></i><h4>Linux (Debian)</h4></div>
@@ -246,29 +319,11 @@
         </div>
     </section>
 
-    <section id="projects">
-        <div class="section-title">
-            <h2>Projets de Formation (E4)</h2>
-            <p>Réalisations académiques et techniques</p>
-        </div>
-        <div class="projects-grid">
-            <a href="projet-cisco.html" class="project-card">
-                <div class="project-header"><h3>Infrastructure LAN/VLAN</h3><span>Formation</span></div>
-                <div class="project-body"><p>Architecture réseau sécurisée, segmentation VLAN et routage.</p><div class="project-tech">Cisco Packet Tracer • Routing • Switching</div></div>
-            </a>
-            <a href="projet-stock.html" class="project-card">
-                <div class="project-header"><h3>App Gestion Stock</h3><span>Formation</span></div>
-                <div class="project-body"><p>Développement d'une application CRUD avec authentification.</p><div class="project-tech">Python • SQL • Tkinter</div></div>
-            </a>
-        </div>
-    </section>
-
     <section id="projets-e6">
         <div class="section-title">
             <h2 style="color: var(--accent); border-bottom-color: var(--primary);">Projets en Entreprise (E6)</h2>
             <p>Réalisations en milieu professionnel</p>
         </div>
-        
         <div class="projects-grid">
             <a href="projet-glpi.html" class="project-card">
                 <div class="project-header">
@@ -276,11 +331,20 @@
                     <span>Projet E6</span>
                 </div>
                 <div class="project-body">
-                    <p>Administration Système & Gestion de Parc (ITSM/ITAM). Déploiement complet sur Debian.</p>
-                    <div class="project-tech">Debian • GLPI 10 • MariaDB</div>
+                    <p>Déploiement d'une solution de gestion de parc et de Helpdesk (ITSM).</p>
+                    <div class="project-tech">Debian 11 • GLPI 10 • MariaDB</div>
                 </div>
             </a>
+        </div>
+    </section>
 
+    <section id="projects">
+        <div class="section-title">
+            <h2>Autres Projets</h2>
+            <p>Projets de formation et missions d'entreprise diverses</p>
+        </div>
+        
+        <div class="projects-grid">
             <a href="projet-rh.html" class="project-card">
                 <div class="project-header">
                     <h3>Outil Ticketing RH</h3>
@@ -302,6 +366,28 @@
                     <div class="project-tech">Cybersécurité • Pédagogie • Audit</div>
                 </div>
             </a>
+
+            <a href="projet-cisco.html" class="project-card">
+                <div class="project-header">
+                    <h3>Infrastructure LAN/VLAN</h3>
+                    <span>Formation</span>
+                </div>
+                <div class="project-body">
+                    <p>Architecture réseau sécurisée, segmentation VLAN et routage.</p>
+                    <div class="project-tech">Cisco Packet Tracer • Routing • Switching</div>
+                </div>
+            </a>
+
+            <a href="projet-stock.html" class="project-card">
+                <div class="project-header">
+                    <h3>App Gestion Stock</h3>
+                    <span>Formation</span>
+                </div>
+                <div class="project-body">
+                    <p>Développement d'une application CRUD avec authentification.</p>
+                    <div class="project-tech">Python • SQL • Tkinter</div>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -311,75 +397,24 @@
             <p>Anticiper, analyser, comprendre les innovations</p>
         </div>
         <div class="veille-container">
-            
             <div class="veille-section">
                 <h3 class="veille-subtitle"><i class="fas fa-question-circle"></i> Qu'est-ce qu'une veille technologique ?</h3>
                 <div class="veille-text">
-                    La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique. Elle permet <strong>d’anticiper les changements, d’identifier les opportunités</strong> et de rester compétitif dans un environnement en constante évolution.
+                    La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique.
                 </div>
             </div>
 
-            <div class="veille-section">
-                <h3 class="veille-subtitle"><i class="fas fa-compass"></i> Ma méthodologie de veille</h3>
-                <div class="veille-text">Pour mener cette veille sur le <strong>processeur Majorana 1</strong>, j’ai adopté une approche structurée :</div>
-                <ul class="veille-list">
-                    <li><strong>Définition du périmètre :</strong> Choix d’un sujet précis et pertinent</li>
-                    <li><strong>Identification des sources :</strong> Blogs, publications académiques, sites spécialisés</li>
-                    <li><strong>Collecte régulière :</strong> Recherches hebdomadaires et suivi des alertes</li>
-                    <li><strong>Analyse critique :</strong> Comparaison des points de vue et validation des sources</li>
-                </ul>
-            </div>
-
-            <div class="veille-section">
-                <h3 class="veille-subtitle"><i class="fas fa-tools"></i> Outils utilisés</h3>
-                <ul class="veille-list">
-                    <li><strong>🔍 Google Alerts :</strong> Alertes sur des mots-clés ciblés</li>
-                    <li><strong>📁 Pearltrees :</strong> Regroupement d’articles, images et vidéos liés au sujet</li>
-                </ul>
-            </div>
-
-            <hr style="margin: 40px 0; border: 0; border-top: 2px solid #eee;">
+            <hr style="margin: 40px 0; border: 0; border-top: 2px solid var(--border);">
 
             <div class="veille-section">
                 <h3 class="veille-subtitle" style="color: var(--primary); font-size: 2rem; border:none; text-align: center; display: block;">📄 Sujet traité : Le processeur Majorana 1</h3>
-                
                 <div class="veille-text">
-                    <strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>, une quasi-particule stable et résistante aux erreurs.
+                    <strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>.
                 </div>
-                <div class="veille-text">
-                    Cette technologie pourrait révolutionner l’informatique quantique grâce à sa stabilité exceptionnelle, essentielle pour corriger les erreurs de calcul qui freinent encore le développement de cette industrie.
-                </div>
-
                 <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-atom"></i> C’est quoi exactement ?</h4>
                 <div class="veille-text">
                     Le processeur est le fruit de plus de 20 ans de recherche chez Microsoft, notamment via l’équipe <strong>StationQ</strong>. Il s’agit d’un processeur quantique topologique dont l’objectif principal est de résoudre l’un des plus grands défis du domaine : la <strong>correction d’erreur</strong>.
                 </div>
-
-                <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-dna"></i> Technologie utilisée</h4>
-                <div class="veille-text">
-                    Contrairement aux qubits classiques utilisés par IBM ou Google, les <strong>qubits topologiques</strong> de Majorana 1 exploitent des <strong>quasi-particules de Majorana</strong>. Ces dernières n’encodent pas l’information en un seul point, mais la répartissent dans une structure étendue. Ce mécanisme les rend naturellement plus résistantes aux perturbations et erreurs.
-                </div>
-            </div>
-
-            <div class="veille-section">
-                <h3 class="veille-subtitle"><i class="fas fa-thumbtack"></i> Thématiques surveillées</h3>
-                <ul class="veille-list">
-                    <li>Cybersécurité : ransomware, EDR, sécurité cloud</li>
-                    <li>Cloud computing : AWS, Azure, solutions hybrides</li>
-                    <li>Composants matériels : processeurs quantiques, ARM vs x86</li>
-                    <li>Innovation quantique : Qubits topologiques, supraconducteurs</li>
-                </ul>
-            </div>
-
-            <div class="veille-section">
-                <h3 class="veille-subtitle"><i class="fas fa-book-open"></i> Sources principales</h3>
-                <ul class="veille-list">
-                    <li><a href="https://www.microsoft.com/en-us/quantum/" target="_blank" class="source-link">Microsoft Quantum</a></li>
-                    <li><a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-link">CERT-FR</a></li>
-                    <li><a href="https://korben.info/" target="_blank" class="source-link">Korben</a></li>
-                    <li><a href="https://futura-sciences.com/" target="_blank" class="source-link">Futura Sciences</a></li>
-                    <li><a href="https://www.zdnet.fr/" target="_blank" class="source-link">ZDNet</a></li>
-                </ul>
             </div>
 
             <div style="text-align: center; margin-top: 40px;">
@@ -388,16 +423,68 @@
         </div>
     </section>
 
-    <footer id="contact" style="background: var(--primary); color: white; text-align: center; padding: 40px; margin-top: 50px;">
+    <footer id="contact">
         <h3>Aurélien GAILLARD</h3>
         <p>Étudiant BTS SIO | Recherche d'opportunités Administrateur Réseau</p>
         <div class="socials" style="margin-top: 20px; font-size: 1.5rem;">
-            <a href="mailto:tonemail@exemple.com" style="color: white; margin: 0 10px;"><i class="fas fa-envelope"></i></a>
-            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
-            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-github"></i></a>
+            <a href="mailto:tonemail@exemple.com"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
         </div>
         <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">&copy; 2025 - Créé pour le BTS SIO</p>
     </footer>
+
+    <script>
+        // Gestion du menu mobile
+        const burger = document.getElementById('burgerMenu');
+        const nav = document.getElementById('navLinks');
+        const links = document.querySelectorAll('.nav-links a');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            
+            // Animation icône burger (optionnel : switch icon)
+            if(nav.classList.contains('nav-active')){
+                burger.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                burger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                burger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Gestion du Mode Sombre (Dark Mode)
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Vérifier préférence locale
+        if(localStorage.getItem('theme') === 'dark'){
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if(body.classList.contains('dark-mode')){
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 
 </body>
 </html>
