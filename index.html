@@ -58,7 +58,7 @@
         .logo-box img { width: 100%; height: auto; border-radius: 5px; }
         .text-box { flex: 2; min-width: 300px; text-align: justify; }
         
-        /* IMAGE BOUTIQUE */
+        /* IMAGE BOUTIQUE (45%) */
         .boutiques-photos { display: flex; justify-content: center; margin-top: 30px; }
         .boutiques-photos img { 
             width: 45%;  
@@ -69,7 +69,7 @@
 
         .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; }
         
-        /* ORGANIGRAMME */
+        /* ORGANIGRAMME (40%) */
         .organigramme-container { text-align: center; margin-top: 30px; }
         .organigramme-container img { 
             width: 40%; 
@@ -107,7 +107,7 @@
         
         .project-category-title { color: var(--secondary); font-size: 1.5rem; margin-bottom: 20px; border-left: 5px solid var(--accent); padding-left: 15px; }
 
-        /* VEILLE (MODIFIÉE) */
+        /* VEILLE */
         .veille-section { margin-bottom: 40px; }
         .veille-subtitle { color: var(--primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .veille-subtitle i { margin-right: 15px; color: var(--accent); font-size: 1.8rem; }
@@ -141,8 +141,8 @@
                 <a href="#about">Profil</a>
                 <a href="#entreprise">Entreprise</a>
                 <a href="#parcours">Expériences</a>
-                <a href="#projects">Projets</a>
-                <a href="#projets-e6" class="link-e6">Projets E6</a> 
+                <a href="#projets-e6" class="link-e6">Projets E6</a>
+                <a href="#projects">Projets E4</a>
                 <a href="#veille">Veille</a>
             </div>
         </nav>
@@ -165,6 +165,7 @@
                 <br>
                 <p><strong><i class="fas fa-bullseye"></i> Mon objectif :</strong> Devenir un administrateur réseau compétent et engagé, capable de répondre aux enjeux de sécurité et de gestion d’infrastructure.</p>
             </div>
+            
             <div class="skills-grid" id="skills">
                 <div class="skill-card"><i class="fab fa-windows"></i><h4>Windows Server</h4></div>
                 <div class="skill-card"><i class="fab fa-linux"></i><h4>Linux (Debian)</h4></div>
@@ -246,25 +247,53 @@
         </div>
     </section>
 
-    <section id="projects">
+    <section id="projets-e6">
         <div class="section-title">
-            <h2>Mes Projets</h2>
-            <p>Découvrez mes réalisations en entreprise et en formation</p>
+            <h2 style="color: var(--accent); border-bottom-color: var(--primary);">Projets en Entreprise (E6)</h2>
+            <p>Réalisations en milieu professionnel</p>
         </div>
         
-        <h3 class="project-category-title">Projets en Entreprise</h3>
         <div class="projects-grid">
-            <a href="projet-rh.html" class="project-card">
-                <div class="project-header"><h3>Outil Ticketing RH</h3><span>Palais des Thés</span></div>
-                <div class="project-body"><p>Conception d'un outil de centralisation des demandes RH.</p><div class="project-tech">Freshservice • Monday • Gestion Projet</div></div>
+            <a href="projet-glpi.html" class="project-card">
+                <div class="project-header">
+                    <h3>Mise en place d'un serveur GLPI sur DEBIAN 11</h3>
+                    <span>Projet E6</span>
+                </div>
+                <div class="project-body">
+                    <p>Déploiement d'une solution de gestion de parc et de Helpdesk (ITSM).</p>
+                    <div class="project-tech">Debian 11 • GLPI 10 • MariaDB</div>
+                </div>
             </a>
+
+            <a href="projet-rh.html" class="project-card">
+                <div class="project-header">
+                    <h3>Outil Ticketing RH</h3>
+                    <span>Palais des Thés</span>
+                </div>
+                <div class="project-body">
+                    <p>Conception d'un outil de centralisation des demandes RH.</p>
+                    <div class="project-tech">Freshservice • Monday • Gestion Projet</div>
+                </div>
+            </a>
+
             <a href="projet-cyber.html" class="project-card">
-                <div class="project-header"><h3>Atelier Phishing</h3><span>Palais des Thés</span></div>
-                <div class="project-body"><p>Création d'un atelier de sensibilisation cybersécurité suite à un audit.</p><div class="project-tech">Cybersécurité • Pédagogie • Audit</div></div>
+                <div class="project-header">
+                    <h3>Atelier Phishing</h3>
+                    <span>Palais des Thés</span>
+                </div>
+                <div class="project-body">
+                    <p>Création d'un atelier de sensibilisation cybersécurité suite à un audit.</p>
+                    <div class="project-tech">Cybersécurité • Pédagogie • Audit</div>
+                </div>
             </a>
         </div>
+    </section>
 
-        <h3 class="project-category-title">Projets de Formation (E4)</h3>
+    <section id="projects">
+        <div class="section-title">
+            <h2>Projets de Formation (E4)</h2>
+            <p>Réalisations académiques et techniques</p>
+        </div>
         <div class="projects-grid">
             <a href="projet-cisco.html" class="project-card">
                 <div class="project-header"><h3>Infrastructure LAN/VLAN</h3><span>Formation</span></div>
@@ -274,18 +303,6 @@
                 <div class="project-header"><h3>App Gestion Stock</h3><span>Formation</span></div>
                 <div class="project-body"><p>Développement d'une application CRUD avec authentification.</p><div class="project-tech">Python • SQL • Tkinter</div></div>
             </a>
-        </div>
-    </section>
-
-    <section id="projets-e6">
-        <div class="section-title">
-            <h2 style="color: var(--accent); border-bottom-color: var(--primary);">Projets en Entreprise (E6)</h2>
-            <p>Réalisations en milieu professionnel</p>
-        </div>
-        <div class="white-card" style="text-align: center; color: #777;">
-            <i class="fas fa-folder-open" style="font-size: 3rem; margin-bottom: 20px; color: #ccc;"></i>
-            <h3>Section en cours de construction</h3>
-            <p>Cette section sera complétée ultérieurement avec les documents de l'épreuve E6.</p>
         </div>
     </section>
 
@@ -299,13 +316,13 @@
             <div class="veille-section">
                 <h3 class="veille-subtitle"><i class="fas fa-question-circle"></i> Qu'est-ce qu'une veille technologique ?</h3>
                 <div class="veille-text">
-                    [cite_start]La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique. Elle permet <strong>d’anticiper les changements, d’identifier les opportunités</strong> et de rester compétitif dans un environnement en constante évolution[cite: 47, 48].
+                    La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique. Elle permet <strong>d’anticiper les changements, d’identifier les opportunités</strong> et de rester compétitif dans un environnement en constante évolution.
                 </div>
             </div>
 
             <div class="veille-section">
                 <h3 class="veille-subtitle"><i class="fas fa-compass"></i> Ma méthodologie de veille</h3>
-                [cite_start]<div class="veille-text">Pour mener cette veille sur le <strong>processeur Majorana 1</strong>, j’ai adopté une approche structurée[cite: 50]:</div>
+                <div class="veille-text">Pour mener cette veille sur le <strong>processeur Majorana 1</strong>, j’ai adopté une approche structurée :</div>
                 <ul class="veille-list">
                     <li><strong>Définition du périmètre :</strong> Choix d’un sujet précis et pertinent</li>
                     <li><strong>Identification des sources :</strong> Blogs, publications académiques, sites spécialisés</li>
@@ -328,20 +345,20 @@
                 <h3 class="veille-subtitle" style="color: var(--primary); font-size: 2rem; border:none; text-align: center; display: block;">📄 Sujet traité : Le processeur Majorana 1</h3>
                 
                 <div class="veille-text">
-                    [cite_start]<strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>, une quasi-particule stable et résistante aux erreurs[cite: 51].
+                    <strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>, une quasi-particule stable et résistante aux erreurs.
                 </div>
                 <div class="veille-text">
-                    [cite_start]Cette technologie pourrait révolutionner l’informatique quantique grâce à sa stabilité exceptionnelle, essentielle pour corriger les erreurs de calcul qui freinent encore le développement de cette industrie[cite: 52].
+                    Cette technologie pourrait révolutionner l’informatique quantique grâce à sa stabilité exceptionnelle, essentielle pour corriger les erreurs de calcul qui freinent encore le développement de cette industrie.
                 </div>
 
                 <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-atom"></i> C’est quoi exactement ?</h4>
                 <div class="veille-text">
-                    Le processeur est le fruit de plus de 20 ans de recherche chez Microsoft, notamment via l’équipe <strong>StationQ</strong>. [cite_start]Il s’agit d’un processeur quantique topologique dont l’objectif principal est de résoudre l’un des plus grands défis du domaine : la <strong>correction d’erreur</strong>[cite: 53].
+                    Le processeur est le fruit de plus de 20 ans de recherche chez Microsoft, notamment via l’équipe <strong>StationQ</strong>. Il s’agit d’un processeur quantique topologique dont l’objectif principal est de résoudre l’un des plus grands défis du domaine : la <strong>correction d’erreur</strong>.
                 </div>
 
                 <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-dna"></i> Technologie utilisée</h4>
                 <div class="veille-text">
-                    Contrairement aux qubits classiques utilisés par IBM ou Google, les <strong>qubits topologiques</strong> de Majorana 1 exploitent des <strong>quasi-particules de Majorana</strong>. Ces dernières n’encodent pas l’information en un seul point, mais la répartissent dans une structure étendue. [cite_start]Ce mécanisme les rend naturellement plus résistantes aux perturbations et erreurs[cite: 54].
+                    Contrairement aux qubits classiques utilisés par IBM ou Google, les <strong>qubits topologiques</strong> de Majorana 1 exploitent des <strong>quasi-particules de Majorana</strong>. Ces dernières n’encodent pas l’information en un seul point, mais la répartissent dans une structure étendue. Ce mécanisme les rend naturellement plus résistantes aux perturbations et erreurs.
                 </div>
             </div>
 
@@ -351,7 +368,7 @@
                     <li>Cybersécurité : ransomware, EDR, sécurité cloud</li>
                     <li>Cloud computing : AWS, Azure, solutions hybrides</li>
                     <li>Composants matériels : processeurs quantiques, ARM vs x86</li>
-                    [cite_start]<li>Innovation quantique : Qubits topologiques, supraconducteurs [cite: 55]</li>
+                    <li>Innovation quantique : Qubits topologiques, supraconducteurs</li>
                 </ul>
             </div>
 
@@ -362,7 +379,7 @@
                     <li><a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-link">CERT-FR</a></li>
                     <li><a href="https://korben.info/" target="_blank" class="source-link">Korben</a></li>
                     <li><a href="https://futura-sciences.com/" target="_blank" class="source-link">Futura Sciences</a></li>
-                    [cite_start]<li><a href="https://www.zdnet.fr/" target="_blank" class="source-link">ZDNet</a> [cite: 56]</li>
+                    <li><a href="https://www.zdnet.fr/" target="_blank" class="source-link">ZDNet</a></li>
                 </ul>
             </div>
 
