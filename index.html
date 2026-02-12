@@ -2,466 +2,464 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio BTS SIO - SISR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Portfolio - Aurélien GAILLARD | BTS SIO SISR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- VARIABLES & RESET --- */
+        /* --- VARIABLES & THEME (TON DESIGN ORIGINAL) --- */
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --card-bg: #ffffff;
-            --nav-bg: #ffffff;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            /* Couleurs Mode Clair (Défaut) */
+            --bg-body: #f4f4f9;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --primary: #1d3557;
+            --secondary: #457b9d;
+            --accent: #e63946;
+            --light-bg: #f1faee;
+            --border: #eeeeee;
+            --shadow: rgba(0,0,0,0.1);
         }
 
-        /* DARK MODE VARIABLES */
-        .dark-mode {
-            --primary-color: #ecf0f1;
-            --accent-color: #3498db;
-            --bg-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --card-bg: #2d2d2d;
-            --nav-bg: #2d2d2d;
-            --shadow: 0 4px 6px rgba(0,0,0,0.5);
+        /* Couleurs Mode Sombre */
+        body.dark-mode {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-secondary: #aaaaaa;
+            --primary: #a8dadc; /* Plus clair pour le contraste */
+            --secondary: #457b9d;
+            --accent: #ff6b6b;
+            --light-bg: #2c2c2c;
+            --border: #333333;
+            --shadow: rgba(0,0,0,0.5);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background 0.3s, color 0.3s; }
-        a { text-decoration: none; color: inherit; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
+        body { line-height: 1.6; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.3s, color 0.3s; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
         /* --- HEADER & NAV --- */
-        header {
-            background-color: var(--nav-bg);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); }
+        header { background: var(--bg-card); box-shadow: 0 2px 10px var(--shadow); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.3s; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: auto; padding: 1rem 20px; }
         
-        nav ul { display: flex; gap: 20px; }
-        nav a { font-weight: 500; transition: color 0.3s; cursor: pointer; }
-        nav a:hover { color: var(--accent-color); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
+        
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { margin-left: 20px; font-weight: 500; color: var(--text-main); }
+        .nav-links a:hover { color: var(--secondary); }
+        
+        /* Bouton Projets E6 spécial */
+        .link-e6 { border: 2px solid var(--accent); padding: 5px 15px; border-radius: 20px; color: var(--accent) !important; font-weight: bold; }
+        .link-e6:hover { background: var(--accent); color: white !important; }
 
-        .theme-toggle {
-            cursor: pointer;
-            font-size: 1.2rem;
-            background: none;
-            border: none;
-            color: var(--text-color);
-        }
+        /* Boutons Contrôle (Dark mode & Burger) */
+        .nav-controls { display: flex; align-items: center; gap: 15px; margin-left: 20px; }
+        .theme-toggle { cursor: pointer; font-size: 1.2rem; color: var(--text-main); background: none; border: none; }
+        .burger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text-main); }
 
-        /* --- MAIN CONTAINER --- */
-        main { margin-top: 80px; padding: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+        /* --- HERO SECTION --- */
+        .hero { background: linear-gradient(135deg, #1d3557, #457b9d); color: white; padding: 160px 20px 100px; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; }
+        .btn { background: white; color: #1d3557; padding: 12px 30px; border-radius: 50px; font-weight: bold; border: 2px solid white; display: inline-block; margin-top: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .btn:hover { background: transparent; color: white; }
 
         /* --- SECTIONS --- */
-        section { margin-bottom: 4rem; display: block; }
-        .hidden { display: none; } /* Pour cacher les sections */
+        section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); display: inline-block; border-bottom: 4px solid var(--secondary); padding-bottom: 10px; }
+        .section-title p { color: var(--text-secondary); margin-top: 10px; }
 
-        h1, h2, h3 { color: var(--primary-color); margin-bottom: 1rem; }
-        h2 { border-bottom: 3px solid var(--accent-color); display: inline-block; padding-bottom: 5px; margin-bottom: 2rem; }
-
-        /* --- HERO PROFILE --- */
-        .hero { text-align: center; padding: 3rem 1rem; }
-        .hero h1 { font-size: 2.5rem; color: var(--accent-color); }
-        .skills-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px; }
-        .skill-tag { background: var(--accent-color); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; }
+        /* BLOCS (Cartes blanches/sombres) */
+        .white-card, .project-detail, .veille-container, .about-text {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin-bottom: 30px;
+            transition: background 0.3s;
+        }
 
         /* --- ENTREPRISE --- */
-        .entreprise-container { display: flex; flex-direction: column; gap: 2rem; }
-        .entreprise-content { display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; }
-        .entreprise-text { flex: 1; min-width: 300px; }
-        .entreprise-images { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
-        .entreprise-images img { width: 100%; max-width: 400px; border-radius: 10px; box-shadow: var(--shadow); }
-        .org-img { max-width: 250px !important; } /* Réduction organigramme demandée */
+        .entreprise-header { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 30px; }
+        .logo-box { flex: 1; max-width: 250px; text-align: center; }
+        .logo-box img { width: 100%; height: auto; border-radius: 5px; }
+        .text-box { flex: 2; min-width: 300px; text-align: justify; color: var(--text-main); }
+        
+        .boutiques-photos { display: flex; justify-content: center; margin-top: 30px; }
+        .boutiques-photos img { width: 45%; min-width: 300px; border-radius: 8px; box-shadow: 0 4px 10px var(--shadow); }
 
-        /* --- PROJETS CARDS --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+        .service-it-text { text-align: justify; margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; color: var(--text-main); }
+        .organigramme-container { text-align: center; margin-top: 30px; }
+        .organigramme-container img { width: 40%; max-width: 500px; border: 1px solid var(--border); border-radius: 8px; }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-            cursor: pointer;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        /* --- ABOUT & SKILLS --- */
+        .about-container { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+        .about-text { flex: 1; min-width: 300px; color: var(--text-main); }
+        .skills-grid { flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 20px; }
+        .skill-card { background: var(--bg-card); padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 4px 10px var(--shadow); border-bottom: 3px solid var(--secondary); transition: transform 0.2s; }
+        .skill-card:hover { transform: translateY(-5px); }
+        .skill-card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; display: block; }
+        .skill-card h4 { color: var(--text-main); }
 
-        .card:hover { transform: translateY(-5px); }
+        /* --- PARCOURS (Timeline) --- */
+        .timeline { position: relative; max-width: 800px; margin: auto; }
+        .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: var(--border); border-radius: 2px; }
+        .timeline-item { background: var(--bg-card); padding: 25px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 4px 10px var(--shadow); position: relative; margin-left: 50px; border-left: 5px solid var(--primary); }
+        .timeline-item::before { content: ''; position: absolute; left: -39px; top: 30px; width: 16px; height: 16px; background: var(--secondary); border-radius: 50%; border: 3px solid white; }
+        .timeline-date { color: var(--secondary); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block;}
+        .timeline-title { font-size: 1.3rem; margin: 5px 0 10px 0; color: var(--primary); }
+        .timeline-item p { color: var(--text-main); }
 
-        .card-header {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .card-body { padding: 1.5rem; }
-        .card-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .card-body p { font-size: 0.9rem; color: var(--text-color); opacity: 0.8; margin-bottom: 1rem; }
-        .tags { display: flex; gap: 10px; flex-wrap: wrap; }
-        .tag { background: #eee; color: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
-        .dark-mode .tag { background: #444; color: #fff; }
-
-        /* --- DETAIL PAGE (SIMULATION) --- */
-        .project-detail-view {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background-color: var(--accent-color);
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .detail-content h3 { margin-top: 2rem; color: var(--accent-color); }
-        .detail-content ul { list-style: disc; margin-left: 20px; margin-bottom: 1rem; }
-        .detail-content img { max-width: 100%; height: auto; margin: 20px 0; border-radius: 5px; border: 1px solid #ddd; }
-        .detail-header { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+        /* --- PROJETS (Grid) --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .project-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px var(--shadow); transition: transform 0.3s; display: flex; flex-direction: column; height: 100%; border: 1px solid var(--border); }
+        .project-card:hover { transform: translateY(-7px); box-shadow: 0 10px 20px var(--shadow); }
+        .project-header { background: var(--primary); color: white; padding: 20px; } 
+        .project-header h3 { font-size: 1.3rem; margin-bottom: 5px; }
+        .project-header span { font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; float: right; }
+        .project-body { padding: 25px; flex-grow: 1; color: var(--text-main); }
+        .project-tech { margin-top: 20px; font-size: 0.9rem; color: var(--secondary); font-weight: bold; border-top: 1px solid var(--border); padding-top: 15px; }
 
         /* --- VEILLE --- */
-        .veille-content { background: var(--card-bg); padding: 2rem; border-radius: 10px; box-shadow: var(--shadow); }
+        .veille-section { margin-bottom: 40px; }
+        .veille-subtitle { color: var(--primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .veille-subtitle i { margin-right: 15px; color: var(--accent); font-size: 1.8rem; }
+        .veille-list { list-style: none; padding-left: 10px; color: var(--text-main); }
+        .veille-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .veille-list li::before { content: "•"; color: var(--secondary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
+        .veille-text { text-align: justify; margin-bottom: 20px; color: var(--text-main); }
+        
+        .source-link { color: var(--secondary); font-weight: bold; text-decoration: underline; }
+        .source-link:hover { color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: white; text-align: center; padding: 40px; margin-top: 50px; }
+        .socials a { color: white; font-size: 1.5rem; margin: 0 10px; }
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 10px; }
-            nav ul { flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
-            .hero h1 { font-size: 1.8rem; }
-            .entreprise-content { flex-direction: column; }
+            .burger { display: block; }
+            .nav-links {
+                position: absolute; right: 0px; top: 70px;
+                background-color: var(--bg-card);
+                display: flex; flex-direction: column; align-items: center;
+                width: 100%; transform: translateX(100%); transition: transform 0.3s ease-in;
+                box-shadow: 0 5px 15px var(--shadow); padding-bottom: 20px; border-top: 1px solid var(--border);
+            }
+            .nav-links.nav-active { transform: translateX(0%); }
+            .nav-links a { margin: 20px 0; font-size: 1.2rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero { padding: 120px 20px 60px; }
+            section { padding: 40px 15px; }
+            .section-title h2 { font-size: 2rem; }
+            .entreprise-header { flex-direction: column; }
+            .logo-box { max-width: 150px; }
+            .boutiques-photos img, .organigramme-container img { width: 100%; }
+            .timeline::before { left: 10px; }
+            .timeline-item { margin-left: 30px; padding: 15px; }
+            .timeline-item::before { left: -29px; }
+            .projects-grid, .skills-grid { grid-template-columns: 1fr; } 
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Mon Portfolio SISR</div>
         <nav>
-            <ul>
-                <li><a onclick="showSection('home')">Accueil</a></li>
-                <li><a onclick="showSection('entreprise')">Entreprise</a></li>
-                <li><a onclick="showSection('projets')">Projets</a></li>
-                <li><a onclick="showSection('veille')">Veille</a></li>
-            </ul>
+            <div class="logo">Aurélien GAILLARD</div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#about">Profil</a>
+                <a href="#entreprise">Entreprise</a>
+                <a href="#parcours">Expériences</a>
+                <a href="#projets-e6" class="link-e6">Projets E6</a>
+                <a href="#projects">Projets</a>
+                <a href="#veille">Veille</a>
+            </div>
+
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" title="Changer de thème">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="burger" id="burgerMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
         </nav>
-        <button class="theme-toggle" onclick="toggleTheme()">
-            <i class="fas fa-moon"></i>
-        </button>
     </header>
 
-    <main>
-        <section id="home">
-            <div class="hero">
-                <h1>Étudiant BTS SIO - Option SISR</h1>
-                <p>Passionné par l'administration réseaux, la cybersécurité et le support utilisateur.</p>
-                <div class="skills-grid">
-                    <span class="skill-tag"><i class="fab fa-windows"></i> Windows Server</span>
-                    <span class="skill-tag"><i class="fab fa-linux"></i> Linux Debian</span>
-                    <span class="skill-tag"><i class="fas fa-network-wired"></i> Cisco / VLAN</span>
-                    <span class="skill-tag"><i class="fas fa-users-cog"></i> Active Directory</span>
-                    <span class="skill-tag"><i class="fas fa-shield-alt"></i> Cybersécurité</span>
-                    <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
-                    <span class="skill-tag"><i class="fas fa-ticket-alt"></i> GLPI</span>
+    <section class="hero">
+        <h1>Technicien Supérieur Systèmes & Réseaux</h1>
+        <p>Étudiant en BTS SIO - Option SISR</p>
+        <a href="#contact" class="btn">Me contacter</a>
+    </section>
+
+    <section id="about">
+        <div class="section-title">
+            <h2>À propos & Compétences</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-text">
+                <h3><i class="fas fa-user-circle"></i> Mon Profil</h3>
+                <p style="margin-top: 15px;">Passionné depuis toujours par les technologies numériques, j’ai choisi de me spécialiser dans les systèmes informatiques et les réseaux. Mon parcours en alternance me permet de mettre immédiatement en pratique les compétences acquises en cours.</p>
+                <br>
+                <p><strong><i class="fas fa-bullseye"></i> Mon objectif :</strong> Devenir un administrateur réseau compétent et engagé, capable de répondre aux enjeux de sécurité et de gestion d’infrastructure.</p>
+            </div>
+            <div class="skills-grid" id="skills">
+                <div class="skill-card"><i class="fab fa-windows"></i><h4>Windows Server</h4></div>
+                <div class="skill-card"><i class="fab fa-linux"></i><h4>Linux (Debian)</h4></div>
+                <div class="skill-card"><i class="fas fa-network-wired"></i><h4>Cisco / VLAN</h4></div>
+                <div class="skill-card"><i class="fas fa-users-cog"></i><h4>Active Directory</h4></div>
+                <div class="skill-card"><i class="fas fa-shield-alt"></i><h4>Cybersécurité</h4></div>
+                <div class="skill-card"><i class="fab fa-python"></i><h4>Python</h4></div>
+                <div class="skill-card"><i class="fas fa-ticket-alt"></i><h4>GLPI / Support</h4></div>
+                <div class="skill-card"><i class="fab fa-microsoft"></i><h4>Microsoft 365</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="entreprise">
+        <div class="section-title">
+            <h2>Mon Entreprise d'Accueil</h2>
+        </div>
+        
+        <div class="white-card">
+            <div class="entreprise-header">
+                <div class="logo-box">
+                    <img src="logo_pdt.png" alt="Logo Palais des Thés">
+                </div>
+                <div class="text-box">
+                    <p>Le Palais des Thés est une maison de thé française fondée en 1986 par François-Xavier Delmas à Paris. Spécialisée dans l’importation directe de thés d’exception, l’entreprise propose plus de 250 thés et infusions, ainsi que des accessoires de dégustation.</p>
+                    <p style="margin-top:10px;">Elle dispose de 84 boutiques à travers le monde, dont 78 en France, et prévoit d’en ouvrir une trentaine supplémentaires d’ici 2026. En 2022, le chiffre d’affaires de l’entreprise a atteint 89,5 millions d’euros, marquant une croissance de 41,4 % par rapport à 2020.</p>
                 </div>
             </div>
-        </section>
-
-        <section id="entreprise" class="hidden">
-            <h2>Mon Entreprise : Palais des Thés</h2>
-            <div class="entreprise-container">
-                <div class="entreprise-content">
-                    <div class="entreprise-text">
-                        <p><strong>Palais des Thés</strong> est une maison de thé française fondée en 1986 par François-Xavier Delmas à Paris. Spécialisée dans l'importation directe de thés d'exception, l'entreprise propose plus de 250 thés et infusions.</p>
-                        <p>Elle dispose de 84 boutiques à travers le monde, dont 78 en France. En 2022, le chiffre d'affaires a atteint 89,5 millions d'euros.</p>
-                        <br>
-                        <h3>Service Support Informatique</h3>
-                        <p>Au sein du support informatique, nous sommes chargés de différentes missions :</p>
-                        <ul>
-                            <li>Support auprès des utilisateurs du siège et des boutiques.</li>
-                            <li>Préparation et installation du matériel (Caisses, laptop, TPE, balances) pour les nouvelles ouvertures.</li>
-                            <li>Administration Active Directory et Office 365.</li>
-                            <li>Maintenance des équipements réseaux Cisco.</li>
-                            <li>Lien avec les prestataires externes.</li>
-                        </ul>
-                    </div>
-                    <div class="entreprise-images">
-                        <img src="logo_palais.png" alt="Logo Palais des Thés">
-                        <img src="boutique.jpg" alt="Photo Boutique" style="max-width: 300px;">
-                        <img src="organigramme.png" alt="Organigramme" class="org-img">
-                    </div>
-                </div>
+            <div class="boutiques-photos">
+                <img src="boutique.jpg" alt="Devanture boutique Palais des Thés">
             </div>
-        </section>
+        </div>
 
-        <section id="projets" class="hidden">
-            
-            <h2>Projets (E6)</h2>
-            <div class="projects-grid">
-                <div class="card" onclick="showProjectDetail('glpi')">
-                    <div class="card-header">
-                        <i class="fas fa-server fa-3x"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Mise en place d'un serveur GLPI</h3>
-                        <p>Déploiement d'une solution de gestion de parc et de Helpdesk sur Debian 11.</p>
-                        <div class="tags">
-                            <span class="tag">Debian</span>
-                            <span class="tag">GLPI 10</span>
-                            <span class="tag">MariaDB</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="white-card">
+            <h3 style="color: var(--primary); border-bottom: 2px solid var(--secondary); display: inline-block; margin-bottom: 20px;">Service Support Informatique</h3>
+            <div class="service-it-text">
+                <p style="margin-bottom: 15px;">Au sein du support informatique, nous sommes chargés de différentes missions.</p>
+                <p style="margin-bottom: 15px;">Dans un premier temps, nous avons pour principal mission <strong>le support auprès des utilisateurs</strong> du siège de Palais des Thés mais également auprès des boutiques du groupe.</p>
+                <p style="margin-bottom: 15px;">Etant donné qu'il s'agit d'une entreprise commerciale, nous sommes chargés de <strong>la préparation et de l'installation du matériel informatique</strong> au sein des boutiques dans le cadre des nouvelles ouvertures de boutique (Caisses, laptop, TPE, balances...).</p>
+                <p>En tant qu'apprenti technicien informatique, je possède des droits administrateur sur toutes les applications ainsi que sur le domaine. Je suis également chargé de <strong>faire le lien entre nous et les différents prestataires</strong> et d'assurer le bon fonctionnement du réseau à travers la maintenance de nos différents équipements Cisco.</p>
             </div>
-
-            <br><br>
-
-            <h2>Projets de Formation</h2>
-            <div class="projects-grid">
-                
-                <div class="card" onclick="showProjectDetail('stock')">
-                    <div class="card-header">
-                        <i class="fas fa-cubes fa-3x"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Application Gestion de Stock</h3>
-                        <p>Développement d'une application lourde avec interface graphique et base de données.</p>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">Tkinter</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" onclick="showProjectDetail('vlan')">
-                    <div class="card-header">
-                        <i class="fas fa-network-wired fa-3x"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Réseau LAN & VLAN</h3>
-                        <p>Architecture réseau sécurisée, segmentation VLAN et routage inter-VLAN.</p>
-                        <div class="tags">
-                            <span class="tag">Cisco Packet Tracer</span>
-                            <span class="tag">Switching</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" onclick="showProjectDetail('cyber')">
-                    <div class="card-header">
-                        <i class="fas fa-user-shield fa-3x"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Campagne Sensibilisation Phishing</h3>
-                        <p>Création d'un atelier de sensibilisation suite à un audit de sécurité.</p>
-                        <div class="tags">
-                            <span class="tag">Cybersécurité</span>
-                            <span class="tag">Pédagogie</span>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="organigramme-container">
+                <h4 style="margin-bottom: 15px; color: var(--secondary);">Organigramme du service</h4>
+                <img src="organigramme.png" alt="Organigramme Service Informatique">
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="project-detail" class="hidden">
-            <div class="back-btn" onclick="showSection('projets')">
-                <i class="fas fa-arrow-left"></i> Retour aux projets
+    <section id="parcours">
+        <div class="section-title">
+            <h2>Mon Parcours</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Sept 2024 - Aujourd'hui</div>
+                <h3 class="timeline-title">Technicien Support - Palais des Thés</h3>
+                <p>Alternance. Assistance utilisateurs, administration Active Directory, participation à la sécurisation du réseau et déploiements boutiques.</p>
             </div>
-            <div id="detail-container" class="project-detail-view">
-                </div>
-        </section>
+            <div class="timeline-item">
+                <div class="timeline-date">Fév 2024 - Sept 2024</div>
+                <h3 class="timeline-title">Technicien Support - TENEXA</h3>
+                <p>Support N1/N2, configuration de postes, rédaction de documentations internes et gestion de stocks.</p>
+            </div>
+            <div class="timeline-item" style="border-left-color: var(--accent);">
+                <div class="timeline-date">2024 - 2026</div>
+                <h3 class="timeline-title">BTS SIO – Spécialité SISR</h3>
+                <p>IEF2I – Vincennes. <br><strong>Certifications :</strong> Microsoft MS-900 (obtenue), Cisco CCNA (en cours).</p>
+            </div>
+            <div class="timeline-item" style="border-left-color: var(--accent);">
+                <div class="timeline-date">2023 - 2024</div>
+                <h3 class="timeline-title">Formation technicien support</h3>
+                <p>FITEC</p>
+            </div>
+            <div class="timeline-item" style="border-left-color: var(--accent);">
+                <div class="timeline-date">2019</div>
+                <h3 class="timeline-title">Baccalauréat STMG option Gestion Finance</h3>
+                <p>Lycée Étienne Bezout</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="veille" class="hidden">
+    <section id="projets-e6">
+        <div class="section-title">
+            <h2 style="color: var(--accent); border-bottom-color: var(--primary);">Projets en Entreprise (E6)</h2>
+            <p>Réalisations en milieu professionnel</p>
+        </div>
+        <div class="projects-grid">
+            <a href="projet-glpi.html" class="project-card">
+                <div class="project-header">
+                    <h3>Mise en place d'un serveur GLPI sur DEBIAN 11</h3>
+                    <span>Projet E6</span>
+                </div>
+                <div class="project-body">
+                    <p>Déploiement d'une solution de gestion de parc et de Helpdesk (ITSM) pour centraliser les tickets et l'inventaire.</p>
+                    <div class="project-tech">Debian 11 • GLPI 10 • MariaDB</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-title">
+            <h2>Autres Projets</h2>
+            <p>Projets de formation et missions d'entreprise diverses</p>
+        </div>
+        
+        <div class="projects-grid">
+            <a href="projet-stock.html" class="project-card">
+                <div class="project-header">
+                    <h3>App Gestion de Stock</h3>
+                    <span>Formation</span>
+                </div>
+                <div class="project-body">
+                    <p>Développement d'une application CRUD avec authentification sécurisée et interface graphique.</p>
+                    <div class="project-tech">Python • SQL • Tkinter</div>
+                </div>
+            </a>
+
+            <a href="projet-cisco.html" class="project-card">
+                <div class="project-header">
+                    <h3>Création d'un réseau LAN et VLAN</h3>
+                    <span>Formation</span>
+                </div>
+                <div class="project-body">
+                    <p>Architecture réseau sécurisée, segmentation VLAN et configuration du routage inter-VLAN.</p>
+                    <div class="project-tech">Cisco Packet Tracer • Routing • Switching</div>
+                </div>
+            </a>
+
+            <a href="projet-cyber.html" class="project-card">
+                <div class="project-header">
+                    <h3>Atelier Phishing</h3>
+                    <span>Entreprise</span>
+                </div>
+                <div class="project-body">
+                    <p>Création d'un atelier de sensibilisation cybersécurité suite à un audit (Orange Cyberdefense).</p>
+                    <div class="project-tech">Cybersécurité • Pédagogie • Audit</div>
+                </div>
+            </a>
+
+            <a href="projet-rh.html" class="project-card">
+                <div class="project-header">
+                    <h3>Outil Ticketing RH</h3>
+                    <span>Entreprise</span>
+                </div>
+                <div class="project-body">
+                    <p>Conception d'un outil de centralisation des demandes RH.</p>
+                    <div class="project-tech">Freshservice • Monday • Gestion Projet</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="veille">
+        <div class="section-title">
             <h2>Veille Technologique</h2>
-            <div class="veille-content">
-                <h3>Sujet : Le processeur Majorana 1 (Informatique Quantique)</h3>
-                <p><strong>Majorana 1</strong> est le premier prototype de processeur quantique topologique développé par Microsoft. Il repose sur l'utilisation de qubits topologiques, rendant les calculs plus stables et résistants aux erreurs.</p>
-                <br>
-                <h4>Ma Méthodologie :</h4>
-                <ul>
-                    <li><strong>Définir :</strong> Périmètre & Mots-clés (Qubits, Topologie, Microsoft).</li>
-                    <li><strong>Sourcer :</strong> Pearltrees, Google Alerts, Microsoft Quantum Blog, ZDNet.</li>
-                    <li><strong>Analyser :</strong> Critique & Synthèse des sources.</li>
-                    <li><strong>Diffuser :</strong> Intégration au Portfolio.</li>
-                </ul>
-                <br>
-                <h4>Pourquoi ce sujet ?</h4>
-                <p>Cette technologie pourrait révolutionner l'informatique quantique grâce à sa stabilité exceptionnelle, essentielle pour corriger les erreurs de calcul qui freinent encore l'industrie.</p>
+            <p>Anticiper, analyser, comprendre les innovations</p>
+        </div>
+        <div class="veille-container">
+            <div class="veille-section">
+                <h3 class="veille-subtitle"><i class="fas fa-question-circle"></i> Qu'est-ce qu'une veille technologique ?</h3>
+                <div class="veille-text">
+                    La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique.
+                </div>
             </div>
-        </section>
 
-    </main>
+            <hr style="margin: 40px 0; border: 0; border-top: 2px solid var(--border);">
+
+            <div class="veille-section">
+                <h3 class="veille-subtitle" style="color: var(--primary); font-size: 2rem; border:none; text-align: center; display: block;">📄 Sujet traité : Le processeur Majorana 1</h3>
+                <div class="veille-text">
+                    <strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>.
+                </div>
+                <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-atom"></i> C’est quoi exactement ?</h4>
+                <div class="veille-text">
+                    Le processeur est le fruit de plus de 20 ans de recherche chez Microsoft, notamment via l’équipe <strong>StationQ</strong>. Il s’agit d’un processeur quantique topologique dont l’objectif principal est de résoudre l’un des plus grands défis du domaine : la <strong>correction d’erreur</strong>.
+                </div>
+
+                <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-book-open"></i> Sources principales</h4>
+                <ul class="veille-list" style="list-style: disc; margin-left: 20px;">
+                    <li><a href="#" class="source-link">Microsoft Quantum</a></li>
+                    <li><a href="#" class="source-link">CERT-FR</a></li>
+                    <li><a href="#" class="source-link">Korben</a></li>
+                    <li><a href="#" class="source-link">Futura Sciences</a></li>
+                    <li><a href="#" class="source-link">ZDNet</a></li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://www.pearltrees.com/aurelien77" target="_blank" class="btn" style="background: var(--secondary); color: white; border: none; box-shadow:none;">Voir mon Pearltrees complet</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>Aurélien GAILLARD</h3>
+        <p>Étudiant BTS SIO | Recherche d'opportunités Administrateur Réseau</p>
+        <div class="socials" style="margin-top: 20px; font-size: 1.5rem;">
+            <a href="mailto:tonemail@exemple.com"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">&copy; 2025 - Créé pour le BTS SIO</p>
+    </footer>
 
     <script>
-        // DONNÉES DES PROJETS
-        const projectsData = {
-            'glpi': `
-                <div class="detail-header">
-                    <h1>Mise en place d'un serveur GLPI sur DEBIAN 11</h1>
-                    <p><strong>Type :</strong> Administration Système & Gestion de Parc (ITSM/ITAM) <br>
-                    <strong>Technologies :</strong> Debian 11, GLPI 10, MariaDB, Apache2, PHP</p>
-                </div>
-                <div class="detail-content">
-                    <h3>1. Contexte et Enjeux</h3>
-                    <p>Dans un environnement où le parc informatique ne cesse de croître, la gestion manuelle via Excel devenait obsolète. L'absence d'outil dédié entraînait une méconnaissance du parc et une perte de temps dans le traitement des incidents.</p>
-                    
-                    <h3>2. Objectifs du Projet</h3>
-                    <ul>
-                        <li><strong>Inventaire Automatisé :</strong> Remonter automatiquement les infos matérielles (Agents).</li>
-                        <li><strong>Service Desk :</strong> Système de tickets (ITIL) pour incidents et demandes.</li>
-                        <li><strong>Gestion Financière :</strong> Suivi des licences et cycles de vie.</li>
-                        <li><strong>Base de Connaissance :</strong> FAQ pour les utilisateurs.</li>
-                    </ul>
+        // Gestion du menu mobile
+        const burger = document.getElementById('burgerMenu');
+        const nav = document.getElementById('navLinks');
+        const links = document.querySelectorAll('.nav-links a');
 
-                    <h3>3. Architecture Technique</h3>
-                    <p>Déploiement sur serveur Linux dédié pour la robustesse.</p>
-                    <ul>
-                        <li>OS : Debian (Stable)</li>
-                        <li>Serveur Web : Apache2</li>
-                        <li>Base de données : MariaDB</li>
-                        <li>Agent : GLPI Agent déployé sur les postes clients</li>
-                    </ul>
-                    <div style="background:#eee; padding:20px; text-align:center; border:1px dashed #999;">
-                        [Insérer ici ton schéma architecture.png]
-                    </div>
-
-                    <h3>4. Étapes de Réalisation</h3>
-                    <p><strong>Phase 1 : Installation LAMP</strong><br>Mise en place de Linux, Apache, MariaDB, PHP. Sécurisation SSH et Firewall UFW.</p>
-                    <p><strong>Phase 2 : Déploiement GLPI</strong><br>Téléchargement, configuration des droits (/var/www/html/glpi) et installation Web.</p>
-                    <p><strong>Phase 3 : Inventaire</strong><br>Déploiement des agents et configuration des règles d'import.</p>
-                    <div style="background:#eee; padding:20px; text-align:center; border:1px dashed #999;">
-                        [Insérer capture inventaire GLPI]
-                    </div>
-                    <p><strong>Phase 4 : Helpdesk</strong><br>Configuration des notifications SMTP et création des profils (Tech/Admin).</p>
-
-                    <h3>5. Bilan</h3>
-                    <p>Ce projet a permis de structurer le service IT et de réduire le temps de résolution des incidents. Compétences validées : Admin Linux, SQL, Gestion de services Web.</p>
-                </div>
-            `,
-            'stock': `
-                <div class="detail-header">
-                    <h1>Application de Gestion de Stock</h1>
-                    <p><strong>Technologies :</strong> Python, MySQL, Tkinter (Interface Graphique)</p>
-                </div>
-                <div class="detail-content">
-                    <h3>Objectif</h3>
-                    <p>Créer une application permettant l'ajout, la modification et la suppression de produits avec une gestion des utilisateurs sécurisée.</p>
-                    
-                    <h3>Procédure de réalisation</h3>
-                    <ol>
-                        <li><strong>Préparation :</strong> Installation Python et connecteur MySQL.</li>
-                        <li><strong>Base de données :</strong> Création de la BDD "stock" et des tables utilisateurs/produits.</li>
-                        <li><strong>Authentification :</strong> Système d'inscription et de login sécurisé.</li>
-                        <li><strong>Fonctions CRUD :</strong> Développement des scripts pour Ajouter/Modifier/Supprimer un article.</li>
-                        <li><strong>Interface :</strong> Création des fenêtres avec Tkinter.</li>
-                    </ol>
-                    <div style="background:#eee; padding:20px; text-align:center; border:1px dashed #999;">
-                        [Insérer capture de l'interface Python]
-                    </div>
-                </div>
-            `,
-            'vlan': `
-                <div class="detail-header">
-                    <h1>Création d'un réseau LAN et VLAN</h1>
-                    <p><strong>Outil :</strong> Cisco Packet Tracer</p>
-                </div>
-                <div class="detail-content">
-                    <h3>Objectif</h3>
-                    <p>Segmenter un réseau local pour améliorer la sécurité et les performances.</p>
-
-                    <h3>Procédure Technique</h3>
-                    <ul>
-                        <li><strong>Architecture :</strong> Mise en place des PC et du Switch principal.</li>
-                        <li><strong>Création VLAN :</strong> Configuration du switch (VLAN 10, 20, 30).</li>
-                        <li><strong>Assignation :</strong> Affectation des ports du switch aux VLANs correspondants (Access Mode).</li>
-                        <li><strong>Adressage :</strong> Configuration IP statique des postes.</li>
-                        <li><strong>Routage (Optionnel) :</strong> Configuration "Router on a stick" pour la communication inter-VLAN.</li>
-                    </ul>
-                    <div style="background:#eee; padding:20px; text-align:center; border:1px dashed #999;">
-                        [Insérer capture schéma Packet Tracer]
-                    </div>
-                </div>
-            `,
-            'cyber': `
-                <div class="detail-header">
-                    <h1>Atelier Sensibilisation Phishing</h1>
-                    <p><strong>Contexte :</strong> Orange Cyberdefense</p>
-                </div>
-                <div class="detail-content">
-                    <h3>Mission</h3>
-                    <p>Suite à un audit de sécurité révélant des faiblesses humaines, j'ai été chargé de concevoir un support de formation pour les employés.</p>
-                    <h3>Réalisations</h3>
-                    <ul>
-                        <li>Recherche d'exemples réels de Phishing.</li>
-                        <li>Création d'un Quiz interactif.</li>
-                        <li>Rédaction d'une procédure de signalement d'email suspect.</li>
-                        <li>Animation de l'atelier auprès des équipes.</li>
-                    </ul>
-                    <div style="background:#eee; padding:20px; text-align:center; border:1px dashed #999;">
-                        [Insérer capture du support de formation]
-                    </div>
-                </div>
-            `
-        };
-
-        // GESTION NAVIGATION
-        function showSection(sectionId) {
-            // Cacher toutes les sections
-            document.querySelectorAll('main section').forEach(sec => {
-                sec.classList.add('hidden');
-            });
-            // Afficher la section demandée
-            document.getElementById(sectionId).classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        // GESTION DETAIL PROJET
-        function showProjectDetail(projectId) {
-            const container = document.getElementById('detail-container');
-            // Injecter le HTML spécifique du projet
-            container.innerHTML = projectsData[projectId];
-            
-            // Afficher la section détail
-            showSection('project-detail');
-        }
-
-        // GESTION DARK MODE
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const btn = document.querySelector('.theme-toggle i');
-            if (document.body.classList.contains('dark-mode')) {
-                btn.classList.remove('fa-moon');
-                btn.classList.add('fa-sun');
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            if(nav.classList.contains('nav-active')){
+                burger.innerHTML = '<i class="fas fa-times"></i>';
             } else {
-                btn.classList.remove('fa-sun');
-                btn.classList.add('fa-moon');
+                burger.innerHTML = '<i class="fas fa-bars"></i>';
             }
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                burger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Gestion du Mode Sombre
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        if(localStorage.getItem('theme') === 'dark'){
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
         }
 
-        // Afficher l'accueil au démarrage
-        showSection('home');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if(body.classList.contains('dark-mode')){
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
     </script>
+
 </body>
 </html>
