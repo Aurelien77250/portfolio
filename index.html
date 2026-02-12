@@ -167,6 +167,7 @@
             <div class="logo">Aurélien GAILLARD</div>
             
             <div class="nav-links" id="navLinks">
+                <a href="#formation">Formation</a>
                 <a href="#about">Profil</a>
                 <a href="#entreprise">Entreprise</a>
                 <a href="#parcours">Expériences</a>
@@ -190,6 +191,48 @@
         <h1>Technicien Supérieur Systèmes & Réseaux</h1>
         <p>Étudiant en BTS SIO - Option SISR</p>
         <a href="#contact" class="btn">Me contacter</a>
+    </section>
+
+    <section id="formation">
+        <div class="section-title">
+            <h2>Ma Formation</h2>
+            <p>Le BTS SIO : Un diplôme professionnalisant</p>
+        </div>
+        <div class="white-card">
+            <h3 style="color: var(--primary); border-bottom: 2px solid var(--secondary); display: inline-block; margin-bottom: 20px;">
+                <i class="fas fa-graduation-cap"></i> Le BTS Services Informatiques aux Organisations
+            </h3>
+            <p style="text-align: justify;">
+                Le <strong>BTS SIO</strong> est un diplôme d'État de niveau Bac+2 qui forme des professionnels de l'informatique aux services des organisations. Il permet d'acquérir des compétences techniques pointues tout en comprenant les enjeux métiers des entreprises.
+            </p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 30px;">
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <p style="text-align: justify;">
+                        J'ai choisi l'option <strong>SISR (Solutions d’Infrastructure, Systèmes et Réseaux)</strong>. Cette spécialisation est dédiée à la gestion, à l'administration et à la sécurisation des systèmes d'information.
+                    </p>
+                    <p>Elle prépare aux métiers de :</p>
+                    <ul style="list-style: none; padding-left: 10px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-server" style="color: var(--secondary); margin-right: 10px;"></i> Administrateur Systèmes & Réseaux</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-shield-alt" style="color: var(--secondary); margin-right: 10px;"></i> Technicien Cybersécurité</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-headset" style="color: var(--secondary); margin-right: 10px;"></i> Technicien Support et Déploiement</li>
+                    </ul>
+                </div>
+
+                <div style="flex: 1; min-width: 300px; background: var(--light-bg); padding: 20px; border-radius: 8px; border-left: 5px solid var(--accent); box-shadow: 0 2px 5px var(--shadow);">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; font-size: 1.2rem;">
+                        <i class="fas fa-check-circle"></i> Compétences visées en SISR
+                    </h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px; display:flex; align-items:start;"><i class="fas fa-angle-right" style="color: var(--accent); margin-right: 10px; margin-top:5px;"></i> Gérer le patrimoine informatique (postes, serveurs).</li>
+                        <li style="margin-bottom: 10px; display:flex; align-items:start;"><i class="fas fa-angle-right" style="color: var(--accent); margin-right: 10px; margin-top:5px;"></i> Répondre aux incidents et demandes d’assistance.</li>
+                        <li style="margin-bottom: 10px; display:flex; align-items:start;"><i class="fas fa-angle-right" style="color: var(--accent); margin-right: 10px; margin-top:5px;"></i> Développer la présence en ligne de l’organisation.</li>
+                        <li style="margin-bottom: 10px; display:flex; align-items:start;"><i class="fas fa-angle-right" style="color: var(--accent); margin-right: 10px; margin-top:5px;"></i> Travailler en mode projet et sécuriser les accès.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="about">
@@ -479,7 +522,6 @@
     </footer>
 
     <script>
-        // Gestion du menu mobile
         const burger = document.getElementById('burgerMenu');
         const nav = document.getElementById('navLinks');
         const links = document.querySelectorAll('.nav-links a');
@@ -500,7 +542,6 @@
             });
         });
 
-        // Gestion du Mode Sombre
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         const icon = themeToggle.querySelector('i');
