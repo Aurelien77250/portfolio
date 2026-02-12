@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Projet Active Directory - Aurélien GAILLARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- STYLE COHÉRENT AVEC TON PORTFOLIO --- */
+        :root {
+            --bg-body: #f4f4f9;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --primary: #1d3557;
+            --secondary: #457b9d;
+            --accent: #e63946;
+            --light-bg: #f1faee;
+            --border: #eeeeee;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-secondary: #aaaaaa;
+            --primary: #a8dadc;
+            --secondary: #457b9d;
+            --accent: #ff6b6b;
+            --light-bg: #2c2c2c;
+            --border: #333333;
+            --shadow: rgba(0,0,0,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { line-height: 1.6; color: var(--text-main); background-color: var(--bg-body); padding-bottom: 50px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* HEADER SIMPLE */
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px var(--shadow); position: relative;}
+        .back-btn { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;}
+        .back-btn:hover { color: var(--accent); }
+
+        /* CONTENU */
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        
+        .project-title { text-align: center; margin-bottom: 40px; }
+        .project-title h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        .tags { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .tag { background: var(--secondary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; }
+
+        .content-card { background: var(--bg-card); padding: 40px; border-radius: 12px; box-shadow: 0 5px 15px var(--shadow); margin-bottom: 30px; }
+        
+        h2 { color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 10px; margin-bottom: 20px; margin-top: 10px; }
+        h3 { color: var(--secondary); margin-top: 25px; margin-bottom: 10px; display: flex; align-items: center; }
+        h3 i { margin-right: 10px; }
+        
+        p, li { color: var(--text-main); margin-bottom: 15px; text-align: justify; }
+        ul { list-style: none; padding-left: 10px; }
+        li::before { content: "•"; color: var(--accent); font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
+
+        .img-placeholder { background: #ddd; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin: 20px 0; color: #555; font-weight: bold; border: 2px dashed #aaa; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .project-title h1 { font-size: 1.8rem; }
+            .content-card { padding: 20px; }
+            .back-btn span { display: none; } /* Cache le texte "Retour" sur mobile, garde la flèche */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span>Retour</span></a>
+        <h2>Détail du Projet</h2>
+    </header>
+
+    <div class="container">
+        
+        <div class="project-title">
+            <h1>Architecture Active Directory & PfSense</h1>
+            <div class="tags">
+                <span class="tag">Windows Server 2022</span>
+                <span class="tag">PfSense</span>
+                <span class="tag">Proxmox</span>
+                <span class="tag">Réseau & Infra</span>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fas fa-project-diagram"></i> Contexte du projet</h2>
+            <p>
+                Ce projet a été réalisé dans le cadre de ma formation BTS SIO. L'objectif était de concevoir et déployer une infrastructure réseau d'entreprise simulée, capable de gérer de manière centralisée les utilisateurs et la sécurité.
+            </p>
+            <p>
+                L'ensemble de cette infrastructure est <strong>hébergé sur le serveur Proxmox de l'école</strong>, ce qui nous a permis de travailler dans un environnement de virtualisation professionnel (Type 1), simulant ainsi des conditions réelles de production avec des ressources partagées et une gestion fine des machines virtuelles (VM).
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fas fa-cogs"></i> Services et Rôles techniques</h2>
+            <p>Pour assurer le bon fonctionnement du domaine, j'ai installé et configuré les services suivants sur un serveur Windows Server :</p>
+
+            <h3><i class="fab fa-windows"></i> AD DS (Active Directory Domain Services)</h3>
+            <p>
+                C'est le cœur du réseau. Il permet de centraliser la gestion des identités et des ressources.
+                <br><strong>Mon rôle :</strong> Création du domaine, organisation des Unités d'Organisation (OU) par services (Compta, RH, IT), création des utilisateurs et application des Stratégies de Groupe (GPO) pour sécuriser les postes et monter automatiquement des lecteurs réseau.
+            </p>
+
+            <h3><i class="fas fa-globe"></i> DNS (Domain Name System)</h3>
+            <p>
+                Service indispensable au fonctionnement d'Active Directory. Il assure la traduction des noms de domaine en adresses IP.
+                <br><strong>Mon rôle :</strong> Configuration des zones de recherche directe et inversée pour permettre aux machines du parc de communiquer et de s'inscrire correctement dans le domaine.
+            </p>
+
+            <h3><i class="fas fa-network-wired"></i> DHCP (Dynamic Host Configuration Protocol)</h3>
+            <p>
+                Assure la distribution automatique des configurations IP aux clients.
+                <br><strong>Mon rôle :</strong> Création d'étendues (scopes), configuration de la passerelle par défaut et des serveurs DNS distribués aux clients, et mise en place de baux statiques pour les serveurs/imprimantes.
+            </p>
+
+            <hr style="margin: 30px 0; border:0; border-top:1px solid var(--border);">
+
+            <h3><i class="fas fa-shield-alt"></i> Sécurité Réseau : PfSense</h3>
+            <p>
+                En amont du serveur Windows, j'ai déployé une machine virtuelle <strong>PfSense</strong> pour agir comme routeur et pare-feu.
+            </p>
+            <ul>
+                <li><strong>Routage & Passerelle :</strong> Il fait le lien entre le réseau local (LAN) virtualisé et le réseau de l'école (WAN).</li>
+                <li><strong>Sécurité :</strong> Filtrage des paquets et règles de pare-feu pour n'autoriser que les flux nécessaires.</li>
+                <li><strong>Segmentation :</strong> Gestion de différents VLANs pour isoler les serveurs des postes clients.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>Architecture Technique</h2>
+            <p>Voici un aperçu de la topologie réseau mise en place sur le cluster Proxmox :</p>
+            <div class="img-placeholder" style="background-color: #f0f0f0; border: 2px dashed #ccc; padding: 40px; text-align: center;">
+                <i class="fas fa-image fa-3x" style="color: #ccc; margin-bottom: 10px;"></i><br>
+                Insérez ici votre capture d'écran Proxmox ou Schéma Réseau<br>
+                <small>(Ajoutez la balise &lt;img src="nom_image.png"&gt; ici)</small>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
