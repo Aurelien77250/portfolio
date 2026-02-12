@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- VARIABLES & THEME (TON DESIGN ORIGINAL) --- */
+        /* --- VARIABLES & THEME --- */
         :root {
-            /* Couleurs Mode Clair (Défaut) */
             --bg-body: #f4f4f9;
             --bg-card: #ffffff;
             --text-main: #333333;
@@ -51,11 +50,9 @@
         .nav-links a { margin-left: 20px; font-weight: 500; color: var(--text-main); }
         .nav-links a:hover { color: var(--secondary); }
         
-        /* Bouton Projets E6 spécial */
         .link-e6 { border: 2px solid var(--accent); padding: 5px 15px; border-radius: 20px; color: var(--accent) !important; font-weight: bold; }
         .link-e6:hover { background: var(--accent); color: white !important; }
 
-        /* Boutons Contrôle (Dark mode & Burger) */
         .nav-controls { display: flex; align-items: center; gap: 15px; margin-left: 20px; }
         .theme-toggle { cursor: pointer; font-size: 1.2rem; color: var(--text-main); background: none; border: none; }
         .burger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--text-main); }
@@ -73,8 +70,7 @@
         .section-title h2 { font-size: 2.5rem; color: var(--primary); display: inline-block; border-bottom: 4px solid var(--secondary); padding-bottom: 10px; }
         .section-title p { color: var(--text-secondary); margin-top: 10px; }
 
-        /* BLOCS (Cartes blanches/sombres) */
-        .white-card, .project-detail, .veille-container, .about-text {
+        .white-card, .project-detail, .veille-container, .about-text, .veille-section {
             background: var(--bg-card);
             padding: 40px;
             border-radius: 12px;
@@ -125,14 +121,12 @@
         .project-tech { margin-top: 20px; font-size: 0.9rem; color: var(--secondary); font-weight: bold; border-top: 1px solid var(--border); padding-top: 15px; }
 
         /* --- VEILLE --- */
-        .veille-section { margin-bottom: 40px; }
         .veille-subtitle { color: var(--primary); font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         .veille-subtitle i { margin-right: 15px; color: var(--accent); font-size: 1.8rem; }
         .veille-list { list-style: none; padding-left: 10px; color: var(--text-main); }
         .veille-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
         .veille-list li::before { content: "•"; color: var(--secondary); font-weight: bold; font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
         .veille-text { text-align: justify; margin-bottom: 20px; color: var(--text-main); }
-        
         .source-link { color: var(--secondary); font-weight: bold; text-decoration: underline; }
         .source-link:hover { color: var(--accent); }
 
@@ -366,39 +360,97 @@
             <h2>Veille Technologique</h2>
             <p>Anticiper, analyser, comprendre les innovations</p>
         </div>
+
         <div class="veille-container">
+            
             <div class="veille-section">
-                <h3 class="veille-subtitle"><i class="fas fa-question-circle"></i> Qu'est-ce qu'une veille technologique ?</h3>
+                <h3 class="veille-subtitle"><i class="fas fa-brain"></i> Qu'est-ce qu'une veille technologique ?</h3>
                 <div class="veille-text">
-                    La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique.
+                    La veille technologique est un processus continu de <strong>collecte, d’analyse et de diffusion d’informations</strong> sur les évolutions techniques, les innovations et les tendances dans un domaine spécifique. Elle permet <strong>d’anticiper les changements, d’identifier les opportunités</strong> et de rester compétitif dans un environnement en constante évolution.
                 </div>
             </div>
 
-            <hr style="margin: 40px 0; border: 0; border-top: 2px solid var(--border);">
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid var(--border);">
+
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-bottom: 40px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 class="veille-subtitle"><i class="far fa-compass"></i> Ma méthodologie de veille</h3>
+                    <p class="veille-text">Pour mener cette veille sur le <strong>processeur Majorana 1</strong>, j’ai adopté une approche structurée :</p>
+                    <ul class="veille-list">
+                        <li><strong>Définition du périmètre :</strong> Choix d’un sujet précis et pertinent.</li>
+                        <li><strong>Identification des sources :</strong> Blogs, publications académiques, sites spécialisés.</li>
+                        <li><strong>Collecte régulière :</strong> Recherches hebdomadaires et suivi des alertes.</li>
+                        <li><strong>Analyse critique :</strong> Comparaison des points de vue et validation des sources.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 class="veille-subtitle"><i class="fas fa-tools"></i> Outils utilisés</h3>
+                    <ul class="veille-list">
+                        <li><strong><i class="fas fa-search" style="color:var(--secondary);"></i> Google Alerts :</strong> Alertes sur des mots-clés ciblés.</li>
+                        <li><strong><i class="fas fa-folder-open" style="color:var(--secondary);"></i> Pearltrees :</strong> Regroupement d’articles, images et vidéos liés au sujet.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid var(--border);">
 
             <div class="veille-section">
-                <h3 class="veille-subtitle" style="color: var(--primary); font-size: 2rem; border:none; text-align: center; display: block;">📄 Sujet traité : Le processeur Majorana 1</h3>
+                <h3 class="veille-subtitle" style="color: var(--primary); font-size: 1.8rem; border:none; text-align: center; display: block; margin-bottom: 30px;">
+                    📄 Sujet traité : Le processeur Majorana 1
+                </h3>
+
                 <div class="veille-text">
-                    <strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>.
+                    <strong>Majorana 1</strong> est le premier prototype de <strong>processeur quantique topologique</strong> développé par Microsoft. Il repose sur l’utilisation de qubits topologiques et sur une avancée majeure : l’observation et la manipulation d’un <strong>état de Majorana</strong>, une quasi-particule stable et résistante aux erreurs.
+                    <br><br>
+                    Cette technologie pourrait révolutionner l’informatique quantique grâce à sa stabilité exceptionnelle, essentielle pour corriger les erreurs de calcul qui freinent encore le développement de cette industrie.
                 </div>
-                <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-atom"></i> C’est quoi exactement ?</h4>
+
+                <h4 style="color: var(--secondary); margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem;">
+                    <i class="fas fa-atom"></i> C’est quoi exactement ?
+                </h4>
                 <div class="veille-text">
                     Le processeur est le fruit de plus de 20 ans de recherche chez Microsoft, notamment via l’équipe <strong>StationQ</strong>. Il s’agit d’un processeur quantique topologique dont l’objectif principal est de résoudre l’un des plus grands défis du domaine : la <strong>correction d’erreur</strong>.
                 </div>
 
-                <h4 style="color: var(--secondary); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem;"><i class="fas fa-book-open"></i> Sources principales</h4>
-                <ul class="veille-list" style="list-style: disc; margin-left: 20px;">
-                    <li><a href="#" class="source-link">Microsoft Quantum</a></li>
-                    <li><a href="#" class="source-link">CERT-FR</a></li>
-                    <li><a href="#" class="source-link">Korben</a></li>
-                    <li><a href="#" class="source-link">Futura Sciences</a></li>
-                    <li><a href="#" class="source-link">ZDNet</a></li>
-                </ul>
+                <h4 style="color: var(--secondary); margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem;">
+                    <i class="fas fa-dna"></i> Technologie utilisée
+                </h4>
+                <div class="veille-text">
+                    Contrairement aux qubits classiques utilisés par IBM ou Google, les <strong>qubits topologiques</strong> de Majorana 1 exploitent des <strong>quasi-particules de Majorana</strong>. Ces dernières n’encodent pas l’information en un seul point, mais la répartissent dans une structure étendue. Ce mécanisme les rend naturellement plus résistantes aux perturbations et erreurs.
+                </div>
             </div>
 
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="https://www.pearltrees.com/aurelien77" target="_blank" class="btn" style="background: var(--secondary); color: white; border: none; box-shadow:none;">Voir mon Pearltrees complet</a>
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid var(--border);">
+
+            <div style="display: flex; flex-wrap: wrap; gap: 40px;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 class="veille-subtitle"><i class="fas fa-thumbtack"></i> Thématiques surveillées</h3>
+                    <ul class="veille-list">
+                        <li>Cybersécurité : ransomware, EDR, sécurité cloud</li>
+                        <li>Cloud computing : AWS, Azure, solutions hybrides</li>
+                        <li>Composants matériels : processeurs quantiques, ARM vs x86</li>
+                        <li>Innovation quantique : Qubits topologiques, supraconducteurs</li>
+                    </ul>
+                </div>
+
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 class="veille-subtitle"><i class="fas fa-book-open"></i> Sources principales</h3>
+                    <ul class="veille-list" style="margin-left: 10px;">
+                        <li><a href="https://quantum.microsoft.com/" target="_blank" class="source-link">Microsoft Quantum</a></li>
+                        <li><a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="source-link">CERT-FR</a></li>
+                        <li><a href="https://korben.info/" target="_blank" class="source-link">Korben</a></li>
+                        <li><a href="https://www.futura-sciences.com/" target="_blank" class="source-link">Futura Sciences</a></li>
+                        <li><a href="https://www.zdnet.fr/" target="_blank" class="source-link">ZDNet</a></li>
+                    </ul>
+                </div>
             </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://www.pearltrees.com/aurelien77" target="_blank" class="btn" style="background: var(--secondary); color: white; border: none; box-shadow:none;">
+                    Voir mon Pearltrees complet
+                </a>
+            </div>
+
         </div>
     </section>
 
