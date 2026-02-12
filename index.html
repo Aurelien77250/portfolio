@@ -42,12 +42,12 @@
 
         /* --- HEADER & NAV --- */
         header { background: var(--bg-card); box-shadow: 0 2px 10px var(--shadow); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.3s; }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: auto; padding: 1rem 20px; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1150px; margin: auto; padding: 1rem 20px; }
         
         .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
         
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { margin-left: 20px; font-weight: 500; color: var(--text-main); }
+        .nav-links a { margin-left: 20px; font-weight: 500; color: var(--text-main); font-size: 0.95rem; }
         .nav-links a:hover { color: var(--secondary); }
         
         .link-e6 { border: 2px solid var(--accent); padding: 5px 15px; border-radius: 20px; color: var(--accent) !important; font-weight: bold; }
@@ -135,7 +135,7 @@
         .socials a { color: white; font-size: 1.5rem; margin: 0 10px; }
 
         /* --- RESPONSIVE MOBILE --- */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .burger { display: block; }
             .nav-links {
                 position: absolute; right: 0px; top: 70px;
@@ -174,6 +174,7 @@
                 <a href="#projets-e6" class="link-e6">Projets E6</a>
                 <a href="#projects">Projets</a>
                 <a href="#veille">Veille</a>
+                <a href="#avenir" style="color: var(--accent); font-weight: bold;">Avenir</a>
             </div>
 
             <div class="nav-controls">
@@ -207,7 +208,6 @@
             </p>
 
             <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 30px;">
-                
                 <div style="flex: 1; min-width: 300px;">
                     <p style="text-align: justify;">
                         J'ai choisi l'option <strong>SISR (Solutions d’Infrastructure, Systèmes et Réseaux)</strong>. Cette spécialisation est dédiée à la gestion, à l'administration et à la sécurisation des systèmes d'information.
@@ -219,7 +219,6 @@
                         <li style="margin-bottom: 8px;"><i class="fas fa-headset" style="color: var(--secondary); margin-right: 10px;"></i> Technicien Support et Déploiement</li>
                     </ul>
                 </div>
-
                 <div style="flex: 1; min-width: 300px; background: var(--light-bg); padding: 20px; border-radius: 8px; border-left: 5px solid var(--accent); box-shadow: 0 2px 5px var(--shadow);">
                     <h4 style="color: var(--primary); margin-bottom: 15px; font-size: 1.2rem;">
                         <i class="fas fa-check-circle"></i> Compétences visées en SISR
@@ -507,6 +506,39 @@
                 </a>
             </div>
 
+        </div>
+    </section>
+
+    <section id="avenir">
+        <div class="section-title">
+            <h2>Poursuite d'Études</h2>
+            <p>Mon projet professionnel post-BTS</p>
+        </div>
+        <div class="white-card">
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center;">
+                        <i class="fas fa-university" style="margin-right: 10px;"></i> PSTB - Paris School of Technology & Business
+                    </h3>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">
+                        Après l'obtention de mon BTS SIO, je me suis inscrit pour intégrer la <strong>Licence Administration Système et Réseau</strong> au sein de l'école PSTB à partir de la rentrée de <strong>septembre 2026</strong>.
+                    </p>
+                    <div style="background: var(--light-bg); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent);">
+                        <strong><i class="fas fa-bullseye"></i> Objectif :</strong> Consolider mes acquis du BTS et développer une expertise sur les environnements Cloud, la virtualisation avancée et l'automatisation.
+                    </div>
+                </div>
+
+                <div style="flex: 1; min-width: 300px;">
+                     <h4 style="color: var(--secondary); margin-bottom: 15px; font-size: 1.2rem;">À propos du diplôme</h4>
+                     <p>Ce cursus d'un an (niveau Bac+3) permet de valider des compétences techniques avancées indispensables sur le marché :</p>
+                     <ul style="list-style: none; margin-top: 15px;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--accent); margin-right:10px;"></i> Administration Windows Server & Linux approfondie.</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--accent); margin-right:10px;"></i> Virtualisation (VMware, Hyper-V, Proxmox) et Docker.</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--accent); margin-right:10px;"></i> Scripting et Automatisation (PowerShell, Bash, Ansible).</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--accent); margin-right:10px;"></i> Sécurisation des infrastructures (Firewalling, VPN).</li>
+                     </ul>
+                </div>
+            </div>
         </div>
     </section>
 
