@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Documents E5 - Aurélien GAILLARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-body: #f4f4f9;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --primary: #1d3557;
+            --secondary: #457b9d;
+            --accent: #e63946;
+            --border: #eeeeee;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --primary: #a8dadc;
+            --secondary: #457b9d;
+            --accent: #ff6b6b;
+            --border: #333333;
+            --shadow: rgba(0,0,0,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { line-height: 1.6; color: var(--text-main); background-color: var(--bg-body); padding-bottom: 50px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px var(--shadow); position: relative;}
+        .back-btn { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;}
+        .back-btn:hover { color: var(--accent); }
+
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .project-title { text-align: center; margin-bottom: 40px; }
+        .project-title h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+
+        .doc-card { background: var(--bg-card); padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px var(--shadow); margin-bottom: 30px; }
+        .doc-card h2 { color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
+        
+        .doc-list { display: flex; flex-direction: column; gap: 15px; }
+        .doc-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid var(--border); border-radius: 8px; transition: 0.3s; }
+        .doc-item:hover { border-color: var(--secondary); box-shadow: 0 2px 8px var(--shadow); }
+        .doc-info { display: flex; align-items: center; gap: 15px; }
+        .doc-info i { font-size: 2rem; color: var(--accent); }
+        .doc-title { font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
+        .doc-desc { font-size: 0.9rem; opacity: 0.8; }
+        
+        .download-btn { background: var(--secondary); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
+        .download-btn:hover { background: var(--primary); }
+
+        @media (max-width: 768px) {
+            .doc-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .download-btn { width: 100%; justify-content: center; }
+            .back-btn span { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span>Retour</span></a>
+        <h2>Portfolio SISR</h2>
+    </header>
+
+    <div class="container">
+        
+        <div class="project-title">
+            <h1><i class="fas fa-folder-open"></i> Documents Épreuve E5</h1>
+            <p>Retrouvez ci-dessous l'ensemble des productions réalisées pour l'épreuve.</p>
+        </div>
+
+        <div class="doc-card">
+            <h2>Procédures Documentées</h2>
+            <div class="doc-list">
+                
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fas fa-file-pdf"></i>
+                        <div>
+                            <div class="doc-title">Procédure de déploiement GLPI</div>
+                            <div class="doc-desc">Installation pas à pas sous Debian 11</div>
+                        </div>
+                    </div>
+                    <a href="fichiers/procedure_glpi.pdf" target="_blank" class="download-btn"><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fas fa-file-word" style="color: #2b579a;"></i>
+                        <div>
+                            <div class="doc-title">Configuration PfSense</div>
+                            <div class="doc-desc">Règles de filtrage et routage VLAN</div>
+                        </div>
+                    </div>
+                    <a href="fichiers/config_pfsense.docx" target="_blank" class="download-btn"><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="doc-card">
+            <h2>Schémas et Topologies</h2>
+            <div class="doc-list">
+                
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fas fa-file-image" style="color: #27ae60;"></i>
+                        <div>
+                            <div class="doc-title">Schéma Architecture Réseau E6</div>
+                            <div class="doc-desc">Topologie Proxmox / Active Directory</div>
+                        </div>
+                    </div>
+                    <a href="fichiers/schema_reseau.png" target="_blank" class="download-btn"><i class="fas fa-download"></i> Télécharger</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
