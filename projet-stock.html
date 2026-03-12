@@ -5,196 +5,367 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet Stock - Aurélien GAILLARD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
-        /* --- STYLE INTEGRÉ --- */
-        :root { --primary: #1d3557; --secondary: #457b9d; --white: #ffffff; --text: #333; --light: #f1faee; --accent: #e63946; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: var(--text); line-height: 1.6; margin: 0; }
-        
-        /* Header */
-        header { background: var(--white); padding: 15px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        nav { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
-        .nav-links a { color: var(--primary); text-decoration: none; font-weight: bold; }
-        
-        /* Contenu */
-        section { max-width: 950px; margin: 100px auto 50px; padding: 20px; }
-        .project-detail { background: var(--white); padding: 50px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
-        /* Titres */
-        h1 { color: #000; text-align: center; font-size: 2rem; margin-bottom: 40px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; text-decoration: underline; text-underline-offset: 8px; }
-        h3 { color: var(--primary); text-align: center; margin-top: 50px; margin-bottom: 30px; font-size: 1.8rem; text-transform: uppercase; }
-        
-        /* Encadré Contexte (Cadre Bleu) */
-        .context-box {
-            border: 2px solid #4285f4;
-            padding: 25px;
-            margin: 30px 0;
-            background-color: #fff;
-            color: #000;
-            text-align: justify;
-            font-weight: 500;
-            line-height: 1.6;
+        :root {
+            --bg-body: #0a0c10;
+            --bg-card: #111318;
+            --text-main: #e8eaf0;
+            --text-secondary: #7a8099;
+            --text-muted: #4a5068;
+            --primary: #c9a96e;
+            --primary-dim: rgba(201,169,110,0.12);
+            --secondary: #4e90d6;
+            --secondary-dim: rgba(78,144,214,0.10);
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(201,169,110,0.3);
+            --shadow-glow: rgba(201,169,110,0.15);
+            --nav-bg: rgba(10,12,16,0.92);
+            --python-yellow: #FFD43B;
+            --python-yellow-dim: rgba(255,212,59,0.1);
+            --green: #5fba7d;
+            --green-dim: rgba(95,186,125,0.1);
+        }
+        body.light-mode {
+            --bg-body: #f0efe9;
+            --bg-card: #ffffff;
+            --text-main: #0e1018;
+            --text-secondary: #38404e;
+            --text-muted: #767c90;
+            --primary: #7a5520;
+            --primary-dim: rgba(122,85,32,0.12);
+            --secondary: #1a539a;
+            --secondary-dim: rgba(26,83,154,0.08);
+            --border: rgba(0,0,0,0.12);
+            --border-hover: rgba(122,85,32,0.45);
+            --shadow-glow: rgba(122,85,32,0.12);
+            --nav-bg: rgba(240,239,233,0.97);
         }
 
-        /* Introduction Text */
-        .intro-text { text-align: justify; margin-bottom: 40px; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        a { text-decoration: none; color: inherit; transition: all 0.25s; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 500; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
-        /* Prérequis (Icônes) */
-        .prereq-grid { display: flex; justify-content: center; gap: 40px; margin: 40px 0; flex-wrap: wrap; }
-        .prereq-item { text-align: center; flex: 1; min-width: 150px; }
-        .prereq-item i { font-size: 4rem; margin-bottom: 10px; display: block; }
-        .prereq-item span { font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
+        /* NAV */
+        header { background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
+        .back-btn i { font-size: 0.8rem; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* HERO */
+        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
+        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
+        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
+        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: #ffffff; letter-spacing: -0.01em; line-height: 1.6; margin-bottom: 20px; max-width: 700px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
+        .tag.blue { color: var(--secondary); background: var(--secondary-dim); border-color: rgba(78,144,214,0.2); }
+        .tag.yellow { color: var(--python-yellow); background: var(--python-yellow-dim); border-color: rgba(255,212,59,0.25); }
+        .tag.green { color: var(--green); background: var(--green-dim); border-color: rgba(95,186,125,0.2); }
+
+        /* CONTAINER */
+        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading i { color: var(--primary); }
+        .card > p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
+
+        /* CONTEXT BOX */
+        .context-box { background: var(--secondary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--secondary); border-radius: 10px; padding: 22px 24px; margin-bottom: 0; }
+        .context-box p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
+
+        /* DETAIL LIST */
+        .detail-list { margin-top: 12px; }
+        .detail-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
+        .detail-list li:last-child { border-bottom: none; }
+        .detail-list li i { color: var(--primary); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; width: 14px; }
+
+        /* PREREQS */
+        .prereq-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+        .prereq-card { flex: 1; min-width: 140px; background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.25s; }
+        .prereq-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+        .prereq-card i { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+        .prereq-card .prereq-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text-main); display: block; margin-bottom: 4px; }
+        .prereq-card .prereq-desc { font-size: 0.78rem; color: var(--text-muted); }
         .fa-python { color: #FFD43B; }
         .fa-code { color: #007ACC; }
         .fa-database { color: #00758F; }
 
-        /* --- NOUVEAU STYLE PROCÉDURE (CARTES) --- */
-        .procedure-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .step-card {
-            background: #f8f9fa;
-            border-left: 5px solid #FFD43B; /* Jaune Python */
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-        .step-card:hover { transform: translateY(-5px); }
-        .step-num { font-size: 1.2rem; font-weight: 800; color: var(--secondary); margin-bottom: 10px; display: block; }
-        .step-title { font-weight: bold; color: #000; font-size: 1.1rem; margin-bottom: 8px; }
-        .step-desc { font-size: 0.95rem; color: #555; }
-        .step-desc ul { padding-left: 20px; margin-top: 5px; }
+        /* PROCEDURE */
+        .procedure-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
 
-        /* Images Rendu Final */
-        .render-title { text-align: center; font-size: 1.5rem; font-weight: bold; text-decoration: underline; margin-top: 50px; margin-bottom: 30px; }
-        .project-img { width: 100%; max-width: 800px; margin: 20px auto; display: block; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .img-caption { text-align: center; font-style: italic; color: #666; margin-bottom: 40px; }
+        .step-card { background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; transition: all 0.25s; }
+        .step-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--python-yellow); border-radius: 12px 0 0 12px; }
+        .step-card.valid::before { background: var(--green); }
+        .step-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow-glow); }
+
+        .step-num { font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--python-yellow); background: var(--python-yellow-dim); border: 1px solid rgba(255,212,59,0.25); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+        .step-card.valid .step-num { color: var(--green); background: var(--green-dim); border-color: rgba(95,186,125,0.2); }
+
+        .step-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text-main); margin-bottom: 8px; }
+        .step-desc { color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 10px; }
+        .step-list li { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; color: var(--text-secondary); font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+        .step-list li:last-child { border-bottom: none; }
+        .step-list li i { color: var(--primary); font-size: 0.65rem; margin-top: 6px; flex-shrink: 0; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 7px; border-radius: 4px; font-size: 0.82rem; color: var(--python-yellow); font-family: monospace; }
+        body.light-mode code { background: rgba(0,0,0,0.07); }
+
+        /* IMAGE */
+        .img-wrap { margin-top: 20px; }
+        .img-wrap img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; object-fit: contain; }
+        .img-caption { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; letter-spacing: 0.04em; }
+
+        /* BILAN */
+        .bilan-card { background: linear-gradient(135deg, var(--primary-dim), rgba(78,144,214,0.08)); border: 1px solid var(--border-hover); border-radius: 14px; padding: 40px; margin-bottom: 24px; }
+        .bilan-card .card-heading { border-bottom-color: rgba(201,169,110,0.2); }
+        .bilan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 20px; }
+        .bilan-item { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 12px; }
+        body.light-mode .bilan-item { background: rgba(255,255,255,0.5); }
+        .bilan-item i { color: var(--primary); font-size: 1.1rem; flex-shrink: 0; width: 20px; text-align: center; }
+        .bilan-item span { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; }
+
+        @media (max-width: 768px) {
+            .page-hero { padding: 100px 20px 40px; }
+            .container { padding: 0 20px; }
+            nav { padding: 0 20px; }
+            .card, .bilan-card { padding: 24px; }
+            .nav-label { display: none; }
+            .procedure-grid { grid-template-columns: 1fr; }
+            .prereq-grid { flex-direction: column; }
+            .bilan-grid { grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
+
     <header>
         <nav>
-            <div class="logo">Aurélien GAILLARD</div>
-            <div class="nav-links"><a href="index.html"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a></div>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+            <div class="nav-right">
+                <span class="nav-label">Projet E6</span>
+                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+            </div>
         </nav>
     </header>
 
-    <section>
-        <div class="project-detail">
-            
+    <div class="page-hero">
+        <div class="page-label-top">Projet E6 · BTS SIO SISR</div>
+        <h1>Application de Gestion de Stock</h1>
+        <div class="tags">
+            <span class="tag yellow">Python</span>
+            <span class="tag blue">SQL · Base de données</span>
+            <span class="tag">Tkinter GUI</span>
+            <span class="tag green">CRUD</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- CONTEXTE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-info-circle"></i> Contexte du projet</div>
             <div class="context-box">
-                Dans le cadre de ma formation en BTS Services Informatiques aux Organisations (BTS SIO), j’ai eu l’opportunité de réaliser plusieurs projets concrets, à la fois en autonomie et en équipe. Ces projets m’ont permis de mettre en pratique les compétences techniques acquises en cours, que ce soit dans le développement d’applications, l’administration de réseaux, ou encore la gestion de bases de données. Chaque projet m’a permis de développer mon sens de l’analyse, ma rigueur et mes capacités à résoudre des problèmes techniques en conditions réelles.
+                <p><strong style="color:var(--secondary);">BTS SIO — Cours de développement —</strong> Dans le cadre du BTS SIO, ce projet de développement d'application avait pour objectif de mettre en pratique les compétences techniques acquises : développement Python, gestion de base de données SQL, et conception d'une interface utilisateur. L'application devait être fonctionnelle de bout en bout, de l'authentification à la gestion complète d'un stock de produits.</p>
             </div>
+        </div>
 
-            <h1>Projet de développement d'une application de Gestion de stock</h1>
+        <!-- OBJECTIFS -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-bullseye"></i> Objectifs du projet</div>
+            <p>L'application de gestion de stock devait répondre à plusieurs exigences fonctionnelles et techniques :</p>
+            <ul class="detail-list">
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Authentification sécurisée</strong> — système d'inscription et de connexion avec vérification des identifiants stockés en base de données.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Gestion des produits (CRUD)</strong> — ajouter, modifier, supprimer et lister les articles du stock avec leur nom, quantité et prix.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Interface graphique (GUI)</strong> — interface claire et accessible via Tkinter pour une utilisation sans ligne de commande.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Persistance des données</strong> — toutes les données (utilisateurs, stock) stockées de façon permanente en base SQL.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Export CSV</strong> — possibilité d'exporter le stock au format CSV pour exploitation externe.</div></li>
+            </ul>
+        </div>
 
-            <div class="intro-text">
-                <p>Dans le cadre du cours de développement du BTS SIO, nous avons réalisé une application de gestion de stock. Ce projet comprenait la mise en place d’un système d’inscription et de connexion sécurisé, permettant aux utilisateurs d’accéder à l’application selon leur profil. L’objectif était de gérer les produits en stock, avec des fonctionnalités comme l’ajout, la modification et la suppression d’articles, tout en assurant une interface simple et fonctionnelle.</p>
-            </div>
-
-            <div style="text-align: center; font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; text-decoration: underline;">Prérequis :</div>
+        <!-- PRÉREQUIS -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-tools"></i> Prérequis & Environnement</div>
+            <p>La mise en place du projet nécessite les outils suivants :</p>
             <div class="prereq-grid">
-                <div class="prereq-item">
+                <div class="prereq-card">
                     <i class="fab fa-python"></i>
-                    <span>Python</span>
+                    <span class="prereq-name">Python 3</span>
+                    <span class="prereq-desc">Langage principal — interpréteur + bibliothèques standard</span>
                 </div>
-                <div class="prereq-item">
+                <div class="prereq-card">
                     <i class="fas fa-code"></i>
-                    <span>VS Code</span>
+                    <span class="prereq-name">VS Code</span>
+                    <span class="prereq-desc">IDE utilisé pour l'écriture et le débogage du code</span>
                 </div>
-                <div class="prereq-item">
+                <div class="prereq-card">
                     <i class="fas fa-database"></i>
-                    <span>Base de données</span>
+                    <span class="prereq-name">SQLite / SQL</span>
+                    <span class="prereq-desc">Base de données embarquée pour le stockage persistant</span>
+                </div>
+                <div class="prereq-card">
+                    <i class="fas fa-window-maximize"></i>
+                    <span class="prereq-name">Tkinter</span>
+                    <span class="prereq-desc">Bibliothèque GUI intégrée à Python pour l'interface graphique</span>
                 </div>
             </div>
+        </div>
 
-            <h3 style="text-decoration: underline;">Procédure Technique :</h3>
+        <!-- PROCÉDURE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-list-ol"></i> Procédure Technique</div>
+            <p>Le développement de l'application s'est déroulé en 6 étapes progressives, de la mise en place de l'environnement jusqu'aux améliorations finales :</p>
 
             <div class="procedure-grid">
+
                 <div class="step-card">
-                    <span class="step-num">Étape 1</span>
-                    <div class="step-title">Environnement</div>
-                    <div class="step-desc">
-                        Préparation du poste de travail :
-                        <ul>
-                            <li>Installation de l'interpréteur Python.</li>
-                            <li>Création de l'arborescence du projet.</li>
-                        </ul>
-                    </div>
+                    <div class="step-num">Étape 1</div>
+                    <div class="step-title">Préparation de l'environnement</div>
+                    <div class="step-desc">Mise en place du poste de travail avant tout développement.</div>
+                    <ul class="step-list">
+                        <li><i class="fas fa-angle-right"></i> Installation de Python 3 et configuration des variables d'environnement.</li>
+                        <li><i class="fas fa-angle-right"></i> Configuration de VS Code avec les extensions Python (Pylance, debugger).</li>
+                        <li><i class="fas fa-angle-right"></i> Création de l'arborescence du projet : dossiers <code>src/</code>, <code>db/</code>, <code>export/</code>.</li>
+                        <li><i class="fas fa-angle-right"></i> Initialisation d'un environnement virtuel Python (<code>venv</code>).</li>
+                    </ul>
                 </div>
 
                 <div class="step-card">
-                    <span class="step-num">Étape 2</span>
-                    <div class="step-title">Structure & BDD</div>
-                    <div class="step-desc">
-                        Initialisation des fichiers et données :
-                        <ul>
-                            <li>Fichiers : <code>Stock.py</code>, <code>Inscription</code>, <code>Connexion</code>.</li>
-                            <li>Création de la base de données SQL "stock".</li>
-                        </ul>
-                    </div>
+                    <div class="step-num">Étape 2</div>
+                    <div class="step-title">Structure & Base de données</div>
+                    <div class="step-desc">Initialisation des fichiers sources et de la base de données SQL.</div>
+                    <ul class="step-list">
+                        <li><i class="fas fa-angle-right"></i> Création des fichiers principaux : <code>Stock.py</code>, <code>Inscription.py</code>, <code>Connexion.py</code>.</li>
+                        <li><i class="fas fa-angle-right"></i> Création de la base de données SQLite <code>stock.db</code> via Python.</li>
+                        <li><i class="fas fa-angle-right"></i> Définition des tables SQL : <code>utilisateurs</code> (id, login, mdp) et <code>produits</code> (id, nom, quantité, prix).</li>
+                        <li><i class="fas fa-angle-right"></i> Mise en place des fonctions de connexion à la base (<code>sqlite3.connect()</code>).</li>
+                    </ul>
                 </div>
 
                 <div class="step-card">
-                    <span class="step-num">Étape 3</span>
-                    <div class="step-title">Authentification</div>
-                    <div class="step-desc">
-                        Sécurisation de l'accès à l'application :
-                        <ul>
-                            <li>Module d'inscription (User + MDP).</li>
-                            <li>Vérification des identifiants (Login).</li>
-                            <li>Stockage en base de données.</li>
-                        </ul>
-                    </div>
+                    <div class="step-num">Étape 3</div>
+                    <div class="step-title">Module Authentification</div>
+                    <div class="step-desc">Sécurisation de l'accès à l'application par un système login/mdp.</div>
+                    <ul class="step-list">
+                        <li><i class="fas fa-angle-right"></i> Formulaire d'inscription : saisie nom d'utilisateur + mot de passe, enregistrement en base.</li>
+                        <li><i class="fas fa-angle-right"></i> Module de connexion : vérification des identifiants saisis face aux données SQL.</li>
+                        <li><i class="fas fa-angle-right"></i> Gestion des erreurs : message d'alerte si identifiants incorrects ou compte inexistant.</li>
+                        <li><i class="fas fa-angle-right"></i> Redirection conditionnelle vers le menu principal après connexion réussie.</li>
+                    </ul>
                 </div>
 
                 <div class="step-card">
-                    <span class="step-num">Étape 4</span>
-                    <div class="step-title">Fonctions Backend</div>
-                    <div class="step-desc">
-                        Développement du coeur de l'application (CRUD) :
-                        <ul>
-                            <li>Ajouter un produit (Nom, Qté, Prix).</li>
-                            <li>Modifier ou Supprimer un article.</li>
-                            <li>Lister le stock complet.</li>
-                        </ul>
-                    </div>
+                    <div class="step-num">Étape 4</div>
+                    <div class="step-title">Fonctions Backend — CRUD</div>
+                    <div class="step-desc">Développement du cœur fonctionnel de l'application.</div>
+                    <ul class="step-list">
+                        <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Create</strong> — ajout d'un produit (nom, quantité, prix unitaire) via formulaire.</li>
+                        <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Read</strong> — affichage du stock complet sous forme de liste triable.</li>
+                        <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Update</strong> — modification d'un article existant sélectionné dans la liste.</li>
+                        <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Delete</strong> — suppression d'un produit avec confirmation avant action.</li>
+                    </ul>
                 </div>
 
                 <div class="step-card">
-                    <span class="step-num">Étape 5</span>
+                    <div class="step-num">Étape 5</div>
                     <div class="step-title">Logique Utilisateur</div>
-                    <div class="step-desc">
-                        Gestion de l'expérience utilisateur :
-                        <ul>
-                            <li>Menu conditionnel (Connexion requise).</li>
-                            <li>Actions disponibles selon le profil.</li>
-                            <li>Sauvegarde persistante des données.</li>
-                        </ul>
-                    </div>
+                    <div class="step-desc">Gestion de la navigation et de l'expérience utilisateur dans l'application.</div>
+                    <ul class="step-list">
+                        <li><i class="fas fa-angle-right"></i> Menu principal conditionnel : accessible uniquement après authentification réussie.</li>
+                        <li><i class="fas fa-angle-right"></i> Gestion des sessions : état de connexion maintenu pendant toute la durée d'utilisation.</li>
+                        <li><i class="fas fa-angle-right"></i> Actions disponibles filtrées selon le profil utilisateur (admin / standard).</li>
+                        <li><i class="fas fa-angle-right"></i> Persistance garantie : toute modification est immédiatement sauvegardée en base SQL.</li>
+                    </ul>
                 </div>
 
-                <div class="step-card" style="border-left-color: #28a745;">
-                    <span class="step-num" style="color: #28a745;">Étape 6</span>
-                    <div class="step-title">Améliorations</div>
-                    <div class="step-desc">
-                        Finalisation du projet :
-                        <ul>
-                            <li>Interface graphique (GUI) avec <strong>Tkinter</strong>.</li>
-                            <li>Fonctionnalité d'export en CSV.</li>
-                        </ul>
-                    </div>
+                <div class="step-card valid">
+                    <div class="step-num">Étape 6</div>
+                    <div class="step-title">Interface graphique & Export</div>
+                    <div class="step-desc">Finalisation du projet avec l'interface Tkinter et les fonctionnalités avancées.</div>
+                    <ul class="step-list">
+                        <li><i class="fas fa-angle-right"></i> Intégration de l'interface graphique <strong style="color:var(--text-main);">Tkinter</strong> : fenêtres, formulaires, tableaux, boutons.</li>
+                        <li><i class="fas fa-angle-right"></i> Remplacement du menu console par une GUI complète et intuitive.</li>
+                        <li><i class="fas fa-angle-right"></i> Fonctionnalité d'<strong style="color:var(--text-main);">export CSV</strong> : génération d'un fichier exportable depuis le tableau de stock.</li>
+                        <li><i class="fas fa-angle-right"></i> Tests fonctionnels et corrections de bugs avant validation finale.</li>
+                    </ul>
                 </div>
+
             </div>
-
-            <div class="render-title">Rendu final</div>
-
-            <img src="stock_connexion_new.png" alt="Interface de Connexion" class="project-img">
-            <p class="img-caption">Figure 1 : Interface de connexion</p>
-
-            <img src="stock_interface_new.png" alt="Interface de Gestion" class="project-img">
-            <p class="img-caption">Figure 2 : Interface principale de gestion de stock</p>
-
         </div>
-    </section>
+
+        <!-- RENDU FINAL -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-desktop"></i> Rendu Final</div>
+            <p>Aperçu des interfaces produites à l'issue du développement :</p>
+            <div class="img-wrap">
+                <img src="stock_connexion_new.png" alt="Interface de connexion">
+                <p class="img-caption">Figure 1 : Interface de connexion — authentification utilisateur</p>
+            </div>
+            <div class="img-wrap" style="margin-top:24px;">
+                <img src="stock_interface_new.png" alt="Interface principale de gestion de stock">
+                <p class="img-caption">Figure 2 : Interface principale — gestion du stock (CRUD)</p>
+            </div>
+        </div>
+
+        <!-- BILAN -->
+        <div class="bilan-card">
+            <div class="card-heading"><i class="fas fa-trophy"></i> Bilan & Compétences validées</div>
+            <p style="color:var(--text-secondary);font-size:0.95rem;margin-bottom:0;">Ce projet a permis de maîtriser le cycle complet de développement d'une application : conception, base de données, logique métier et interface utilisateur. La combinaison Python + SQLite + Tkinter constitue une stack autonome, sans dépendances externes.</p>
+            <div class="bilan-grid">
+                <div class="bilan-item"><i class="fab fa-python"></i><span>Développement Python (modules, fonctions, POO)</span></div>
+                <div class="bilan-item"><i class="fas fa-database"></i><span>SQL & SQLite — conception et requêtes CRUD</span></div>
+                <div class="bilan-item"><i class="fas fa-window-maximize"></i><span>Interface graphique Tkinter (GUI complète)</span></div>
+                <div class="bilan-item"><i class="fas fa-shield-alt"></i><span>Authentification et gestion des sessions</span></div>
+                <div class="bilan-item"><i class="fas fa-file-csv"></i><span>Export de données (CSV)</span></div>
+                <div class="bilan-item"><i class="fas fa-bug"></i><span>Tests et débogage applicatif</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.card, .bilan-card, .step-card, .prereq-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+            observer.observe(el);
+        });
+    </script>
+
 </body>
 </html>
