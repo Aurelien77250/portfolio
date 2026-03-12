@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet PfSense - Aurélien GAILLARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0a0c10;
+            --bg-card: #111318;
+            --text-main: #e8eaf0;
+            --text-secondary: #7a8099;
+            --text-muted: #4a5068;
+            --primary: #c9a96e;
+            --primary-dim: rgba(201,169,110,0.12);
+            --secondary: #4e90d6;
+            --secondary-dim: rgba(78,144,214,0.10);
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(201,169,110,0.3);
+            --shadow-glow: rgba(201,169,110,0.15);
+            --nav-bg: rgba(10,12,16,0.92);
+            --red: #e05a5a;
+            --red-dim: rgba(224,90,90,0.1);
+            --green: #5fba7d;
+            --green-dim: rgba(95,186,125,0.1);
+        }
+        body.light-mode {
+            --bg-body: #f0efe9;
+            --bg-card: #ffffff;
+            --text-main: #0e1018;
+            --text-secondary: #38404e;
+            --text-muted: #767c90;
+            --primary: #7a5520;
+            --primary-dim: rgba(122,85,32,0.12);
+            --secondary: #1a539a;
+            --secondary-dim: rgba(26,83,154,0.08);
+            --border: rgba(0,0,0,0.12);
+            --border-hover: rgba(122,85,32,0.45);
+            --shadow-glow: rgba(122,85,32,0.12);
+            --nav-bg: rgba(240,239,233,0.97);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        a { text-decoration: none; color: inherit; transition: all 0.25s; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 500; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
+
+        /* NAV */
+        header { background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
+        .back-btn i { font-size: 0.8rem; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* HERO */
+        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
+        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
+        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
+        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: #ffffff; letter-spacing: -0.01em; line-height: 1.6; margin-bottom: 20px; max-width: 700px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
+        .tag.blue { color: var(--secondary); background: var(--secondary-dim); border-color: rgba(78,144,214,0.2); }
+        .tag.red { color: var(--red); background: var(--red-dim); border-color: rgba(224,90,90,0.2); }
+        .tag.green { color: var(--green); background: var(--green-dim); border-color: rgba(95,186,125,0.2); }
+
+        /* CONTAINER */
+        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading i { color: var(--primary); }
+        .card > p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
+
+        /* CONTEXT BOX */
+        .context-box { background: var(--secondary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--secondary); border-radius: 10px; padding: 22px 24px; }
+        .context-box p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
+
+        /* DETAIL LIST */
+        .detail-list { margin-top: 12px; }
+        .detail-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
+        .detail-list li:last-child { border-bottom: none; }
+        .detail-list li i { color: var(--primary); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; width: 14px; }
+
+        /* TABLE ADRESSAGE */
+        .addr-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.88rem; }
+        .addr-table th { background: var(--primary-dim); color: var(--primary); font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-hover); }
+        .addr-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        .addr-table tr:last-child td { border-bottom: none; }
+        .addr-table tr:hover td { background: rgba(201,169,110,0.04); }
+        .addr-table td:first-child { color: var(--text-main); font-weight: 500; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 7px; border-radius: 4px; font-size: 0.82rem; color: var(--primary); font-family: monospace; }
+        body.light-mode code { background: rgba(0,0,0,0.07); }
+
+        /* ÉTAPES */
+        .step-card { background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 16px; position: relative; overflow: hidden; transition: all 0.25s; }
+        .step-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--primary); border-radius: 12px 0 0 12px; }
+        .step-card.valid::before { background: var(--green); }
+        .step-card:hover { border-color: var(--border-hover); box-shadow: 0 8px 24px var(--shadow-glow); }
+        .step-num { font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+        .step-card.valid .step-num { color: var(--green); background: var(--green-dim); border-color: rgba(95,186,125,0.2); }
+        .step-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text-main); margin-bottom: 10px; }
+        .step-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px; }
+        .step-list li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; color: var(--text-secondary); font-size: 0.88rem; border-bottom: 1px solid var(--border); }
+        .step-list li:last-child { border-bottom: none; }
+        .step-list li i { color: var(--primary); font-size: 0.65rem; margin-top: 6px; flex-shrink: 0; }
+
+        /* SOUS-SECTION */
+        .sub-heading { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.08em; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+        .sub-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        /* IMAGE */
+        .img-wrap { margin-top: 16px; }
+        .img-wrap img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; object-fit: contain; }
+        .img-caption { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.04em; }
+
+        /* RÈGLES TABLE */
+        .rules-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.82rem; overflow-x: auto; display: block; }
+        .rules-table th { background: var(--primary-dim); color: var(--primary); font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border-hover); white-space: nowrap; }
+        .rules-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-secondary); white-space: nowrap; }
+        .rules-table tr:last-child td { border-bottom: none; }
+        .rules-table tr:hover td { background: rgba(201,169,110,0.04); }
+        .badge { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+        .badge.pass { color: var(--green); background: var(--green-dim); border: 1px solid rgba(95,186,125,0.2); }
+        .badge.block { color: var(--red); background: var(--red-dim); border: 1px solid rgba(224,90,90,0.2); }
+
+        /* BILAN */
+        .bilan-card { background: linear-gradient(135deg, var(--primary-dim), rgba(78,144,214,0.08)); border: 1px solid var(--border-hover); border-radius: 14px; padding: 40px; margin-bottom: 24px; }
+        .bilan-card .card-heading { border-bottom-color: rgba(201,169,110,0.2); }
+        .bilan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 20px; }
+        .bilan-item { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 12px; }
+        body.light-mode .bilan-item { background: rgba(255,255,255,0.5); }
+        .bilan-item i { color: var(--primary); font-size: 1.1rem; flex-shrink: 0; width: 20px; text-align: center; }
+        .bilan-item span { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; }
+
+        /* IMG PLACEHOLDER */
+        .img-placeholder { margin-top: 16px; border: 2px dashed var(--border); border-radius: 10px; padding: 28px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: rgba(201,169,110,0.03); transition: border-color 0.25s; cursor: default; }
+        .img-placeholder:hover { border-color: var(--border-hover); }
+        .img-placeholder i { font-size: 1.8rem; color: var(--text-muted); }
+        .img-placeholder span { font-size: 0.82rem; color: var(--text-muted); letter-spacing: 0.03em; text-align: center; }
+
+        @media (max-width: 768px) {
+            .page-hero { padding: 100px 20px 40px; }
+            .container { padding: 0 20px; }
+            nav { padding: 0 20px; }
+            .card, .bilan-card { padding: 24px; }
+            .step-card { padding: 20px; }
+            .nav-label { display: none; }
+            .bilan-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+            <div class="nav-right">
+                <span class="nav-label">Formation · BTS SIO</span>
+                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-hero">
+        <div class="page-label-top">Formation · BTS SIO SISR</div>
+        <h1>Mise en place d'un pare-feu PfSense</h1>
+        <div class="tags">
+            <span class="tag red">PfSense</span>
+            <span class="tag blue">Firewall</span>
+            <span class="tag">Réseau</span>
+            <span class="tag blue">Active Directory</span>
+            <span class="tag green">DHCP Relay</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- CONTEXTE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-info-circle"></i> Contexte du projet</div>
+            <div class="context-box">
+                <p><strong style="color:var(--secondary);">Objectif —</strong> Installer et configurer un pare-feu PfSense dans une architecture réseau existante : paramétrer les interfaces WAN et LAN, créer des règles de filtrage avancées (trafic Web, DNS, jonction de domaine, accès horaire), et activer un relay DHCP pour les postes clients.</p>
+            </div>
+        </div>
+
+        <!-- PLAN D'ADRESSAGE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-network-wired"></i> Plan d'adressage — Architecture réseau</div>
+            <p>Avant toute configuration, définition du plan d'adressage de l'ensemble des équipements de l'infrastructure :</p>
+
+            <table class="addr-table">
+                <thead>
+                    <tr>
+                        <th>Équipement</th>
+                        <th>Interface</th>
+                        <th>Adresse IP</th>
+                        <th>Masque</th>
+                        <th>Passerelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3">Firewall PfSense</td>
+                        <td><code>eth0</code> — WAN</td>
+                        <td>192.168.240.20</td>
+                        <td>/24</td>
+                        <td>FAI</td>
+                    </tr>
+                    <tr>
+                        <td><code>eth1</code> — LAN SVR</td>
+                        <td>192.168.2.30</td>
+                        <td>/27</td>
+                        <td>FAI</td>
+                    </tr>
+                    <tr>
+                        <td><code>eth2</code> — LAN PDT</td>
+                        <td>192.168.1.254</td>
+                        <td>/24</td>
+                        <td>FAI</td>
+                    </tr>
+                    <tr>
+                        <td>DC1 (Serveur AD)</td>
+                        <td>NIC</td>
+                        <td>192.168.2.2</td>
+                        <td>/27</td>
+                        <td>192.168.2.30</td>
+                    </tr>
+                    <tr>
+                        <td>PDT (Postes clients)</td>
+                        <td>NIC</td>
+                        <td>DHCP (192.168.1.0)</td>
+                        <td>/24</td>
+                        <td>192.168.1.254</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PROCÉDURE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-list-ol"></i> Procédure Technique</div>
+            <p>La mise en place du PfSense s'est déroulée en 5 étapes successives, de la configuration des interfaces jusqu'à la validation des règles de filtrage.</p>
+        </div>
+
+        <!-- ÉTAPE 1 -->
+        <div class="step-card">
+            <div class="step-num">Étape 1</div>
+            <div class="step-title">Configuration des interfaces WAN et LAN</div>
+            <div class="step-desc">Assignation des interfaces réseau du pare-feu via la console PfSense et l'interface web.</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Connexion à la console PfSense et assignation des interfaces (<code>em0</code> → WAN, <code>em1</code> → LANSUR, <code>em2</code> → LANPDT).</li>
+                <li><i class="fas fa-angle-right"></i> Configuration des adresses IP via l'option 2 du menu console.</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">WAN :</strong> <code>192.168.240.20 /24</code></li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">LAN SVR :</strong> <code>192.168.2.30 /27</code></li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">LAN PDT :</strong> <code>192.168.1.254 /24</code></li>
+                <li><i class="fas fa-angle-right"></i> Vérification des interfaces depuis l'interface graphique web PfSense.</li>
+            </ul>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Console PfSense — interfaces assignées</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Interface graphique — liste des interfaces (WAN / LANSUR / LANPDT)</span>
+            </div>
+        </div>
+
+        <!-- ÉTAPE 2 -->
+        <div class="step-card">
+            <div class="step-num">Étape 2</div>
+            <div class="step-title">Règle de filtrage — Trafic Web (HTTP/HTTPS)</div>
+            <div class="step-desc">Création d'un alias regroupant les ports 80 et 443, puis configuration de la règle permettant la navigation web depuis le LAN PDT.</div>
+
+            <div class="sub-heading"><i class="fas fa-tag"></i> Création de l'alias "AccesWEB"</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Aller dans <strong style="color:var(--text-main);">Firewall → Aliases → Ports</strong>.</li>
+                <li><i class="fas fa-angle-right"></i> Créer un alias de type <code>Port(s)</code> nommé <code>AccesWEB</code>.</li>
+                <li><i class="fas fa-angle-right"></i> Ajouter les ports <code>80</code> (HTTP) et <code>443</code> (HTTPS).</li>
+            </ul>
+
+            <div class="sub-heading"><i class="fas fa-shield-alt"></i> Création de la règle firewall</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Action :</strong> Pass — <strong style="color:var(--text-main);">Interface :</strong> LANPDT — <strong style="color:var(--text-main);">Protocole :</strong> TCP/UDP</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Source :</strong> LANPDT subnets — <strong style="color:var(--text-main);">Destination :</strong> Any</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Port destination :</strong> alias <code>AccesWEB</code> (80, 443).</li>
+            </ul>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Alias AccesWEB — ports 80 et 443</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Règle firewall LANPDT — trafic Web</span>
+            </div>
+        </div>
+
+        <!-- ÉTAPE 3 -->
+        <div class="step-card">
+            <div class="step-num">Étape 3</div>
+            <div class="step-title">Règles DNS — Alias "DNSlocal"</div>
+            <div class="step-desc">Création d'un alias IP pointant vers le contrôleur de domaine DC1, puis règle autorisant les requêtes DNS depuis les deux LAN.</div>
+
+            <div class="sub-heading"><i class="fas fa-tag"></i> Création de l'alias "DNSlocal"</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Aller dans <strong style="color:var(--text-main);">Firewall → Aliases → IP</strong>.</li>
+                <li><i class="fas fa-angle-right"></i> Créer un alias de type <code>Host(s)</code> nommé <code>DNSlocal</code> avec l'IP <code>192.168.2.2</code> (DC1).</li>
+            </ul>
+
+            <div class="sub-heading"><i class="fas fa-shield-alt"></i> Règle DNS sur chaque interface LAN</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Action :</strong> Pass — <strong style="color:var(--text-main);">Protocole :</strong> UDP — <strong style="color:var(--text-main);">Port :</strong> 53 (DNS)</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Source :</strong> LANPDT subnets — <strong style="color:var(--text-main);">Destination :</strong> alias <code>DNSlocal</code>.</li>
+                <li><i class="fas fa-angle-right"></i> La même règle est créée sur l'interface LANSUR.</li>
+                <li><i class="fas fa-angle-right"></i> Test de validation via <code>nslookup</code> depuis un poste client → réponse sur <code>192.168.2.2</code>.</li>
+            </ul>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Alias DNSlocal — IP 192.168.2.2</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Test nslookup — serveur DNS résolu sur 192.168.2.2</span>
+            </div>
+        </div>
+
+        <!-- ÉTAPE 4 -->
+        <div class="step-card">
+            <div class="step-num">Étape 4</div>
+            <div class="step-title">Règle jonction de domaine + Relay DHCP</div>
+            <div class="step-desc">Ouverture des ports nécessaires à l'intégration d'un poste au domaine Active Directory, et activation du relay DHCP pour transmettre les requêtes au serveur DC1.</div>
+
+            <div class="sub-heading"><i class="fas fa-tag"></i> Alias "AjoutDomaine" — Ports AD</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Créer un alias de type <code>Port(s)</code> nommé <code>AjoutDomaine</code>.</li>
+                <li><i class="fas fa-angle-right"></i> Ports inclus : <code>135</code>, <code>389</code>, <code>636</code>, <code>3268</code>, <code>3269</code>, <code>53</code>, <code>88</code>, <code>445</code>, <code>1024:65535</code>.</li>
+            </ul>
+
+            <div class="sub-heading"><i class="fas fa-shield-alt"></i> Règle jonction domaine</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Action :</strong> Pass — <strong style="color:var(--text-main);">Interface :</strong> LANPDT — <strong style="color:var(--text-main);">Protocole :</strong> TCP/UDP</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Source :</strong> LANPDT subnets — <strong style="color:var(--text-main);">Destination :</strong> LANSUR subnets</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Port destination :</strong> alias <code>AjoutDomaine</code>.</li>
+            </ul>
+
+            <div class="sub-heading"><i class="fas fa-server"></i> Activation du relay DHCP</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Aller dans <strong style="color:var(--text-main);">Services → DHCP Relay</strong> → activer la case <em>Enable DHCP Relay</em>.</li>
+                <li><i class="fas fa-angle-right"></i> Sélectionner les interfaces <code>WAN</code>, <code>LANSUR</code>, <code>LANPDT</code>.</li>
+                <li><i class="fas fa-angle-right"></i> Renseigner le serveur upstream : <code>192.168.2.2</code> (DC1).</li>
+                <li><i class="fas fa-angle-right"></i> La plage DHCP sur le serveur AD couvre <code>192.168.1.1</code> → <code>192.168.1.254</code>.</li>
+            </ul>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Alias AjoutDomaine — liste des ports AD</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Configuration DHCP Relay — serveur upstream 192.168.2.2</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Plage DHCP sur le serveur AD (192.168.1.1 → 192.168.1.254)</span>
+            </div>
+        </div>
+
+        <!-- ÉTAPE 5 -->
+        <div class="step-card valid">
+            <div class="step-num">Étape 5</div>
+            <div class="step-title">Règle horaire — Accès au serveur Web interne (8h–18h)</div>
+            <div class="step-desc">Mise en place d'une plage horaire sur PfSense limitant l'accès au serveur Web interne (IIS sur DC1) aux heures ouvrées uniquement.</div>
+
+            <div class="sub-heading"><i class="fas fa-globe"></i> Installation du service IIS</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Sur DC1, installer le rôle <strong style="color:var(--text-main);">IIS (Internet Information Services)</strong> via le Gestionnaire de serveur.</li>
+                <li><i class="fas fa-angle-right"></i> Vérifier l'accès local via <code>http://localhost</code> → page de bienvenue IIS affichée.</li>
+            </ul>
+
+            <div class="sub-heading"><i class="fas fa-clock"></i> Création de la plage horaire "Acces_site_web"</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Aller dans <strong style="color:var(--text-main);">Firewall → Schedules</strong> → ajouter une nouvelle plage.</li>
+                <li><i class="fas fa-angle-right"></i> Nom : <code>Acces_site_web</code> — jours : <strong style="color:var(--text-main);">Lundi–Vendredi</strong>.</li>
+                <li><i class="fas fa-angle-right"></i> Horaire : <code>08:00</code> → <code>18:00</code>.</li>
+            </ul>
+
+            <div class="sub-heading"><i class="fas fa-shield-alt"></i> Règle d'accès horaire (Pass 8h–18h)</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Action :</strong> Pass — <strong style="color:var(--text-main);">Interface :</strong> LANPDT — <strong style="color:var(--text-main);">Protocole :</strong> TCP</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Destination :</strong> alias <code>Serveur_web</code> (IP du DC1).</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Schedule :</strong> <code>Acces_site_web</code> (actif uniquement 8h–18h).</li>
+            </ul>
+
+            <div class="sub-heading"><i class="fas fa-ban"></i> Règle de blocage (hors horaires)</div>
+            <ul class="step-list">
+                <li><i class="fas fa-angle-right"></i> Créer une 2ème règle identique avec <strong style="color:var(--red);">Action : Block</strong>, sans plage horaire.</li>
+                <li><i class="fas fa-angle-right"></i> Cette règle bloque tout accès au serveur web en dehors des heures ouvrées.</li>
+                <li><i class="fas fa-angle-right"></i> <strong style="color:var(--text-main);">Ordre :</strong> règle Pass (horaire) en premier, règle Block ensuite — PfSense applique les règles dans l'ordre.</li>
+            </ul>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Page IIS — test http://localhost sur DC1</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Plage horaire "Acces_site_web" — Lun–Ven 08:00–18:00</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Règle d'accès horaire (Pass) + règle de blocage (Block)</span>
+            </div>
+            <div class="img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Capture : Ordre final des règles LANPDT</span>
+            </div>
+        </div>
+
+        <!-- RÉCAP RÈGLES -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-table"></i> Récapitulatif des règles de filtrage</div>
+            <p>Ordre final des règles configurées sur l'interface LANPDT :</p>
+            <table class="rules-table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Protocole</th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>Port</th>
+                        <th>Schedule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge pass">Pass</span></td>
+                        <td>IPv4 TCP</td>
+                        <td>LANPDT subnets</td>
+                        <td>Serveur_web</td>
+                        <td>AccesWEB</td>
+                        <td>Acces_site_web</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge block">Block</span></td>
+                        <td>IPv4 TCP</td>
+                        <td>LANPDT subnets</td>
+                        <td>Serveur_web</td>
+                        <td>*</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge pass">Pass</span></td>
+                        <td>IPv4 TCP/UDP</td>
+                        <td>LANPDT subnets</td>
+                        <td>*</td>
+                        <td>AccesWEB</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge pass">Pass</span></td>
+                        <td>IPv4 TCP/UDP</td>
+                        <td>LANPDT subnets</td>
+                        <td>LANSUR subnets</td>
+                        <td>AjoutDomaine</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge pass">Pass</span></td>
+                        <td>IPv4 UDP</td>
+                        <td>LANPDT subnets</td>
+                        <td>DNSlocal</td>
+                        <td>53 (DNS)</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- BILAN -->
+        <div class="bilan-card">
+            <div class="card-heading"><i class="fas fa-trophy"></i> Bilan & Compétences validées</div>
+            <p style="color:var(--text-secondary);font-size:0.95rem;margin-bottom:0;">Ce projet a permis de maîtriser la configuration d'un pare-feu PfSense dans un environnement AD : gestion des interfaces multi-LAN, création de règles de filtrage par alias, relay DHCP et plages horaires. L'utilisation des alias rend la politique de sécurité claire et facilement maintenable.</p>
+            <div class="bilan-grid">
+                <div class="bilan-item"><i class="fas fa-fire-alt"></i><span>Configuration pare-feu PfSense (interfaces, règles)</span></div>
+                <div class="bilan-item"><i class="fas fa-network-wired"></i><span>Segmentation réseau multi-LAN (SVR / PDT)</span></div>
+                <div class="bilan-item"><i class="fas fa-tag"></i><span>Création et utilisation d'alias (IP, Ports)</span></div>
+                <div class="bilan-item"><i class="fas fa-clock"></i><span>Règles horaires et politiques d'accès temporisées</span></div>
+                <div class="bilan-item"><i class="fas fa-server"></i><span>Relay DHCP vers serveur Active Directory</span></div>
+                <div class="bilan-item"><i class="fas fa-check-circle"></i><span>Tests de validation DNS et connectivité</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.card, .bilan-card, .step-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
