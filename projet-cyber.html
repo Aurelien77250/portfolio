@@ -3,97 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Cyber - Aurélien GAILLARD</title>
+    <title>Atelier Phishing - Aurélien GAILLARD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
-        /* --- STYLE INTEGRÉ --- */
-        :root { --primary: #1d3557; --secondary: #457b9d; --white: #ffffff; --text: #333; --light: #f1faee; --accent: #e63946; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; color: var(--text); line-height: 1.6; margin: 0; }
-        
-        /* Header */
-        header { background: var(--white); padding: 15px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        nav { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
-        .nav-links a { color: var(--primary); text-decoration: none; font-weight: bold; }
-        
-        /* Contenu */
-        section { max-width: 950px; margin: 100px auto 50px; padding: 20px; }
-        .project-detail { background: var(--white); padding: 50px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
-        /* Titres Principaux */
-        h1 { color: #000; text-align: center; font-size: 2.5rem; margin-bottom: 50px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;}
-        h3 { color: #000; text-align: center; font-size: 2rem; margin-top: 50px; margin-bottom: 30px; text-transform: uppercase; font-weight: 800; text-decoration: underline; text-underline-offset: 8px;}
-        
-        /* Section Contexte */
-        .contexte-container { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-bottom: 40px; }
-        .orange-logo { font-size: 2.5rem; line-height: 1.2; font-weight: bold; color: #f16e00; flex: 1; min-width: 200px; text-align: center; }
-        .orange-logo span { color: #000; display: block; }
-        .contexte-text { flex: 2; min-width: 300px; text-align: justify; font-size: 1rem; }
-
-        /* Section Mission */
-        .mission-box {
-            border: 2px solid #4285f4;
-            padding: 30px;
-            margin: 20px 0;
-            background-color: #fff;
-            color: #000;
-            font-weight: 500;
-            text-align: justify;
-            line-height: 1.8;
+        :root {
+            --bg-body: #0a0c10;
+            --bg-card: #111318;
+            --bg-card-hover: #161a22;
+            --text-main: #e8eaf0;
+            --text-secondary: #7a8099;
+            --text-muted: #4a5068;
+            --primary: #c9a96e;
+            --primary-dim: rgba(201,169,110,0.12);
+            --secondary: #4e90d6;
+            --secondary-dim: rgba(78,144,214,0.10);
+            --accent-soft: rgba(201,169,110,0.08);
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(201,169,110,0.3);
+            --shadow-glow: rgba(201,169,110,0.15);
+            --nav-bg: rgba(10,12,16,0.92);
+            --orange: #f16e00;
+            --orange-dim: rgba(241,110,0,0.10);
+            --orange-border: rgba(241,110,0,0.3);
+        }
+        body.light-mode {
+            --bg-body: #f0efe9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #faf9f6;
+            --text-main: #0e1018;
+            --text-secondary: #38404e;
+            --text-muted: #767c90;
+            --primary: #7a5520;
+            --primary-dim: rgba(122,85,32,0.12);
+            --secondary: #1a539a;
+            --secondary-dim: rgba(26,83,154,0.08);
+            --accent-soft: rgba(122,85,32,0.08);
+            --border: rgba(0,0,0,0.12);
+            --border-hover: rgba(122,85,32,0.45);
+            --shadow-glow: rgba(122,85,32,0.12);
+            --nav-bg: rgba(240,239,233,0.97);
+            --orange-dim: rgba(241,110,0,0.07);
+            --orange-border: rgba(241,110,0,0.25);
         }
 
-        /* Section Comment */
-        .comment-list { text-align: center; font-weight: 600; font-size: 1.1rem; color: #333; }
-        .comment-list div { margin-bottom: 15px; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        a { text-decoration: none; color: inherit; transition: all 0.25s; }
+        ul { list-style: none; }
+        strong { font-weight: 500; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
-        /* Images */
-        .project-img { width: 100%; max-width: 900px; margin: 30px auto; display: block; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        /* NAV */
+        header { background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
+        .back-btn i { font-size: 0.8rem; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* HERO */
+        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
+        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
+        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
+        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: #ffffff; letter-spacing: -0.01em; line-height: 1.6; margin-bottom: 20px; max-width: 700px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
+        .tag.blue { color: var(--secondary); background: var(--secondary-dim); border-color: rgba(78,144,214,0.2); }
+        .tag.orange { color: var(--orange); background: var(--orange-dim); border-color: var(--orange-border); }
+
+        /* CONTENU */
+        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading i { color: var(--primary); }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
+        .card p:last-child { margin-bottom: 0; }
+
+        /* Bloc Orange Cyberdefense */
+        .partner-block { display: flex; align-items: center; gap: 24px; padding: 20px 24px; background: var(--orange-dim); border: 1px solid var(--orange-border); border-radius: 10px; margin-bottom: 24px; }
+        .partner-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--orange); line-height: 1.2; flex-shrink: 0; white-space: nowrap; }
+        .partner-logo span { color: var(--text-main); display: block; font-size: 1rem; }
+        .partner-sep { width: 1px; height: 40px; background: var(--orange-border); flex-shrink: 0; }
+        .partner-desc { font-size: 0.88rem; color: var(--text-secondary); }
+
+        /* Mission box */
+        .mission-box { background: var(--secondary-dim); border: 1px solid rgba(78,144,214,0.25); border-left: 3px solid var(--secondary); border-radius: 10px; padding: 24px 28px; margin-top: 4px; }
+        .mission-box p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* Liste "Comment" */
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 8px; }
+        .how-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; transition: all 0.25s; }
+        .how-item:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 6px 20px var(--shadow-glow); }
+        .how-item i { font-size: 1.6rem; color: var(--primary); }
+        .how-item span { font-size: 0.88rem; color: var(--text-secondary); font-weight: 400; line-height: 1.4; }
+
+        /* Tableau de suivi */
+        .suivi-header { background: linear-gradient(135deg, var(--primary-dim), rgba(78,144,214,0.08)); border: 1px solid var(--border-hover); border-radius: 10px 10px 0 0; padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+        .suivi-header span { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--primary); letter-spacing: 0.05em; text-transform: uppercase; }
+        .project-img { width: 100%; height: auto; border-radius: 0 0 10px 10px; border: 1px solid var(--border); border-top: none; display: block; object-fit: contain; }
+        .img-caption { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.04em; }
+
+        /* Sous-section divider */
+        .divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+        /* Liste à puces */
+        .detail-list { padding: 0; margin-top: 12px; }
+        .detail-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
+        .detail-list li:last-child { border-bottom: none; }
+        .detail-list li i { color: var(--primary); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; }
+
+        /* Stat chips */
+        .stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        .stat-chip { display: flex; align-items: center; gap: 8px; background: var(--primary-dim); border: 1px solid var(--border-hover); border-radius: 8px; padding: 10px 16px; }
+        .stat-chip i { color: var(--primary); font-size: 0.85rem; }
+        .stat-chip span { font-size: 0.85rem; color: var(--text-main); font-weight: 400; }
+
+        @media (max-width: 768px) {
+            .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
+            .container { padding: 0 20px; }
+            nav { padding: 0 20px; }
+            .card { padding: 24px; }
+            .nav-label { display: none; }
+            .how-grid { grid-template-columns: 1fr 1fr; }
+            .partner-block { flex-direction: column; text-align: center; }
+            .partner-sep { width: 60px; height: 1px; }
+        }
     </style>
 </head>
 <body>
+
     <header>
         <nav>
-            <div class="logo">Aurélien GAILLARD</div>
-            <div class="nav-links"><a href="index.html"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a></div>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+            <div class="nav-right">
+                <span class="nav-label">Projet Entreprise</span>
+                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+            </div>
         </nav>
     </header>
 
-    <section>
-        <div class="project-detail">
-            
-            <h3>CONTEXTE</h3>
-            <div class="contexte-container">
-                <div class="orange-logo">
-                    Orange<br><span>Cyberdefense</span>
-                </div>
-                <div class="contexte-text">
-                    <p>Face à l’augmentation des cyberattaques, l’entreprise a décidé de faire réaliser un audit de sécurité du réseau en collaboration avec Orange. Cet audit a permis d’identifier plusieurs axes d’amélioration en matière de cybersécurité. À l’issue de cette analyse, un rapport détaillant des recommandations a été remis. [cite_start]Suite à ce rapport, il m’a été confié la mission de concevoir un atelier de sensibilisation au phishing, que je serai amené à animer auprès des collaborateurs afin de renforcer la vigilance et les bonnes pratiques face à ce type de menace[cite: 39, 40, 41, 42].</p>
-                </div>
-            </div>
-
-            <h3>MA MISSION</h3>
-            <div class="mission-box">
-                <p>Dans le cadre de cette mission, je suis chargé d’élaborer entièrement l’atelier de sensibilisation au phishing. Cela inclut la recherche et la sélection d’exemples concrets et typiques de tentatives de phishing, afin d’apprendre aux collaborateurs à les reconnaître facilement. [cite_start]L’objectif est de les former à adopter les bons réflexes en cas de suspicion, notamment en matière de détection et de signalement de ces menaces, pour renforcer la sécurité globale de l’entreprise[cite: 43, 44, 45].</p>
-            </div>
-
-            <h3>COMMENT ?</h3>
-            <div class="comment-list">
-                [cite_start]<div>Recherche de Quiz concernant le phishing [cite: 46]</div>
-                [cite_start]<div>Création d'un formulaire d'inscription aux ateliers [cite: 46]</div>
-                [cite_start]<div>Création d'un support de présentation [cite: 46]</div>
-                [cite_start]<div>Réservation des salles de réunion [cite: 46]</div>
-            </div>
-
-            <h3>AVANCE DU PROJET</h3>
-            
-            <div style="background: #1d3557; color: white; padding: 10px; font-weight: bold; border-radius: 5px 5px 0 0; margin-top: 20px;">
-                Tableau de suivi des tâches
-            </div>
-            
-            <img src="image_5.png" alt="Tableau de suivi du projet Cyber - Tâches et état d'avancement" class="project-img" style="margin-top:0;">
-            <p style="text-align: center; font-style: italic; color: #666; margin-top: 10px;">Figure : Tableau de planification et de suivi des actions (Outil Monday)</p>
-            
+    <!-- HERO -->
+    <div class="page-hero">
+        <div class="page-label-top">Projet Entreprise · Palais des Thés</div>
+        <h1>Atelier de Sensibilisation au Phishing</h1>
+        <div class="tags">
+            <span class="tag">Cybersécurité</span>
+            <span class="tag orange">Orange Cyberdefense</span>
+            <span class="tag blue">Pédagogie</span>
+            <span class="tag">Audit</span>
         </div>
-    </section>
+    </div>
+
+    <div class="container">
+
+        <!-- CONTEXTE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-search"></i> Contexte du projet</div>
+
+            <div class="partner-block">
+                <div class="partner-logo">Orange<span>Cyberdefense</span></div>
+                <div class="partner-sep"></div>
+                <div class="partner-desc">Filiale cybersécurité du groupe Orange — prestataire mandaté par Palais des Thés pour réaliser un audit complet de l'infrastructure réseau.</div>
+            </div>
+
+            <p>Face à l'augmentation des cyberattaques, l'entreprise a décidé de faire réaliser un <strong>audit de sécurité du réseau</strong> en collaboration avec Orange Cyberdefense. Cet audit a permis d'identifier plusieurs axes d'amélioration en matière de cybersécurité.</p>
+            <p>À l'issue de cette analyse, un rapport détaillant des recommandations a été remis à la direction. Parmi les axes prioritaires figurait la <strong>sensibilisation des collaborateurs aux attaques de type phishing</strong>, identifiées comme le principal vecteur d'intrusion.</p>
+            <p>Suite à ce rapport, il m'a été confié la mission de concevoir et d'animer un atelier de sensibilisation au phishing auprès des collaborateurs, afin de renforcer la vigilance et les bonnes pratiques face à ce type de menace.</p>
+
+            <div class="stat-row">
+                <div class="stat-chip"><i class="fas fa-building"></i><span>Palais des Thés — 84 boutiques</span></div>
+                <div class="stat-chip"><i class="fas fa-users"></i><span>Collaborateurs siège + boutiques</span></div>
+                <div class="stat-chip"><i class="fas fa-shield-alt"></i><span>Issu d'un audit Orange Cyberdefense</span></div>
+            </div>
+        </div>
+
+        <!-- MISSION -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-bullseye"></i> Ma Mission</div>
+            <p>Dans le cadre de cette mission, j'ai été chargé d'élaborer <strong>entièrement</strong> l'atelier de sensibilisation au phishing, de la conception à l'animation :</p>
+            <div class="mission-box">
+                <p>Rechercher et sélectionner des exemples <strong>concrets et typiques</strong> de tentatives de phishing rencontrées en entreprise, afin d'apprendre aux collaborateurs à les reconnaître facilement. Former les équipes à adopter les <strong>bons réflexes</strong> en cas de suspicion — détection, signalement et isolation — pour renforcer la sécurité globale de l'entreprise.</p>
+            </div>
+
+            <hr class="divider">
+
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 16px;">Les menaces couvertes par l'atelier :</p>
+            <ul class="detail-list">
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Phishing email</strong> — faux expéditeurs, liens malveillants, pièces jointes piégées</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Spear phishing</strong> — attaques ciblées usurpant l'identité d'un supérieur ou d'un collègue</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Smishing / Vishing</strong> — phishing par SMS ou appel téléphonique</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Procédure de signalement</strong> — comment alerter le service IT en cas de doute</div></li>
+            </ul>
+        </div>
+
+        <!-- COMMENT -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-tasks"></i> Méthodologie & Actions</div>
+            <p>Pour mener à bien cet atelier, j'ai décomposé le projet en quatre grandes actions :</p>
+
+            <div class="how-grid">
+                <div class="how-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Recherche de quiz interactifs sur le phishing pour tester les collaborateurs</span>
+                </div>
+                <div class="how-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Création d'un formulaire d'inscription aux ateliers via Microsoft Forms</span>
+                </div>
+                <div class="how-item">
+                    <i class="fas fa-tv"></i>
+                    <span>Conception d'un support de présentation PowerPoint avec cas concrets</span>
+                </div>
+                <div class="how-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Réservation des salles de réunion et planification des sessions par service</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- AVANCÉE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-chart-gantt"></i> Avancement du Projet</div>
+            <p>Le suivi des tâches a été réalisé sur l'outil <strong>Monday.com</strong>, permettant une vue d'ensemble des actions à mener, leur état d'avancement et les responsabilités associées :</p>
+
+            <div style="margin-top: 20px;">
+                <div class="suivi-header">
+                    <i class="fas fa-table" style="color: var(--primary); font-size: 0.85rem;"></i>
+                    <span>Tableau de suivi des tâches — Monday.com</span>
+                </div>
+                <img src="image_5.png" alt="Tableau de suivi Monday - Projet Phishing" class="project-img">
+            </div>
+            <p class="img-caption">Figure : Tableau de planification et de suivi des actions (Outil Monday)</p>
+        </div>
+
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+    </script>
+
 </body>
 </html>
