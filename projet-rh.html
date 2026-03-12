@@ -2,31 +2,241 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet RH - Aurélien GAILLARD</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0a0c10;
+            --bg-card: #111318;
+            --text-main: #e8eaf0;
+            --text-secondary: #7a8099;
+            --text-muted: #4a5068;
+            --primary: #c9a96e;
+            --primary-dim: rgba(201,169,110,0.12);
+            --secondary: #4e90d6;
+            --secondary-dim: rgba(78,144,214,0.10);
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(201,169,110,0.3);
+            --shadow-glow: rgba(201,169,110,0.15);
+            --nav-bg: rgba(10,12,16,0.92);
+        }
+        body.light-mode {
+            --bg-body: #f0efe9;
+            --bg-card: #ffffff;
+            --text-main: #0e1018;
+            --text-secondary: #38404e;
+            --text-muted: #767c90;
+            --primary: #7a5520;
+            --primary-dim: rgba(122,85,32,0.12);
+            --secondary: #1a539a;
+            --secondary-dim: rgba(26,83,154,0.08);
+            --border: rgba(0,0,0,0.12);
+            --border-hover: rgba(122,85,32,0.45);
+            --shadow-glow: rgba(122,85,32,0.12);
+            --nav-bg: rgba(240,239,233,0.97);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        a { text-decoration: none; color: inherit; transition: all 0.25s; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 500; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
+
+        /* NAV */
+        header { background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
+        .back-btn i { font-size: 0.8rem; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* HERO */
+        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
+        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
+        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
+        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: #ffffff; letter-spacing: -0.01em; line-height: 1.6; margin-bottom: 20px; max-width: 700px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
+        .tag.blue { color: var(--secondary); background: var(--secondary-dim); border-color: rgba(78,144,214,0.2); }
+        .tag.green { color: #5fba7d; background: rgba(95,186,125,0.1); border-color: rgba(95,186,125,0.2); }
+
+        /* CONTAINER */
+        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading i { color: var(--primary); }
+        .card > p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
+        .card > p:last-child { margin-bottom: 0; }
+
+        /* CONTEXT BOX */
+        .context-box { background: var(--secondary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--secondary); border-radius: 10px; padding: 22px 24px; margin-bottom: 0; }
+        .context-box p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
+
+        /* DETAIL LIST */
+        .detail-list { margin-top: 12px; }
+        .detail-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
+        .detail-list li:last-child { border-bottom: none; }
+        .detail-list li i { color: var(--primary); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; width: 14px; }
+
+        /* OUTILS GRID */
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-top: 20px; }
+        .tool-card { background: var(--bg-body); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; transition: all 0.25s; }
+        .tool-card:hover { border-color: var(--border-hover); }
+        .tool-icon { width: 38px; height: 38px; background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tool-icon i { color: var(--primary); font-size: 1rem; }
+        .tool-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--text-main); }
+        .tool-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* BILAN */
+        .bilan-card { background: linear-gradient(135deg, var(--primary-dim), rgba(78,144,214,0.08)); border: 1px solid var(--border-hover); border-radius: 14px; padding: 40px; margin-bottom: 24px; }
+        .bilan-card .card-heading { border-bottom-color: rgba(201,169,110,0.2); }
+        .bilan-card > p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
+
+        /* ALERTE DIFFICULTE */
+        .alert-box { background: rgba(201,169,110,0.07); border: 1px solid rgba(201,169,110,0.2); border-left: 3px solid var(--primary); border-radius: 10px; padding: 20px 24px; margin-top: 20px; }
+        .alert-box p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
+        .alert-label { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 8px; }
+
+        @media (max-width: 768px) {
+            .page-hero { padding: 100px 20px 40px; }
+            .container { padding: 0 20px; }
+            nav { padding: 0 20px; }
+            .card, .bilan-card { padding: 24px; }
+            .nav-label { display: none; }
+            .tools-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <header><nav><div class="logo">Aurélien GAILLARD</div><div class="nav-links"><a href="index.html">Retour Accueil</a></div></nav></header>
 
-    <section style="margin-top: 60px;">
-        <a href="index.html#projects" class="back-btn">← Retour aux projets</a>
-        <div class="project-detail">
-            <h1>Outil de Ticketing RH</h1>
-            <p><strong>Contexte :</strong> Service des Ressources Humaines - Palais des Thés</p>
-            
-            <h3>📄 Le Besoin</h3>
-            <p>Le service RH avait besoin de centraliser et gérer les demandes des employés. L'objectif était de faciliter le suivi, le traitement et la traçabilité des requêtes, tout en améliorant la communication interne[cite: 32, 33].</p>
+    <header>
+        <nav>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+            <div class="nav-right">
+                <span class="nav-label">Projet Entreprise</span>
+                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+            </div>
+        </nav>
+    </header>
 
-            <h3>⚙️ Réalisation & Outils</h3>
-            <ul>
-                <li><strong>Outil retenu :</strong> Freshservice (création de formulaire adapté).</li>
-                <li><strong>Planification :</strong> Utilisation de l'outil <em>Monday</em> pour le suivi des tâches[cite: 35].</li>
-                <li><strong>Actions :</strong> Recueil des besoins auprès du service RH, définition des fonctionnalités essentielles, contact avec le prestataire[cite: 36].</li>
-            </ul>
-
-            <h3>⚠️ Bilan & Difficultés</h3>
-            <p>Le projet a connu des ralentissements dus à des retours tardifs du service RH, freinant la validation des étapes. Je suis resté mobilisé pour relancer et avancer dès réception des validations[cite: 37, 38].</p>
+    <div class="page-hero">
+        <div class="page-label-top">Projet Entreprise · Palais des Thés</div>
+        <h1>Outil de Ticketing RH</h1>
+        <div class="tags">
+            <span class="tag">Freshservice</span>
+            <span class="tag">Monday</span>
+            <span class="tag blue">Ressources Humaines</span>
+            <span class="tag green">ITSM</span>
         </div>
-    </section>
+    </div>
+
+    <div class="container">
+
+        <!-- CONTEXTE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-building"></i> Contexte du projet</div>
+            <div class="context-box">
+                <p><strong style="color:var(--secondary);">Service RH — Palais des Thés —</strong> Le service des Ressources Humaines avait besoin de centraliser et structurer les demandes des employés. L'objectif était de faciliter le suivi, le traitement et la traçabilité des requêtes, tout en améliorant la communication interne.</p>
+            </div>
+        </div>
+
+        <!-- BESOIN -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-clipboard-list"></i> Le Besoin</div>
+            <p>Face à un volume croissant de demandes RH traitées de manière informelle, le service avait besoin d'un outil dédié permettant :</p>
+            <ul class="detail-list">
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Centralisation</strong> — regrouper toutes les demandes des employés en un seul point d'entrée.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Suivi & traçabilité</strong> — historiser chaque demande et son état d'avancement en temps réel.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Communication interne</strong> — améliorer les échanges entre employés et service RH via un canal structuré.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Traitement efficace</strong> — réduire les délais de réponse et éviter les demandes perdues ou oubliées.</div></li>
+            </ul>
+        </div>
+
+        <!-- RÉALISATION -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-cogs"></i> Réalisation & Outils</div>
+            <p>Après recueil des besoins auprès du service RH et définition des fonctionnalités essentielles, les outils suivants ont été retenus et mis en place :</p>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <div>
+                        <div class="tool-name">Freshservice</div>
+                        <div class="tool-desc">Formulaire de ticketing adapté aux besoins RH</div>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fas fa-tasks"></i></div>
+                    <div>
+                        <div class="tool-name">Monday</div>
+                        <div class="tool-desc">Planification et suivi des tâches du projet</div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="detail-list" style="margin-top:20px;">
+                <li><i class="fas fa-angle-right"></i><div>Recueil des besoins auprès du service RH et identification des fonctionnalités prioritaires.</div></li>
+                <li><i class="fas fa-angle-right"></i><div>Création et configuration d'un formulaire Freshservice adapté aux cas d'usage RH.</div></li>
+                <li><i class="fas fa-angle-right"></i><div>Mise en place d'un tableau de suivi Monday pour piloter l'avancement du projet.</div></li>
+                <li><i class="fas fa-angle-right"></i><div>Contact et coordination avec le prestataire pour les aspects techniques.</div></li>
+            </ul>
+        </div>
+
+        <!-- BILAN -->
+        <div class="bilan-card">
+            <div class="card-heading"><i class="fas fa-chart-line"></i> Bilan & Difficultés</div>
+            <p>Le projet a permis de structurer le traitement des demandes RH au sein du Palais des Thés, en fournissant un canal dédié et traçable pour les employés.</p>
+
+            <div class="alert-box">
+                <div class="alert-label"><i class="fas fa-exclamation-triangle" style="margin-right:6px;"></i> Point de vigilance</div>
+                <p>Le projet a connu des ralentissements dus à des retours tardifs du service RH, freinant la validation des étapes. Face à ces blocages, je me suis maintenu mobilisé pour relancer les interlocuteurs et reprendre l'avancement dès réception des validations.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.card, .bilan-card, .tool-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+            observer.observe(el);
+        });
+    </script>
+
 </body>
 </html>
