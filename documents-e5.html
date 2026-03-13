@@ -2,87 +2,134 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documents E5 - Aurélien GAILLARD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #f4f4f9;
+            --bg-body: #0a0c10;
+            --bg-card: #111318;
+            --text-main: #e8eaf0;
+            --text-secondary: #7a8099;
+            --text-muted: #4a5068;
+            --primary: #c9a96e;
+            --primary-dim: rgba(201,169,110,0.12);
+            --secondary: #4e90d6;
+            --secondary-dim: rgba(78,144,214,0.10);
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(201,169,110,0.3);
+            --shadow-glow: rgba(201,169,110,0.15);
+            --nav-bg: rgba(10,12,16,0.92);
+        }
+        body.light-mode {
+            --bg-body: #f0efe9;
             --bg-card: #ffffff;
-            --text-main: #333333;
-            --primary: #1d3557;
-            --secondary: #457b9d;
-            --accent: #e63946;
-            --border: #eeeeee;
-            --shadow: rgba(0,0,0,0.1);
+            --text-main: #0e1018;
+            --text-secondary: #38404e;
+            --text-muted: #767c90;
+            --primary: #7a5520;
+            --primary-dim: rgba(122,85,32,0.12);
+            --secondary: #1a539a;
+            --secondary-dim: rgba(26,83,154,0.08);
+            --border: rgba(0,0,0,0.12);
+            --border-hover: rgba(122,85,32,0.45);
+            --shadow-glow: rgba(122,85,32,0.12);
+            --nav-bg: rgba(240,239,233,0.97);
         }
 
-        body.dark-mode {
-            --bg-body: #121212;
-            --bg-card: #1e1e1e;
-            --text-main: #e0e0e0;
-            --primary: #a8dadc;
-            --secondary: #457b9d;
-            --accent: #ff6b6b;
-            --border: #333333;
-            --shadow: rgba(0,0,0,0.5);
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        a { text-decoration: none; color: inherit; transition: all 0.25s; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 500; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-main); background-color: var(--bg-body); padding-bottom: 50px; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        /* NAV */
+        header { background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
+        .back-btn i { font-size: 0.8rem; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
 
-        header { background: var(--primary); color: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px var(--shadow); position: relative;}
-        .back-btn { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;}
-        .back-btn:hover { color: var(--accent); }
+        /* HERO */
+        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
+        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
+        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
+        .page-hero h1 { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1.8rem; color: #ffffff; letter-spacing: 0.01em; line-height: 1.5; margin-bottom: 12px; max-width: 700px; }
+        .page-hero p { color: var(--text-secondary); font-size: 0.95rem; }
 
-        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        .project-title { text-align: center; margin-bottom: 40px; }
-        .project-title h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        /* CONTAINER */
+        .container { max-width: 960px; margin: auto; padding: 0 32px; }
 
-        .doc-card { background: var(--bg-card); padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px var(--shadow); margin-bottom: 30px; }
-        .doc-card h2 { color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
-        
-        .doc-list { display: flex; flex-direction: column; gap: 15px; }
-        .doc-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid var(--border); border-radius: 8px; transition: 0.3s; }
-        .doc-item:hover { border-color: var(--secondary); box-shadow: 0 2px 8px var(--shadow); }
-        .doc-info { display: flex; align-items: center; gap: 15px; }
-        .doc-info i { font-size: 2rem; color: var(--accent); }
-        .doc-title { font-weight: bold; font-size: 1.1rem; color: var(--text-main); }
-        .doc-desc { font-size: 0.9rem; opacity: 0.8; }
-        
-        .download-btn { background: var(--secondary); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
-        .download-btn:hover { background: var(--primary); }
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading i { color: var(--primary); }
+
+        /* DOC ITEMS */
+        .doc-list { display: flex; flex-direction: column; gap: 14px; }
+        .doc-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; transition: all 0.25s; }
+        .doc-item:hover { border-color: var(--border-hover); box-shadow: 0 4px 20px var(--shadow-glow); }
+        .doc-info { display: flex; align-items: center; gap: 18px; }
+        .doc-icon { width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
+        .doc-icon.red { background: rgba(224,90,90,0.1); border: 1px solid rgba(224,90,90,0.2); color: #e05a5a; }
+        .doc-icon.blue { background: var(--secondary-dim); border: 1px solid rgba(78,144,214,0.2); color: var(--secondary); }
+        .doc-icon.gold { background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); color: var(--primary); }
+        .doc-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text-main); margin-bottom: 3px; }
+        .doc-desc { font-size: 0.82rem; color: var(--text-muted); }
+
+        /* DOWNLOAD BTN */
+        .download-btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.04em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.25); padding: 9px 18px; border-radius: 8px; transition: all 0.25s; white-space: nowrap; flex-shrink: 0; }
+        .download-btn:hover { background: var(--primary); color: #0a0c10; border-color: var(--primary); }
+        .download-btn i { font-size: 0.8rem; }
 
         @media (max-width: 768px) {
-            .doc-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .page-hero { padding: 100px 20px 40px; }
+            .container { padding: 0 20px; }
+            nav { padding: 0 20px; }
+            .card { padding: 24px; }
+            .nav-label { display: none; }
+            .doc-item { flex-direction: column; align-items: flex-start; gap: 16px; }
             .download-btn { width: 100%; justify-content: center; }
-            .back-btn span { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> <span>Retour</span></a>
-        <h2>Portfolio SISR</h2>
+        <nav>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+            <div class="nav-right">
+                <span class="nav-label">Épreuve E5</span>
+                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+            </div>
+        </nav>
     </header>
 
-    <div class="container">
-        
-        <div class="project-title">
-            <h1><i class="fas fa-folder-open"></i> Documents Épreuve E5</h1>
-            <p>Retrouvez ci-dessous les documents justificatifs et d'évaluation pour l'épreuve E5.</p>
-        </div>
+    <div class="page-hero">
+        <div class="page-label-top">BTS SIO SISR · Session 2026</div>
+        <h1>Documents Épreuve E5</h1>
+        <p>Documents justificatifs et d'évaluation pour l'épreuve E5 — téléchargeables ci-dessous.</p>
+    </div>
 
-        <div class="doc-card">
-            <h2>Documents d'Évaluation</h2>
+    <div class="container">
+
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-folder-open"></i> Documents d'évaluation</div>
             <div class="doc-list">
-                
+
                 <div class="doc-item">
                     <div class="doc-info">
-                        <i class="fas fa-file-signature" style="color: #e63946;"></i>
+                        <div class="doc-icon red"><i class="fas fa-file-signature"></i></div>
                         <div>
                             <div class="doc-title">Attestation de présence en entreprise</div>
                             <div class="doc-desc">Document justifiant mes périodes d'alternance au Palais des Thés.</div>
@@ -93,7 +140,7 @@
 
                 <div class="doc-item">
                     <div class="doc-info">
-                        <i class="fas fa-table" style="color: #2b579a;"></i>
+                        <div class="doc-icon blue"><i class="fas fa-table"></i></div>
                         <div>
                             <div class="doc-title">Tableau de synthèse</div>
                             <div class="doc-desc">Récapitulatif des compétences validées pour l'épreuve E5.</div>
@@ -106,6 +153,37 @@
         </div>
 
     </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.card, .doc-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+            observer.observe(el);
+        });
+    </script>
 
 </body>
 </html>
