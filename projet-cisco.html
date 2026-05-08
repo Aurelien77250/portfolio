@@ -5,146 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet VLAN - Aurélien GAILLARD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #0a0c10;
-            --bg-card: #111318;
-            --bg-card-hover: #161a22;
-            --text-main: #e8eaf0;
-            --text-secondary: #7a8099;
-            --text-muted: #4a5068;
-            --primary: #c9a96e;
-            --primary-dim: rgba(201,169,110,0.12);
-            --secondary: #4e90d6;
-            --secondary-dim: rgba(78,144,214,0.10);
-            --accent-soft: rgba(201,169,110,0.08);
-            --border: rgba(255,255,255,0.07);
-            --border-hover: rgba(201,169,110,0.3);
-            --shadow-glow: rgba(201,169,110,0.15);
-            --nav-bg: rgba(10,12,16,0.92);
-            --step-valid: rgba(52,199,89,0.10);
-            --step-valid-border: rgba(52,199,89,0.35);
-            --step-complex: rgba(255,107,107,0.10);
-            --step-complex-border: rgba(255,107,107,0.35);
+            --bg-body: #252836;
+            --bg-card: #2f3447;
+            --bg-elevated: #323749;
+            --text-main: #f8f9fd;
+            --text-secondary: #c2c8dc;
+            --text-muted: #8891ae;
+            --primary: #4e90d6;
+            --primary-dim: rgba(78,144,214,0.14);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(78,144,214,0.45);
+            --shadow-glow: rgba(78,144,214,0.18);
+            --nav-bg: rgba(37,40,54,0.95);
+            --green: #5fba7d;
+            --green-dim: rgba(95,186,125,0.12);
+            --green-border: rgba(95,186,125,0.25);
+            --red: #e05a5a;
+            --red-dim: rgba(224,90,90,0.10);
+            --red-border: rgba(224,90,90,0.25);
         }
         body.light-mode {
-            --bg-body: #f0efe9;
+            --bg-body: #f2f4f9;
             --bg-card: #ffffff;
-            --bg-card-hover: #faf9f6;
-            --text-main: #0e1018;
-            --text-secondary: #38404e;
-            --text-muted: #767c90;
-            --primary: #7a5520;
-            --primary-dim: rgba(122,85,32,0.12);
-            --secondary: #1a539a;
-            --secondary-dim: rgba(26,83,154,0.08);
-            --accent-soft: rgba(122,85,32,0.08);
-            --border: rgba(0,0,0,0.12);
-            --border-hover: rgba(122,85,32,0.45);
-            --shadow-glow: rgba(122,85,32,0.12);
-            --nav-bg: rgba(240,239,233,0.97);
-            --step-valid: rgba(30,150,60,0.08);
-            --step-valid-border: rgba(30,150,60,0.3);
-            --step-complex: rgba(200,50,50,0.08);
-            --step-complex-border: rgba(200,50,50,0.3);
+            --bg-elevated: #eef1f8;
+            --text-main: #03060f;
+            --text-secondary: #111827;
+            --text-muted: #374151;
+            --primary: #1a6bc4;
+            --primary-dim: rgba(26,107,196,0.12);
+            --border: rgba(0,0,0,0.1);
+            --border-hover: rgba(26,107,196,0.4);
+            --shadow-glow: rgba(26,107,196,0.14);
+            --nav-bg: rgba(242,244,249,0.96);
+            --green: #1a7a40;
+            --green-dim: rgba(26,122,64,0.1);
+            --green-border: rgba(26,122,64,0.25);
+            --red: #c0392b;
+            --red-dim: rgba(192,57,43,0.08);
+            --red-border: rgba(192,57,43,0.25);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 19px; line-height: 1.8; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
         a { text-decoration: none; color: inherit; transition: all 0.25s; }
-        ul { list-style: none; }
-        strong { font-weight: 500; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 600; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
         /* NAV */
-        header { background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
-        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        header { background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: auto; padding: 0 32px; height: 64px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
         .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
-        .back-btn i { font-size: 0.8rem; }
-        .nav-right { display: flex; align-items: center; gap: 12px; }
-        .page-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
         .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
         .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* HERO PAGE */
-        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
-        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
-        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
-        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); color: #ffffff; letter-spacing: -0.01em; line-height: 1.35; margin-bottom: 20px; }
+        /* LAYOUT */
+        .page-wrap { max-width: 860px; margin: auto; padding: 0 32px; }
+
+        /* HERO */
+        .page-hero { padding-top: 104px; padding-bottom: 48px; }
+        .hero-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .hero-label::before { content: ''; width: 24px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .page-hero h1 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 2.1rem; color: var(--text-main); line-height: 1.35; margin-bottom: 20px; }
         .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
-        .tag.blue { color: var(--secondary); background: var(--secondary-dim); border-color: rgba(78,144,214,0.2); }
+        .tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.22); padding: 4px 12px; border-radius: 20px; }
+        .tag.grey { color: var(--text-muted); background: rgba(255,255,255,0.05); border-color: var(--border); }
+        body.light-mode .tag.grey { background: rgba(0,0,0,0.04); }
 
-        /* CONTENU */
-        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+        /* DIVIDER */
+        .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
 
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
-        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        /* SECTION */
+        .section { margin-bottom: 48px; }
+        .section-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; }
+        .section h2 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--text-main); margin-bottom: 16px; }
+        .section p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 14px; }
 
-        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-        .card-heading i { color: var(--primary); font-size: 1rem; }
+        /* OUTIL */
+        .tool-block { display: flex; align-items: center; gap: 18px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin-top: 20px; }
+        .tool-icon { width: 52px; height: 52px; border-radius: 12px; background: #005073; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tool-icon i { font-size: 26px; color: #fff; }
+        .tool-name { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text-main); margin-bottom: 3px; }
+        .tool-desc { font-size: 0.88rem; color: var(--text-secondary); }
 
-        .card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
-        .card p:last-child { margin-bottom: 0; }
+        /* VLAN CARDS */
+        .vlan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+        .vlan-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 16px 12px; text-align: center; }
+        .vlan-num { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+        .vlan-name { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 6px; }
+        .vlan-ip { font-size: 0.75rem; color: var(--text-muted); font-family: monospace; }
+        .v10 .vlan-num { color: #4e90d6; }
+        .v20 .vlan-num { color: var(--green); }
+        .v30 .vlan-num { color: #e5a542; }
+        .v40 .vlan-num { color: var(--red); }
 
-        /* Encadré contexte doré */
-        .context-banner { background: var(--accent-soft); border: 1px solid var(--border-hover); border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.75; }
+        /* STEPS */
+        .step { background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 14px; padding: 28px 32px; margin-bottom: 20px; transition: all 0.25s; }
+        .step:hover { border-color: var(--border-hover); box-shadow: 0 6px 24px var(--shadow-glow); }
+        .step.valid { border-left-color: var(--green); background: rgba(95,186,125,0.05); }
+        .step.complex { border-left-color: var(--red); background: rgba(224,90,90,0.05); }
+        .step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .step-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--primary-dim); }
+        .step-icon i { font-size: 22px; color: var(--primary); }
+        .step.valid .step-icon { background: var(--green-dim); }
+        .step.valid .step-icon i { color: var(--green); }
+        .step.complex .step-icon { background: var(--red-dim); }
+        .step.complex .step-icon i { color: var(--red); }
+        .step-meta { display: flex; flex-direction: column; gap: 4px; }
+        .step-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 11px; border-radius: 20px; width: fit-content; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.25); }
+        .step.valid .step-badge { color: var(--green); background: var(--green-dim); border-color: var(--green-border); }
+        .step.complex .step-badge { color: var(--red); background: var(--red-dim); border-color: var(--red-border); }
+        .step h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text-main); }
+        .step p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 12px; }
+        .step p:last-child { margin-bottom: 0; }
+        .step-list { margin: 10px 0; }
+        .step-list li { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
+        .step-list li:last-child { border-bottom: none; }
+        .step-list li i.ti { font-size: 18px; color: var(--primary); margin-top: 3px; flex-shrink: 0; }
+        .step.valid .step-list li i.ti { color: var(--green); }
+        .step.complex .step-list li i.ti { color: var(--red); }
 
-        /* Prérequis */
-        .prereq-block { display: flex; align-items: center; gap: 16px; padding: 16px 0; }
-        .prereq-block img { height: 42px; width: auto; }
-        .prereq-label { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+        /* CODE */
+        .code-block { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 10px; padding: 18px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; color: #9ecfff; line-height: 1.9; white-space: pre-wrap; word-break: break-all; }
+        body.light-mode .code-block { background: #e8edf5; color: #0a2d6e; border-color: rgba(0,0,0,0.1); }
+        .step.complex .code-block { border-left-color: var(--red); }
 
-        /* Grille procédure */
-        .procedure-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 8px; }
+        /* RÉSULTATS */
+        .result-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 1rem; color: var(--text-secondary); }
+        .result-row:last-child { border-bottom: none; }
+        .result-row i.ti { font-size: 20px; color: var(--green); flex-shrink: 0; }
+        .badge-ok { margin-left: auto; font-size: 0.72rem; font-weight: 700; color: var(--green); background: var(--green-dim); border: 1px solid var(--green-border); padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
 
-        .step-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: all 0.25s; position: relative; overflow: hidden; }
-        .step-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--primary); border-radius: 12px 0 0 12px; }
-        .step-card.complex::before { background: #ff6b6b; }
-        .step-card.valid::before { background: #34c759; }
-        .step-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow-glow); }
-        .step-card.complex { background: var(--step-complex); border-color: var(--step-complex-border); }
-        .step-card.valid { background: var(--step-valid); border-color: var(--step-valid-border); }
+        /* IMAGE */
+        .img-wrap { margin: 20px 0; }
+        .img-wrap img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); display: block; }
+        .img-caption { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; text-align: center; font-style: italic; }
 
-        .step-num { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
-        .step-card.complex .step-num { color: #ff6b6b; background: var(--step-complex); border-color: var(--step-complex-border); }
-        .step-card.valid .step-num { color: #34c759; background: var(--step-valid); border-color: var(--step-valid-border); }
+        .equip-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .equip-icon i { font-size: 22px; color: var(--primary); }
 
-        .step-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text-main); margin-bottom: 10px; }
-        .step-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; }
+        /* COMPÉTENCES */
+        .skills-list li { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
+        .skills-list li:last-child { border-bottom: none; }
+        .skills-list li i.ti { font-size: 20px; color: var(--primary); margin-top: 3px; flex-shrink: 0; }
 
-        .step-list { padding: 0; margin-top: 8px; }
-        .step-list li { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; color: var(--text-secondary); font-size: 0.88rem; }
-        .step-list li::before { content: none; }
-        .step-list li i { color: var(--primary); font-size: 0.7rem; margin-top: 5px; flex-shrink: 0; }
-        .step-card.complex .step-list li i { color: #ff6b6b; }
-        .step-card.valid .step-list li i { color: #34c759; }
-
-        /* Rendu final */
-        .section-label-inner { display: flex; align-items: center; gap: 12px; color: var(--primary); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; }
-        .section-label-inner::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--primary); opacity: 0.5; }
-
-        .project-img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; margin-top: 4px; }
-        .img-caption { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 12px; letter-spacing: 0.04em; }
-
-        /* Bloc code */
-        .code-block { background: rgba(0,0,0,0.35); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 8px; padding: 14px 16px; margin-top: 12px; font-family: 'Courier New', monospace; font-size: 0.78rem; color: #a8d8a8; line-height: 1.8; white-space: pre-wrap; word-break: break-all; }
-        body.light-mode .code-block { background: #f5f5f0; color: #2d6a2d; border-color: rgba(0,0,0,0.12); }
-        .step-card.complex .code-block { border-left-color: #ff6b6b; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .page-hero { padding: 100px 20px 40px; }
-            .container { padding: 0 20px; }
+        @media (max-width: 700px) {
+            .page-wrap { padding: 0 20px; }
             nav { padding: 0 20px; }
-            .card { padding: 24px; }
-            .page-label { display: none; }
-            .procedure-grid { grid-template-columns: 1fr; }
+            .page-hero h1 { font-size: 1.6rem; }
+            .step { padding: 22px 20px; }
+            .vlan-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -153,76 +171,95 @@
     <header>
         <nav>
             <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
-            <div class="nav-right">
-                <span class="page-label">Formation · BTS SIO</span>
-                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
-            </div>
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
         </nav>
     </header>
 
-    <!-- HERO -->
-    <div class="page-hero">
-        <div class="page-label-top">Formation · BTS SIO SISR</div>
-        <h1>Création d'un réseau LAN et VLAN</h1>
-        <div class="tags">
-            <span class="tag">Cisco Packet Tracer</span>
-            <span class="tag">Switching</span>
-            <span class="tag">Routing</span>
-            <span class="tag blue">Réseau</span>
-        </div>
-    </div>
+    <div class="page-wrap">
 
-    <div class="container">
-
-        <!-- CONTEXTE GLOBAL -->
-        <div class="context-banner">
-            Dans le cadre de ma formation en BTS SIO, j'ai eu l'opportunité de réaliser plusieurs projets concrets, à la fois en autonomie et en équipe. Ces projets m'ont permis de mettre en pratique les compétences techniques acquises en cours — que ce soit dans l'administration de réseaux, la gestion de bases de données ou le déploiement d'infrastructure. Chaque projet m'a permis de développer mon sens de l'analyse, ma rigueur et mes capacités à résoudre des problèmes techniques en conditions réelles.
+        <!-- HERO -->
+        <div class="page-hero">
+            <div class="hero-label">Formation · BTS SIO SISR</div>
+            <h1>Création d'un réseau LAN et VLAN</h1>
+            <div class="tags">
+                <span class="tag">Cisco Packet Tracer</span>
+                <span class="tag">Switching</span>
+                <span class="tag">Routing</span>
+                <span class="tag grey">Réseau</span>
+            </div>
         </div>
 
-        <!-- INTRODUCTION -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-info-circle"></i> Présentation du projet</div>
-            <p>Dans le cadre du cours d'Administration Système et Réseau du BTS SIO, nous avons réalisé un TP sur <strong>Cisco Packet Tracer</strong> portant sur la création d'un réseau LAN. L'objectif était de concevoir et configurer un réseau local structuré, en intégrant notamment la notion de <strong>VLAN</strong> (Virtual LAN).</p>
-            <p>Grâce à cette activité, nous avons appris à segmenter le réseau pour améliorer la sécurité et la gestion du trafic, en configurant les commutateurs, les ports, ainsi que le routage inter-VLAN.</p>
+        <hr class="divider" style="margin-top:0;">
 
-            <div style="border-top: 1px solid var(--border); margin-top: 20px; padding-top: 20px;">
-                <div style="font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;">Outil utilisé</div>
-                <div class="prereq-block">
-                    <img src="cisco_logo_new.png" alt="Logo Cisco Packet Tracer">
-                    <div>
-                        <div style="font-weight: 500; color: var(--text-main); font-size: 0.95rem;">Cisco Packet Tracer</div>
-                        <div style="font-size: 0.82rem; color: var(--text-secondary);">Simulateur réseau — configuration CLI des équipements Cisco</div>
-                    </div>
+        <!-- PRÉSENTATION -->
+        <div class="section">
+            <h2>Présentation du projet</h2>
+            <p>Dans le cadre du cours d'Administration Système et Réseau du BTS SIO, nous avons réalisé un TP sur <strong>Cisco Packet Tracer</strong> portant sur la création d'un réseau LAN. L'objectif était de concevoir et configurer un réseau local structuré, en intégrant la notion de <strong>VLAN</strong> (Virtual LAN).</p>
+            <p>Nous avons appris à segmenter le réseau pour améliorer la sécurité et la gestion du trafic, en configurant les commutateurs, les ports, ainsi que le routage inter-VLAN.</p>
+
+            <div class="tool-block">
+                <div class="tool-icon"><i class="ti ti-router"></i></div>
+                <div>
+                    <div class="tool-name">Cisco Packet Tracer</div>
+                    <div class="tool-desc">Simulateur réseau — configuration CLI des équipements Cisco</div>
                 </div>
             </div>
         </div>
 
-        <!-- PROCÉDURE -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-list-ol"></i> Procédure Technique</div>
-            <p>Voici les étapes suivies pour déployer l'architecture réseau segmentée :</p>
+        <hr class="divider">
 
-            <div class="procedure-grid">
+        <!-- ÉTAPES -->
+        <div class="section">
+            <div class="section-num">Procédure technique</div>
+            <h2>Étapes de configuration</h2>
 
-                <!-- ÉTAPE 1 -->
-                <div class="step-card">
-                    <div class="step-num"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Étape 1</div>
-                    <div class="step-title">Architecture Physique</div>
-                    <div class="step-desc">La première étape consiste à placer et relier tous les équipements dans l'espace de travail Packet Tracer. Il faut choisir les bons modèles Cisco et respecter le type de câble utilisé :</div>
-                    <ul class="step-list">
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Switch Cisco 2960</strong> — équipement central de commutation</div></li>
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">4 PC clients</strong> — un par VLAN pour tester la segmentation</div></li>
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Routeur Cisco 2911</strong> — nécessaire pour le routage inter-VLAN</div></li>
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Câbles droits (Copper Straight-Through)</strong> — entre PC/Switch et Switch/Routeur</div></li>
-                    </ul>
+            <!-- ÉTAPE 1 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-icon"><i class="ti ti-topology-star"></i></div>
+                    <div class="step-meta">
+                        <div class="step-badge">Étape 1</div>
+                        <h3>Architecture physique</h3>
+                    </div>
                 </div>
+                <p>La première étape consiste à placer et relier tous les équipements dans l'espace de travail Packet Tracer, en choisissant les bons modèles Cisco et les bons types de câbles.</p>
+                <ul class="step-list">
+                    <li>
+                        <div class="equip-icon"><i class="ti ti-switch"></i></div>
+                        <div><strong style="color:var(--text-main);">Switch Cisco 2960</strong> — équipement central de commutation</div>
+                    </li>
+                    <li>
+                        <div class="equip-icon"><i class="ti ti-device-desktop"></i></div>
+                        <div><strong style="color:var(--text-main);">4 PC clients</strong> — un par VLAN pour tester la segmentation</div>
+                    </li>
+                    <li>
+                        <div class="equip-icon"><i class="ti ti-router"></i></div>
+                        <div><strong style="color:var(--text-main);">Routeur Cisco 2911</strong> — nécessaire pour le routage inter-VLAN</div>
+                    </li>
+                    <li>
+                        <div class="equip-icon"><i class="ti ti-plug-connected"></i></div>
+                        <div><strong style="color:var(--text-main);">Câbles droits (Copper Straight-Through)</strong> — entre PC/Switch et Switch/Routeur</div>
+                    </li>
+                </ul>
+            </div>
 
-                <!-- ÉTAPE 2 -->
-                <div class="step-card">
-                    <div class="step-num"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Étape 2</div>
-                    <div class="step-title">Création des VLANs sur le Switch</div>
-                    <div class="step-desc">Depuis le CLI du Switch, on entre en mode de configuration globale pour déclarer chaque VLAN. Sans cette étape, le switch ne connaît pas les VLANs et ne peut pas segmenter le trafic :</div>
-                    <div class="code-block">Switch> enable
+            <!-- ÉTAPE 2 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-icon"><i class="ti ti-layers-intersect"></i></div>
+                    <div class="step-meta">
+                        <div class="step-badge">Étape 2</div>
+                        <h3>Création des VLANs sur le Switch</h3>
+                    </div>
+                </div>
+                <p>Depuis le CLI du Switch, on entre en mode de configuration globale pour déclarer chaque VLAN. Sans cette étape, le switch ne connaît pas les VLANs et ne peut pas segmenter le trafic.</p>
+                <div class="vlan-grid">
+                    <div class="vlan-card v10"><div class="vlan-num">VLAN 10</div><div class="vlan-name">RH</div><div class="vlan-ip">192.168.10.x</div></div>
+                    <div class="vlan-card v20"><div class="vlan-num">VLAN 20</div><div class="vlan-name">IT</div><div class="vlan-ip">192.168.20.x</div></div>
+                    <div class="vlan-card v30"><div class="vlan-num">VLAN 30</div><div class="vlan-name">Compta</div><div class="vlan-ip">192.168.30.x</div></div>
+                    <div class="vlan-card v40"><div class="vlan-num">VLAN 40</div><div class="vlan-name">Direction</div><div class="vlan-ip">192.168.40.x</div></div>
+                </div>
+                <div class="code-block">Switch> enable
 Switch# conf t
 Switch(config)# vlan 10
 Switch(config-vlan)# name RH
@@ -232,78 +269,124 @@ Switch(config)# vlan 30
 Switch(config-vlan)# name COMPTA
 Switch(config)# vlan 40
 Switch(config-vlan)# name DIRECTION</div>
-                </div>
+            </div>
 
-                <!-- ÉTAPE 3 -->
-                <div class="step-card">
-                    <div class="step-num"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Étape 3</div>
-                    <div class="step-title">Assignation des Ports (mode Access)</div>
-                    <div class="step-desc">Chaque port connecté à un PC est configuré en mode <strong>Access</strong> et rattaché à un VLAN précis. Un port Access ne transporte qu'un seul VLAN — le trafic des autres est bloqué :</div>
-                    <div class="code-block">Switch(config)# int fa0/1
+            <!-- ÉTAPE 3 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-icon"><i class="ti ti-plug-connected"></i></div>
+                    <div class="step-meta">
+                        <div class="step-badge">Étape 3</div>
+                        <h3>Assignation des ports (mode Access)</h3>
+                    </div>
+                </div>
+                <p>Chaque port connecté à un PC est configuré en mode <strong>Access</strong> et rattaché à un VLAN précis. Un port Access ne transporte qu'un seul VLAN — le trafic des autres est bloqué.</p>
+                <div class="code-block">Switch(config)# int fa0/1
 Switch(config-if)# switchport mode access
 Switch(config-if)# switchport access vlan 10
 
 Switch(config)# int fa0/2
 Switch(config-if)# switchport mode access
 Switch(config-if)# switchport access vlan 20</div>
-                    <div class="step-desc" style="margin-top:10px;">On répète pour chaque port : fa0/3 → VLAN 30, fa0/4 → VLAN 40.</div>
-                </div>
+                <p>On répète pour chaque port : <strong>fa0/3 → VLAN 30</strong>, <strong>fa0/4 → VLAN 40</strong>.</p>
+            </div>
 
-                <!-- ÉTAPE 4 -->
-                <div class="step-card">
-                    <div class="step-num"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Étape 4</div>
-                    <div class="step-title">Adressage IP des postes clients</div>
-                    <div class="step-desc">Chaque PC reçoit une adresse IP statique dans le sous-réseau de son VLAN. On utilise un /24 par VLAN avec un plan d'adressage cohérent :</div>
-                    <ul class="step-list">
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">VLAN 10 — RH :</strong> 192.168.10.x / GW 192.168.10.1</div></li>
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">VLAN 20 — IT :</strong> 192.168.20.x / GW 192.168.20.1</div></li>
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">VLAN 30 — Compta :</strong> 192.168.30.x / GW 192.168.30.1</div></li>
-                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">VLAN 40 — Direction :</strong> 192.168.40.x / GW 192.168.40.1</div></li>
-                    </ul>
-                    <div class="step-desc" style="margin-top:10px;">La passerelle de chaque PC correspond à la sous-interface du routeur créée à l'étape suivante.</div>
+            <!-- ÉTAPE 4 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-icon"><i class="ti ti-network"></i></div>
+                    <div class="step-meta">
+                        <div class="step-badge">Étape 4</div>
+                        <h3>Adressage IP des postes clients</h3>
+                    </div>
                 </div>
+                <p>Chaque PC reçoit une adresse IP statique dans le sous-réseau de son VLAN, avec un plan d'adressage en /24.</p>
+                <ul class="step-list">
+                    <li><i class="ti ti-arrow-right"></i><div><strong style="color:#4e90d6;">VLAN 10 — RH :</strong>&nbsp; 192.168.10.x / Passerelle 192.168.10.1</div></li>
+                    <li><i class="ti ti-arrow-right"></i><div><strong style="color:var(--green);">VLAN 20 — IT :</strong>&nbsp; 192.168.20.x / Passerelle 192.168.20.1</div></li>
+                    <li><i class="ti ti-arrow-right"></i><div><strong style="color:#e5a542;">VLAN 30 — Compta :</strong>&nbsp; 192.168.30.x / Passerelle 192.168.30.1</div></li>
+                    <li><i class="ti ti-arrow-right"></i><div><strong style="color:var(--red);">VLAN 40 — Direction :</strong>&nbsp; 192.168.40.x / Passerelle 192.168.40.1</div></li>
+                </ul>
+                <p style="margin-top:12px;">La passerelle de chaque PC correspond à la sous-interface du routeur créée à l'étape suivante.</p>
+            </div>
 
-                <!-- ÉTAPE 5 -->
-                <div class="step-card complex">
-                    <div class="step-num"><i class="fas fa-bolt" style="font-size:0.6rem;"></i> Étape 5 — Complexe</div>
-                    <div class="step-title">Routage Inter-VLAN (Router-on-a-Stick)</div>
-                    <div class="step-desc">Cette technique permet à un seul routeur de gérer le trafic entre plusieurs VLANs via une unique interface physique. On commence par passer le port du switch relié au routeur en mode <strong>Trunk</strong> :</div>
-                    <div class="code-block">Switch(config)# int fa0/24
+            <!-- ÉTAPE 5 -->
+            <div class="step complex">
+                <div class="step-header">
+                    <div class="step-icon"><i class="ti ti-git-branch"></i></div>
+                    <div class="step-meta">
+                        <div class="step-badge complex">Étape 5 — Complexe</div>
+                        <h3>Routage inter-VLAN (Router-on-a-Stick)</h3>
+                    </div>
+                </div>
+                <p>Cette technique permet à un seul routeur de gérer le trafic entre plusieurs VLANs via une unique interface physique. On commence par passer le port du switch relié au routeur en mode <strong>Trunk</strong>.</p>
+                <div class="code-block">Switch(config)# int fa0/24
 Switch(config-if)# switchport mode trunk</div>
-                    <div class="step-desc" style="margin-top:10px;">Ensuite sur le routeur, on crée une <strong>sous-interface</strong> par VLAN avec l'encapsulation <strong>802.1Q (dot1Q)</strong> :</div>
-                    <div class="code-block">Router(config)# int Gig0/0.10
+                <p>Ensuite sur le routeur, on crée une <strong>sous-interface par VLAN</strong> avec l'encapsulation <strong>802.1Q (dot1Q)</strong> :</p>
+                <div class="code-block">Router(config)# int Gig0/0.10
 Router(config-subif)# encapsulation dot1Q 10
 Router(config-subif)# ip address 192.168.10.1 255.255.255.0
 
 Router(config)# int Gig0/0.20
 Router(config-subif)# encapsulation dot1Q 20
 Router(config-subif)# ip address 192.168.20.1 255.255.255.0</div>
-                    <div class="step-desc" style="margin-top:10px;">On répète pour les VLANs 30 et 40, puis on active l'interface principale :</div>
-                    <div class="code-block">Router(config)# int Gig0/0
+                <p>On répète pour les VLANs 30 et 40, puis on active l'interface principale :</p>
+                <div class="code-block">Router(config)# int Gig0/0
 Router(config-if)# no shutdown</div>
-                </div>
+            </div>
 
-                <!-- ÉTAPE 6 -->
-                <div class="step-card valid">
-                    <div class="step-num"><i class="fas fa-check" style="font-size:0.6rem;"></i> Étape 6 — Validation</div>
-                    <div class="step-title">Tests &amp; Validation</div>
-                    <div class="step-desc">Une fois la configuration terminée, on vérifie depuis le terminal de chaque PC que la segmentation et le routage fonctionnent correctement :</div>
-                    <ul class="step-list">
-                        <li><i class="fas fa-check"></i><div><strong style="color:var(--text-main);">Ping intra-VLAN</strong> — PC10.2 vers PC10.3 → <span style="color:#34c759;font-weight:500;">Succès</span></div></li>
-                        <li><i class="fas fa-check"></i><div><strong style="color:var(--text-main);">Ping inter-VLAN</strong> — PC10.2 vers PC20.2 via le routeur → <span style="color:#34c759;font-weight:500;">Succès</span></div></li>
-                        <li><i class="fas fa-check"></i><div><strong style="color:var(--text-main);">show vlan brief</strong> — confirme l'assignation des ports sur le switch</div></li>
-                    </ul>
+            <!-- ÉTAPE 6 -->
+            <div class="step valid">
+                <div class="step-header">
+                    <div class="step-icon"><i class="ti ti-circle-check"></i></div>
+                    <div class="step-meta">
+                        <div class="step-badge valid">Étape 6 — Validation</div>
+                        <h3>Tests et validation</h3>
+                    </div>
                 </div>
-
+                <p>Une fois la configuration terminée, on vérifie depuis le terminal de chaque PC que la segmentation et le routage fonctionnent correctement.</p>
+                <div class="result-row">
+                    <i class="ti ti-check"></i>
+                    <span><strong style="color:var(--text-main);">Ping intra-VLAN</strong> — PC10.2 vers PC10.3</span>
+                    <span class="badge-ok">Succès</span>
+                </div>
+                <div class="result-row">
+                    <i class="ti ti-check"></i>
+                    <span><strong style="color:var(--text-main);">Ping inter-VLAN</strong> — PC10.2 vers PC20.2 via le routeur</span>
+                    <span class="badge-ok">Succès</span>
+                </div>
+                <div class="result-row">
+                    <i class="ti ti-check"></i>
+                    <span><strong style="color:var(--text-main);">show vlan brief</strong> — assignation des ports vérifiée</span>
+                    <span class="badge-ok">Succès</span>
+                </div>
             </div>
 
         </div>
 
+        <hr class="divider">
+
         <!-- RENDU FINAL -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-image"></i> Rendu Final</div>
-            <img src="cisco_final_new.png" alt="Topologie Réseau Finale" class="project-img">
-            <p class="img-caption">Figure : Architecture réseau finale segmentée et fonctionnelle</p>
+        <div class="section">
+            <div class="section-num">Rendu final</div>
+            <h2>Topologie réseau finale</h2>
+            <div class="img-wrap">
+                <img src="cisco_final_new.png" alt="Topologie Réseau Finale">
+                <p class="img-caption">Architecture réseau finale — segmentation VLAN et routage inter-VLAN fonctionnels</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- COMPÉTENCES -->
+        <div class="section">
+            <h2>Compétences acquises</h2>
+            <ul class="skills-list">
+                <li><i class="ti ti-check-circle"></i><div><strong>Switching :</strong>&nbsp; Création de VLANs, assignation des ports en mode Access et Trunk.</div></li>
+                <li><i class="ti ti-check-circle"></i><div><strong>Routage inter-VLAN :</strong>&nbsp; Technique Router-on-a-Stick avec encapsulation 802.1Q.</div></li>
+                <li><i class="ti ti-check-circle"></i><div><strong>Adressage IP :</strong>&nbsp; Plan d'adressage structuré par sous-réseau /24.</div></li>
+                <li><i class="ti ti-check-circle"></i><div><strong>Cisco CLI :</strong>&nbsp; Configuration en ligne de commande des équipements Cisco.</div></li>
+            </ul>
         </div>
 
     </div>
@@ -312,7 +395,6 @@ Router(config-if)# no shutdown</div>
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         const icon = themeToggle.querySelector('i');
-
         if (localStorage.getItem('theme') === 'light') {
             body.classList.add('light-mode');
             icon.classList.replace('fa-moon', 'fa-sun');
