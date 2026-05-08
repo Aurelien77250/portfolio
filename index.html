@@ -28,10 +28,10 @@
             --nav-bg: rgba(30,32,40,0.94);
         }
         body.light-mode {
-            --bg-body: #f2f4f9;
+            --bg-body: #f5f7ff;
             --bg-card: #ffffff;
             --bg-card-hover: #f7f9fc;
-            --bg-elevated: #eef1f8;
+            --bg-elevated: #eaf0fb;
             --text-main: #0d1020;
             --text-secondary: #3a4260;
             --text-muted: #7a82a0;
@@ -40,12 +40,12 @@
             --primary-bright: #1a6bc4;
             --accent: #0d1020;
             --accent-dim: rgba(13,16,32,0.05);
-            --border: rgba(0,0,0,0.1);
+            --border: rgba(26,107,196,0.12);
             --border-hover: rgba(26,107,196,0.4);
             --shadow: rgba(0,0,0,0.08);
             --shadow-glow: rgba(26,107,196,0.14);
             --hero-bg: #1e2230;
-            --nav-bg: rgba(242,244,249,0.96);
+            --nav-bg: rgba(245,247,255,0.97);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,6 +97,9 @@
         .btn-primary:hover { background: var(--primary-bright); transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow-glow); }
         .btn-secondary { background: transparent; color: var(--text-secondary); padding: 13px 28px; border-radius: 8px; font-weight: 500; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); transition: all 0.25s; }
         .btn-secondary:hover { border-color: var(--border-hover); color: var(--text-main); transform: translateY(-2px); }
+        .btn-cv-big { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 16px; width: 100%; padding: 16px 24px; border-radius: 10px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: var(--primary); background: var(--primary-dim); border: 1px solid var(--border-hover); transition: all 0.25s; letter-spacing: 0.02em; }
+        .btn-cv-big:hover { background: var(--primary); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow-glow); }
+        .btn-cv-big i { font-size: 1.1rem; }
 
         @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes fadeInRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
@@ -361,6 +364,7 @@
                     <div class="objective-box">
                         <strong><i class="fas fa-bullseye"></i> Objectif :</strong> Devenir un administrateur réseau compétent et engagé, capable de répondre aux enjeux de sécurité et de gestion d'infrastructure.
                     </div>
+                    <a href="cv_aurelien_gaillard.pdf" target="_blank" class="btn-cv-big"><i class="fas fa-file-pdf"></i> Télécharger mon CV</a>
                 </div>
             </div>
             <div class="skills-wrap">
@@ -377,6 +381,47 @@
             </div>
         </div>
     </div>
+
+    <!-- PARCOURS -->
+    <div class="section-wrap" id="parcours">
+        <div class="section-title-block">
+            <div class="section-label"><i class="fas fa-road"></i> Expériences</div>
+            <h2>Mon Parcours</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">Sept 2024 – Aujourd'hui</span>
+                <div class="timeline-title">Technicien Support · Palais des Thés</div>
+                <p>Alternance. Assistance utilisateurs, administration Active Directory, participation à la sécurisation du réseau et déploiements boutiques.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">Fév 2024 – Sept 2024</span>
+                <div class="timeline-title">Technicien Support · TENEXA</div>
+                <p>Support N1/N2, configuration de postes, rédaction de documentations internes et gestion de stocks.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot alt"></div>
+                <span class="timeline-date alt">2024 – 2026</span>
+                <div class="timeline-title">BTS SIO – Spécialité SISR · IEF2I Vincennes</div>
+                <p><strong>Certifications :</strong> Microsoft MS-900 (obtenue), Cisco CCNA (en cours).</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot alt"></div>
+                <span class="timeline-date alt">2023 – 2024</span>
+                <div class="timeline-title">Formation Technicien Support · FITEC</div>
+                <p>Formation intensive aux métiers du support informatique.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot alt"></div>
+                <span class="timeline-date alt">2019</span>
+                <div class="timeline-title">Baccalauréat STMG · Lycée Étienne Bezout</div>
+                <p>Option Gestion Finance.</p>
+            </div>
+        </div>
+    </div>
+
 
     <!-- ENTREPRISE -->
     <div class="section-wrap" id="entreprise">
@@ -422,46 +467,6 @@
             <div class="organigramme-wrap">
                 <p><i class="fas fa-sitemap"></i>&nbsp; Organigramme du service</p>
                 <img src="organigramme.png" alt="Organigramme Service Informatique">
-            </div>
-        </div>
-    </div>
-
-    <!-- PARCOURS -->
-    <div class="section-wrap" id="parcours">
-        <div class="section-title-block">
-            <div class="section-label"><i class="fas fa-road"></i> Expériences</div>
-            <h2>Mon Parcours</h2>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">Sept 2024 – Aujourd'hui</span>
-                <div class="timeline-title">Technicien Support · Palais des Thés</div>
-                <p>Alternance. Assistance utilisateurs, administration Active Directory, participation à la sécurisation du réseau et déploiements boutiques.</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <span class="timeline-date">Fév 2024 – Sept 2024</span>
-                <div class="timeline-title">Technicien Support · TENEXA</div>
-                <p>Support N1/N2, configuration de postes, rédaction de documentations internes et gestion de stocks.</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot alt"></div>
-                <span class="timeline-date alt">2024 – 2026</span>
-                <div class="timeline-title">BTS SIO – Spécialité SISR · IEF2I Vincennes</div>
-                <p><strong>Certifications :</strong> Microsoft MS-900 (obtenue), Cisco CCNA (en cours).</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot alt"></div>
-                <span class="timeline-date alt">2023 – 2024</span>
-                <div class="timeline-title">Formation Technicien Support · FITEC</div>
-                <p>Formation intensive aux métiers du support informatique.</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot alt"></div>
-                <span class="timeline-date alt">2019</span>
-                <div class="timeline-title">Baccalauréat STMG · Lycée Étienne Bezout</div>
-                <p>Option Gestion Finance.</p>
             </div>
         </div>
     </div>
