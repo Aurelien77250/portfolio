@@ -24,7 +24,7 @@
             --border-hover: rgba(78,144,214,0.45);
             --shadow: rgba(0,0,0,0.4);
             --shadow-glow: rgba(78,144,214,0.18);
-            --hero-bg: #1e2230;
+            --hero-bg: #eaf0fb;
             --nav-bg: rgba(30,32,40,0.94);
         }
         body.light-mode {
@@ -44,7 +44,7 @@
             --border-hover: rgba(26,107,196,0.4);
             --shadow: rgba(0,0,0,0.08);
             --shadow-glow: rgba(26,107,196,0.14);
-            --hero-bg: #1e2230;
+            --hero-bg: #eaf0fb;
             --nav-bg: rgba(245,247,255,0.97);
         }
 
@@ -74,23 +74,21 @@
         .burger { display: none; cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 1rem; align-items: center; justify-content: center; }
 
         /* ── HERO ── */
-        .hero { background: var(--hero-bg); min-height: 100vh; display: flex; align-items: stretch; padding-top: 68px; position: relative; overflow: hidden; transition: background 0.4s; }
-        .hero::before { content: ''; position: absolute; top: 30%; right: 0; width: 55%; height: 80%; background: radial-gradient(ellipse at right, rgba(78,144,214,0.07) 0%, transparent 60%); pointer-events: none; }
-        .hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1300px; margin: auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 280px; align-items: center; gap: 48px; min-height: calc(100vh - 68px); }
-        .hero-left { min-width: 0; padding: 60px 0; display: flex; flex-direction: column; justify-content: center; animation: fadeInLeft 0.8s ease both; }
+        .hero { background: var(--hero-bg); min-height: 100vh; display: flex; align-items: center; padding-top: 68px; position: relative; overflow: hidden; transition: background 0.4s; border-bottom: 2px solid var(--border-hover); }
+        .hero::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 600px; background: radial-gradient(ellipse, rgba(78,144,214,0.08) 0%, transparent 65%); pointer-events: none; }
+        .hero-inner { position: relative; z-index: 1; width: 100%; max-width: 900px; margin: auto; padding: 80px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; animation: fadeInUp 0.8s ease both; }
         .hero-eyebrow { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 28px; }
-        .hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--primary); border-radius: 1px; flex-shrink: 0; }
-        .hero-firstname { font-family: 'Inter', sans-serif; font-weight: 300; font-size: clamp(1.3rem, 2.5vw, 1.9rem); color: var(--text-secondary); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 4px; }
-        .hero-lastname { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.9; letter-spacing: -0.04em; color: var(--accent); text-transform: uppercase; margin-bottom: 32px; white-space: nowrap; }
+        .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 28px; height: 2px; background: var(--primary); border-radius: 1px; flex-shrink: 0; }
+        .hero-firstname { font-family: 'Inter', sans-serif; font-weight: 300; font-size: clamp(1.95rem, 3.75vw, 3rem); color: var(--text-secondary); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 6px; }
+        .hero-lastname { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.9; letter-spacing: -0.04em; color: var(--accent); text-transform: uppercase; margin-bottom: 28px; }
         .hero-lastname .blue { color: var(--primary); }
-        .hero-desc { font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; max-width: 480px; line-height: 1.8; margin-bottom: 40px; }
-        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-        .hero-right { min-width: 0; padding: 60px 0 60px 36px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); animation: fadeInRight 0.8s ease 0.2s both; transition: border-color 0.4s; }
-        .hero-stat { padding: 22px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 5px; transition: border-color 0.4s; }
-        .hero-stat:first-child { border-top: 1px solid var(--border); }
-        .hero-stat-number { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 2rem; color: var(--primary); letter-spacing: -0.02em; line-height: 1; }
-        .hero-stat-label { font-size: 0.73rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
-        .hero-stat-detail { font-size: 0.95rem; color: var(--text-secondary); }
+        .hero-desc { font-size: 1.15rem; color: var(--text-secondary); font-weight: 400; max-width: 520px; line-height: 1.8; margin-bottom: 36px; }
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 56px; }
+        .hero-stats-row { display: flex; align-items: center; gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; width: 100%; max-width: 700px; }
+        .hero-stat-pill { flex: 1; padding: 20px 16px; text-align: center; }
+        .hero-stat-sep { width: 1px; height: 48px; background: var(--border); flex-shrink: 0; }
+        .hero-stat-number { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.02em; line-height: 1; margin-bottom: 5px; }
+        .hero-stat-label { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
         /* ── BOUTONS ── */
         .btn-primary { background: var(--primary); color: #fff; padding: 13px 28px; border-radius: 8px; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; border: 1px solid var(--primary); }
@@ -119,6 +117,11 @@
         .card-heading i { color: var(--primary); }
 
         /* ── FORMATION ── */
+        .formation-school-header { display: flex; align-items: center; gap: 20px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; }
+        .formation-school-logo { width: 64px; height: 64px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-body); display: flex; align-items: center; justify-content: center; padding: 8px; flex-shrink: 0; overflow: hidden; }
+        .formation-school-logo img { width: 100%; height: 100%; object-fit: contain; }
+        .formation-school-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 4px; }
+        .formation-school-sub { font-size: 0.88rem; color: var(--text-muted); }
         .formation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
         .formation-highlight { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-radius: 12px; padding: 24px; }
         .formation-highlight h4 { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--primary); margin-bottom: 14px; font-size: 0.95rem; }
@@ -154,6 +157,10 @@
         .company-stat-lbl { font-size: 0.78rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.4; }
 
                 /* ── ENTREPRISE ── */
+        .entreprise-top { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 28px; }
+        .entreprise-logo { width: 120px; height: 120px; object-fit: contain; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-body); padding: 12px; flex-shrink: 0; }
+        .entreprise-top p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.85; }
+        .boutique-img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); display: block; margin-top: 28px; }
         .entreprise-header { display: flex; flex-wrap: wrap; gap: 36px; align-items: center; margin-bottom: 32px; }
         .logo-box { flex-shrink: 0; width: 130px; height: 130px; background: var(--bg-body); border: 1px solid var(--border); border-radius: 14px; display: flex; align-items: center; justify-content: center; padding: 16px; }
         .logo-box img { width: 100%; height: auto; }
@@ -210,6 +217,23 @@
         .majorana-highlight h4 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--text-main); margin-bottom: 14px; }
         .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
 
+        /* ── MAJORANA ── */
+        .majorana-layout { display: grid; grid-template-columns: 1fr 280px; gap: 32px; align-items: start; margin-top: 20px; }
+        .majorana-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+        .majorana-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: all 0.25s; }
+        .majorana-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 16px var(--shadow-glow); }
+        .majorana-card-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--primary-dim); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .majorana-card-icon i { color: var(--primary); font-size: 0.9rem; }
+        .majorana-card-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--text-main); margin-bottom: 6px; }
+        .majorana-card-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+        .majorana-img-block { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 90px; }
+        .majorana-img-placeholder { border: 2px dashed var(--border); border-radius: 12px; padding: 40px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(78,144,214,0.03); }
+        .majorana-img-placeholder i { font-size: 2rem; color: var(--text-muted); }
+        .majorana-img-placeholder span { font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+        .majorana-source { display: flex; align-items: center; gap: 12px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+        .majorana-source i { font-size: 1.5rem; color: var(--primary); flex-shrink: 0; }
+        @media (max-width: 900px) { .majorana-layout { grid-template-columns: 1fr; } .majorana-img-block { position: static; } .majorana-cards { grid-template-columns: 1fr; } }
+
         /* ── AVENIR ── */
         .avenir-grid { display: flex; flex-wrap: wrap; gap: 32px; }
         .avenir-col { flex: 1; min-width: 280px; }
@@ -221,6 +245,11 @@
         .objective-strip { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-radius: 10px; padding: 14px 18px; font-size: 0.95rem; color: var(--text-main); margin-top: 20px; }
         .avenir-list li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1.05rem; }
         .avenir-list li:last-child { border-bottom: none; }
+        .avenir-admitted { margin-bottom: 20px; }
+        .avenir-badge-admitted { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.3); padding: 6px 14px; border-radius: 20px; }
+        .school-logo-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 2px dashed var(--border); }
+        .school-logo-placeholder i { font-size: 1.4rem; color: var(--text-muted); }
+        .school-logo-placeholder span { font-size: 0.62rem; color: var(--text-muted); text-align: center; line-height: 1.3; }
         .avenir-list li i { color: var(--primary); width: 16px; font-size: 0.9rem; flex-shrink: 0; }
 
         /* ── FOOTER ── */
@@ -243,12 +272,11 @@
             .formation-grid, .about-container { grid-template-columns: 1fr; }
             .avenir-grid { flex-direction: column; }
             .skills-grid { grid-template-columns: repeat(4, 1fr); }
-            .hero-inner { grid-template-columns: 1fr; padding: 0 24px; gap: 0; min-height: auto; }
-            .hero-left { padding: 48px 0 32px; }
-            .hero-lastname { font-size: clamp(2.6rem, 12vw, 4.5rem); white-space: normal; }
-            .hero-right { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 28px; padding-bottom: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-            .hero-stat { padding: 16px 10px; }
-            .hero-stat-number { font-size: 1.6rem; }
+            .hero-inner { padding: 60px 20px; }
+            .hero-lastname { font-size: clamp(3rem, 14vw, 5rem); }
+            .hero-stats-row { flex-wrap: wrap; border-radius: 12px; }
+            .hero-stat-pill { min-width: 45%; }
+            .hero-stat-sep { display: none; }
         }
     </style>
 </head>
@@ -278,38 +306,15 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
-            <div class="hero-left">
-                <div class="hero-eyebrow">BTS SIO · Option SISR · Alternance</div>
-                <div class="hero-firstname">Aurélien</div>
-                <div class="hero-lastname">GAIL<span class="blue">LA</span>RD</div>
-                <p class="hero-desc">Technicien Supérieur Systèmes & Réseaux — administration, sécurité et infrastructure d'entreprise.</p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn-primary"><i class="fas fa-envelope"></i> Me contacter</a>
-                    <a href="#projects" class="btn-secondary"><i class="fas fa-layer-group"></i> Voir mes projets</a>
-                </div>
+            <div class="hero-eyebrow">BTS SIO · Option SISR · Alternance</div>
+            <div class="hero-firstname">Aurélien</div>
+            <div class="hero-lastname">GAIL<span class="blue">LA</span>RD</div>
+            <p class="hero-desc">Technicien Supérieur Systèmes & Réseaux — administration, sécurité et infrastructure d'entreprise.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary"><i class="fas fa-envelope"></i> Me contacter</a>
+                <a href="#projects" class="btn-secondary"><i class="fas fa-layer-group"></i> Voir mes projets</a>
             </div>
-            <div class="hero-right">
-                <div class="hero-stat">
-                    <div class="hero-stat-number">2+</div>
-                    <div class="hero-stat-label">Ans d'expérience</div>
-                    <div class="hero-stat-detail">Support N1/N2 · Administration réseau</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number">MS-900</div>
-                    <div class="hero-stat-label">Certification Microsoft</div>
-                    <div class="hero-stat-detail">Cisco CCNA en cours</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number">6+</div>
-                    <div class="hero-stat-label">Projets réalisés</div>
-                    <div class="hero-stat-detail">Infrastructure · Cyber · Dev</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number">Bac+3</div>
-                    <div class="hero-stat-label">Poursuite d'études</div>
-                    <div class="hero-stat-detail">Licence ASR · PSTB · Sept 2026</div>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -322,6 +327,15 @@
         </div>
         <div class="card">
             <div class="card-heading"><i class="fas fa-graduation-cap"></i> BTS Services Informatiques aux Organisations</div>
+            <div class="formation-school-header">
+                <div class="formation-school-logo">
+                    <img src="logo_ief2i.png" alt="Logo IEF2I">
+                </div>
+                <div>
+                    <div class="formation-school-name">IEF2I — Institut Européen F2I</div>
+                    <div class="formation-school-sub">Vincennes · 2024 – 2026 · BTS SIO option SISR</div>
+                </div>
+            </div>
             <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 28px;">Le <strong>BTS SIO</strong> est un diplôme d'État de niveau Bac+2 formant des professionnels de l'informatique. J'ai choisi l'option <strong>SISR</strong> — Solutions d'Infrastructure, Systèmes et Réseaux.</p>
             <div class="formation-grid">
                 <div>
@@ -430,39 +444,37 @@
             <h2>Mon Entreprise d'Accueil</h2>
         </div>
         <div class="card">
-            <div class="entreprise-header">
-                <div class="logo-box"><img src="logo_pdt.png" alt="Logo Palais des Thés"></div>
-                <div class="text-box">
-                    <p>Le <strong>Palais des Thés</strong> est une entreprise française indépendante de thé, fondée à Paris en <strong>1986</strong> par François-Xavier Delmas. Spécialisée dans l'importation directe de thés d'exception, elle propose plus de 250 références et assure vendre 600 tonnes de thés par an.</p>
-                    <div class="company-stats">
-                        <div class="company-stat">
-                            <div class="company-stat-num">83 M€</div>
-                            <div class="company-stat-lbl">Chiffre d'affaires 2024</div>
-                        </div>
-                        <div class="company-stat">
-                            <div class="company-stat-num">100+</div>
-                            <div class="company-stat-lbl">Boutiques dans le monde</div>
-                        </div>
-                        <div class="company-stat">
-                            <div class="company-stat-num">600 T</div>
-                            <div class="company-stat-lbl">Tonnes de thé / an</div>
-                        </div>
-                        <div class="company-stat">
-                            <div class="company-stat-num">1986</div>
-                            <div class="company-stat-lbl">Année de fondation</div>
-                        </div>
-                    </div>
+            <div class="entreprise-top">
+                <img src="logo_pdt.png" alt="Logo Palais des Thés" class="entreprise-logo">
+                <p>Le <strong>Palais des Thés</strong> est une entreprise française indépendante de thé, fondée à Paris en <strong>1986</strong> par François-Xavier Delmas. Spécialisée dans l'importation directe de thés d'exception, elle propose plus de 250 références et assure vendre 600 tonnes de thés par an.</p>
+            </div>
+            <div class="company-stats">
+                <div class="company-stat">
+                    <div class="company-stat-num">83 M€</div>
+                    <div class="company-stat-lbl">Chiffre d'affaires 2024</div>
+                </div>
+                <div class="company-stat">
+                    <div class="company-stat-num">100+</div>
+                    <div class="company-stat-lbl">Boutiques dans le monde</div>
+                </div>
+                <div class="company-stat">
+                    <div class="company-stat-num">600 T</div>
+                    <div class="company-stat-lbl">Tonnes de thé / an</div>
+                </div>
+                <div class="company-stat">
+                    <div class="company-stat-num">1986</div>
+                    <div class="company-stat-lbl">Année de fondation</div>
                 </div>
             </div>
-            <div class="photo-strip"><img src="boutique.jpg" alt="Devanture boutique Palais des Thés"></div>
+            <img src="boutique.jpg" alt="Devanture boutique Palais des Thés" class="boutique-img">
         </div>
         <div class="card">
             <div class="card-heading"><i class="fas fa-laptop-code"></i> Service Support Informatique</div>
             <div class="service-text">
-                <p>Au sein du support informatique, nous sommes chargés de différentes missions.</p>
-                <p>Notre principale mission est <strong>le support auprès des utilisateurs</strong> du siège de Palais des Thés, mais également auprès des boutiques du groupe.</p>
-                <p>Nous assurons <strong>la préparation et l'installation du matériel informatique</strong> lors des nouvelles ouvertures de boutiques (caisses, laptops, TPE, balances…).</p>
-                <p>En tant qu'apprenti technicien, je possède des droits administrateur sur toutes les applications et le domaine, et suis chargé de <strong>faire le lien avec les prestataires</strong> tout en maintenant les équipements Cisco.</p>
+                <p>Intégré au sein du service informatique du siège parisien, j'interviens quotidiennement en tant que <strong>technicien support de proximité</strong> auprès des collaborateurs du siège ainsi que des équipes en boutique à travers toute la France.</p>
+                <p>Mon rôle couvre un périmètre large : de la <strong>résolution d'incidents N1/N2</strong> (pannes matérielles, problèmes réseau, accès applicatifs) à la <strong>gestion des demandes utilisateurs</strong> via notre outil de ticketing. Je suis également chargé de l'<strong>administration du domaine Active Directory</strong> — création et gestion des comptes, attribution des droits, gestion des GPO — ainsi que du suivi du parc informatique.</p>
+                <p>J'assure par ailleurs la <strong>préparation complète du matériel</strong> lors des ouvertures de nouvelles boutiques : configuration des caisses, déploiement des postes Windows, paramétrage des TPE, balances connectées et équipements réseau. Chaque ouverture représente un projet à part entière, nécessitant coordination et rigueur technique.</p>
+                <p>En tant qu'apprenti technicien disposant de <strong>droits administrateur</strong> sur l'ensemble des applications métier et du domaine, je suis également l'interlocuteur technique privilégié vis-à-vis des prestataires externes, et participe activement à la <strong>maintenance des équipements réseau Cisco</strong> (switches, bornes Wi-Fi, routeurs).</p>
             </div>
             <div class="organigramme-wrap">
                 <p><i class="fas fa-sitemap"></i>&nbsp; Organigramme du service</p>
@@ -585,25 +597,78 @@
             <p>Anticiper, analyser, comprendre les innovations</p>
         </div>
         <div class="card">
+
+            <!-- INTRO VEILLE -->
             <div class="veille-grid" style="margin-bottom: 0;">
                 <div class="veille-col">
                     <div class="veille-subtitle"><i class="fas fa-brain"></i> Qu'est-ce qu'une veille ?</div>
-                    <p class="veille-text">Un processus continu de <strong>collecte, d'analyse et de diffusion</strong> d'informations sur les évolutions techniques. Elle permet d'anticiper les changements et de rester compétitif.</p>
+                    <p class="veille-text">La veille technologique est un processus continu de <strong>collecte, d'analyse et de diffusion</strong> d'informations sur les évolutions du secteur informatique. Elle me permet d'anticiper les changements, de rester compétitif et de mieux comprendre les enjeux auxquels je serai confronté dans ma carrière.</p>
                 </div>
                 <div class="veille-col">
                     <div class="veille-subtitle"><i class="fas fa-tools"></i> Outils utilisés</div>
                     <ul class="veille-list">
-                        <li><strong>Google Alerts</strong> — alertes sur des mots-clés ciblés.</li>
-                        <li><strong>Pearltrees</strong> — regroupement d'articles, images et vidéos.</li>
+                        <li><strong>Google Alerts</strong> — alertes automatiques sur des mots-clés ciblés (quantum computing, cybersécurité…).</li>
+                        <li><strong>Pearltrees</strong> — organisation et regroupement de mes articles, vidéos et ressources.</li>
                     </ul>
                 </div>
             </div>
+
             <hr class="divider">
-            <div class="majorana-highlight">
-                <h4><i class="fas fa-atom" style="color:var(--primary); margin-right:10px;"></i>Sujet traité : Le processeur Majorana 1</h4>
-                <p class="veille-text" style="margin: 0;"><strong>Majorana 1</strong> est le premier prototype de processeur quantique topologique développé par Microsoft. Il repose sur des <strong>qubits topologiques</strong> basés sur des quasi-particules de Majorana — naturellement stables et résistantes aux erreurs, contrairement aux qubits classiques d'IBM ou Google.<br><br>Fruit de 20 ans de recherche de l'équipe <strong>StationQ</strong>, cette technologie pourrait révolutionner l'informatique quantique en résolvant le défi majeur de la correction d'erreur.</p>
+
+            <!-- MAJORANA -->
+            <div class="veille-subtitle"><i class="fas fa-atom"></i> Sujet traité : Le processeur Majorana 1 de Microsoft</div>
+
+            <div class="majorana-layout">
+
+                <div class="majorana-content">
+                    <p class="veille-text">En février 2025, Microsoft a dévoilé <strong>Majorana 1</strong>, un processeur révolutionnaire qui marque une étape historique dans le domaine de l'informatique quantique. Contrairement aux ordinateurs classiques qui fonctionnent avec des bits (0 ou 1), un ordinateur quantique utilise des <strong>qubits</strong> — des unités capables de représenter 0 et 1 simultanément, ce qui lui permet de résoudre certains problèmes en une fraction du temps d'une machine conventionnelle.</p>
+
+                    <div class="majorana-cards">
+                        <div class="majorana-card">
+                            <div class="majorana-card-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="majorana-card-title">Le problème des qubits classiques</div>
+                            <div class="majorana-card-desc">Les qubits actuels (IBM, Google) sont extrêmement fragiles : la moindre vibration ou perturbation extérieure les fait "décoher", générant des erreurs en cascade. Des milliers de qubits supplémentaires sont nécessaires uniquement pour corriger ces erreurs.</div>
+                        </div>
+                        <div class="majorana-card">
+                            <div class="majorana-card-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="majorana-card-title">La solution topologique</div>
+                            <div class="majorana-card-desc">Majorana 1 repose sur un type de qubit radicalement différent : les <strong>qubits topologiques</strong>, basés sur des quasi-particules dites "de Majorana". Ces particules stockent l'information de façon répartie dans l'espace, ce qui les rend naturellement protégées contre les perturbations.</div>
+                        </div>
+                        <div class="majorana-card">
+                            <div class="majorana-card-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="majorana-card-title">Une puce inédite</div>
+                            <div class="majorana-card-desc">Le processeur intègre un nouveau matériau baptisé <strong>topoconducteur</strong>, créé spécifiquement par Microsoft. Ce matériau permet de générer et de contrôler les quasi-particules de Majorana à des températures proches du zéro absolu.</div>
+                        </div>
+                        <div class="majorana-card">
+                            <div class="majorana-card-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="majorana-card-title">Un impact concret</div>
+                            <div class="majorana-card-desc">Microsoft vise un million de qubits sur une seule puce de la taille d'une main. De telles capacités permettraient de résoudre des problèmes actuellement impossibles : conception de médicaments, optimisation logistique, rupture des systèmes de chiffrement actuels.</div>
+                        </div>
+                    </div>
+
+                    <p class="veille-text" style="margin-top: 20px;">Ce projet est le fruit de <strong>plus de 20 ans de recherche</strong> menée par l'équipe <strong>StationQ</strong> de Microsoft. Majorana 1 représente aujourd'hui l'approche la plus prometteuse pour atteindre un <strong>ordinateur quantique tolérant aux fautes</strong> — le Saint-Graal du domaine.</p>
+                </div>
+
+                <div class="majorana-img-block">
+                    <div class="majorana-img-placeholder">
+                        <i class="fas fa-image"></i>
+                        <span>majorana1.jpg</span>
+                        <span style="font-size:0.78rem; opacity:0.6;">Photo du processeur Majorana 1</span>
+                    </div>
+                    <div class="majorana-source">
+                        <i class="fab fa-microsoft"></i>
+                        <div>
+                            <div style="font-weight:600; font-size:0.9rem; color:var(--text-main);">Microsoft Quantum</div>
+                            <div style="font-size:0.82rem; color:var(--text-muted);">quantum.microsoft.com</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
             <hr class="divider">
+
+            <!-- THÉMATIQUES & SOURCES -->
             <div class="veille-grid">
                 <div class="veille-col">
                     <div class="veille-subtitle"><i class="fas fa-thumbtack"></i> Thématiques surveillées</div>
@@ -640,16 +705,20 @@
             <h2>Poursuite d'Études</h2>
             <p>Mon projet post-BTS</p>
         </div>
+        <!-- ÉCOLE -->
         <div class="card">
+            <div class="avenir-admitted">
+                <div class="avenir-badge-admitted"><i class="fas fa-check-circle"></i> Admis — Rentrée septembre 2026</div>
+            </div>
             <div class="avenir-grid">
                 <div class="avenir-col">
                     <div class="school-header">
-                        <div class="school-logo"><img src="logo_pstb.png" alt="Logo PSTB"></div>
-                        <div class="school-name">Paris School of<br><span>Technology & Business</span></div>
+                        <div class="school-logo"><img src="logo_utec.png" alt="Logo UTEC"></div>
+                        <div class="school-name">UTEC<br><span>Université des Technologies</span></div>
                     </div>
-                    <p style="color: var(--text-secondary); font-size: 0.97rem;">Après mon BTS SIO, j'intégrerai la <strong>Licence Administration Système et Réseau</strong> au sein de PSTB à la rentrée de <strong>septembre 2026</strong>.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.97rem;">Suite à mon BTS SIO, j'ai été officiellement admis à l'<strong>UTEC</strong> pour la <strong>Licence Administration Système et Réseau</strong>, à la rentrée de <strong>septembre 2026</strong>.</p>
                     <div class="objective-strip">
-                        <strong><i class="fas fa-bullseye" style="color:var(--primary);"></i> Objectif :</strong> Consolider mes acquis et développer une expertise sur les environnements Cloud, la virtualisation avancée et l'automatisation.
+                        <strong><i class="fas fa-bullseye" style="color:var(--primary);"></i> Objectif :</strong> Consolider mes acquis et développer une expertise sur les environnements Cloud, la virtualisation avancée et l'automatisation réseau.
                     </div>
                 </div>
                 <div class="avenir-col">
@@ -659,6 +728,34 @@
                         <li><i class="fas fa-check-circle"></i> Virtualisation (VMware, Proxmox) & Docker</li>
                         <li><i class="fas fa-check-circle"></i> Scripting (PowerShell, Bash, Ansible)</li>
                         <li><i class="fas fa-check-circle"></i> Sécurisation des infrastructures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALTERNANCE -->
+        <div class="card">
+            <div class="avenir-admitted">
+                <div class="avenir-badge-admitted" style="background:rgba(95,186,125,0.12); color:#5fba7d; border-color:rgba(95,186,125,0.3);"><i class="fas fa-handshake"></i> Alternance confirmée</div>
+            </div>
+            <div class="avenir-grid">
+                <div class="avenir-col">
+                    <div class="school-header">
+                        <div class="school-logo school-logo-placeholder"><i class="fas fa-building"></i><span>logo_datanumia.png</span></div>
+                        <div class="school-name">DATANUMIA<br><span>Entreprise d'alternance</span></div>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.97rem;">J'ai décroché mon contrat d'alternance au sein de <strong>DATANUMIA</strong> pour accompagner ma Licence ASR. Cette opportunité me permettra de mettre immédiatement en pratique les compétences acquises en formation dans un environnement professionnel.</p>
+                    <div class="objective-strip" style="background:rgba(95,186,125,0.08); border-color:rgba(95,186,125,0.3);">
+                        <strong><i class="fas fa-calendar-check" style="color:#5fba7d;"></i> Début :</strong> Septembre 2026 — Contrat d'apprentissage 1 an.
+                    </div>
+                </div>
+                <div class="avenir-col">
+                    <p style="color:var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;">Missions envisagées dans le cadre de l'alternance :</p>
+                    <ul class="avenir-list">
+                        <li><i class="fas fa-angle-right"></i> Administration systèmes et réseaux</li>
+                        <li><i class="fas fa-angle-right"></i> Support technique et gestion des incidents</li>
+                        <li><i class="fas fa-angle-right"></i> Participation à des projets d'infrastructure</li>
+                        <li><i class="fas fa-angle-right"></i> Contribution à la sécurisation du SI</li>
                     </ul>
                 </div>
             </div>
