@@ -5,117 +5,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet RH - Aurélien GAILLARD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #0a0c10;
-            --bg-card: #111318;
-            --text-main: #e8eaf0;
-            --text-secondary: #7a8099;
-            --text-muted: #4a5068;
-            --primary: #c9a96e;
-            --primary-dim: rgba(201,169,110,0.12);
-            --secondary: #4e90d6;
-            --secondary-dim: rgba(78,144,214,0.10);
-            --border: rgba(255,255,255,0.07);
-            --border-hover: rgba(201,169,110,0.3);
-            --shadow-glow: rgba(201,169,110,0.15);
-            --nav-bg: rgba(10,12,16,0.92);
+            --bg-body: #252836;
+            --bg-card: #2f3447;
+            --bg-card-hover: #363c52;
+            --bg-elevated: #323749;
+            --text-main: #f8f9fd;
+            --text-secondary: #c2c8dc;
+            --text-muted: #8891ae;
+            --primary: #4e90d6;
+            --primary-dim: rgba(78,144,214,0.14);
+            --primary-bright: #6faee8;
+            --accent-dim: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(78,144,214,0.45);
+            --shadow-glow: rgba(78,144,214,0.18);
+            --nav-bg: rgba(37,40,54,0.95);
+            --green: #5fba7d;
+            --green-dim: rgba(95,186,125,0.12);
         }
         body.light-mode {
-            --bg-body: #f0efe9;
+            --bg-body: #f5f7ff;
             --bg-card: #ffffff;
-            --text-main: #0e1018;
-            --text-secondary: #38404e;
-            --text-muted: #767c90;
-            --primary: #7a5520;
-            --primary-dim: rgba(122,85,32,0.12);
-            --secondary: #1a539a;
-            --secondary-dim: rgba(26,83,154,0.08);
-            --border: rgba(0,0,0,0.12);
-            --border-hover: rgba(122,85,32,0.45);
-            --shadow-glow: rgba(122,85,32,0.12);
-            --nav-bg: rgba(240,239,233,0.97);
+            --bg-card-hover: #f7f9fc;
+            --bg-elevated: #eaf0fb;
+            --text-main: #0d1020;
+            --text-secondary: #3a4260;
+            --text-muted: #7a82a0;
+            --primary: #1a6bc4;
+            --primary-dim: rgba(26,107,196,0.12);
+            --primary-bright: #1a6bc4;
+            --accent-dim: rgba(13,16,32,0.05);
+            --border: rgba(26,107,196,0.12);
+            --border-hover: rgba(26,107,196,0.4);
+            --shadow-glow: rgba(26,107,196,0.14);
+            --nav-bg: rgba(245,247,255,0.97);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.75; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
         a { text-decoration: none; color: inherit; transition: all 0.25s; }
         ul { list-style: none; padding: 0; }
-        strong { font-weight: 500; }
+        strong { font-weight: 600; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
         /* NAV */
-        header { background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
+        header { background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; }
         nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
-        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
         .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
-        .back-btn i { font-size: 0.8rem; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
-        .nav-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .nav-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
         .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
         .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* HERO */
-        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
-        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
-        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
-        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: #ffffff; letter-spacing: -0.01em; line-height: 1.6; margin-bottom: 20px; max-width: 700px; }
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
-        .tag.blue { color: var(--secondary); background: var(--secondary-dim); border-color: rgba(78,144,214,0.2); }
-        .tag.green { color: #5fba7d; background: rgba(95,186,125,0.1); border-color: rgba(95,186,125,0.2); }
+        /* LAYOUT */
+        .page-wrap { max-width: 860px; margin: auto; padding: 0 32px; }
 
-        /* CONTAINER */
-        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+        /* HERO */
+        .page-hero { padding-top: 104px; padding-bottom: 48px; }
+        .hero-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .hero-label::before { content: ''; width: 24px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .page-hero h1 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 2rem; color: var(--text-main); line-height: 1.35; margin-bottom: 20px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.22); padding: 4px 12px; border-radius: 20px; }
+        .tag.grey { color: var(--text-muted); background: rgba(255,255,255,0.05); border-color: var(--border); }
+        .tag.green { color: var(--green); background: var(--green-dim); border-color: rgba(95,186,125,0.25); }
+
+        /* DIVIDER */
+        .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+        /* SECTIONS */
+        .section { margin-bottom: 48px; }
+        .section-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; }
+        .section h2 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--text-main); margin-bottom: 16px; }
+        .section p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 14px; }
 
         /* CARD */
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
-        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
-        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-        .card-heading i { color: var(--primary); }
-        .card > p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
-        .card > p:last-child { margin-bottom: 0; }
+        .card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 14px; padding: 28px 32px; margin-bottom: 16px; transition: all 0.25s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 6px 24px var(--shadow-glow); }
 
         /* CONTEXT BOX */
-        .context-box { background: var(--secondary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--secondary); border-radius: 10px; padding: 22px 24px; margin-bottom: 0; }
-        .context-box p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
+        .context-box { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--primary); border-radius: 12px; padding: 22px 26px; margin-bottom: 0; }
+        .context-box p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin: 0; }
 
-        /* DETAIL LIST */
-        .detail-list { margin-top: 12px; }
-        .detail-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
-        .detail-list li:last-child { border-bottom: none; }
-        .detail-list li i { color: var(--primary); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; width: 14px; }
+        /* LIST */
+        .bullet-list { margin: 14px 0; }
+        .bullet-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
+        .bullet-list li:last-child { border-bottom: none; }
+        .bullet-list li i { color: var(--primary); font-size: 0.75rem; margin-top: 6px; flex-shrink: 0; }
 
-        /* OUTILS GRID */
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-top: 20px; }
-        .tool-card { background: var(--bg-body); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; transition: all 0.25s; }
+        /* TOOLS */
+        .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; transition: all 0.25s; }
         .tool-card:hover { border-color: var(--border-hover); }
-        .tool-icon { width: 38px; height: 38px; background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tool-icon { width: 40px; height: 40px; background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .tool-icon i { color: var(--primary); font-size: 1rem; }
-        .tool-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--text-main); }
-        .tool-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+        .tool-name { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text-main); }
+        .tool-desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
 
-        /* BILAN */
-        .bilan-card { background: linear-gradient(135deg, var(--primary-dim), rgba(78,144,214,0.08)); border: 1px solid var(--border-hover); border-radius: 14px; padding: 40px; margin-bottom: 24px; }
-        .bilan-card .card-heading { border-bottom-color: rgba(201,169,110,0.2); }
-        .bilan-card > p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
+        /* CAPTURES */
+        .capture-block { margin-top: 32px; display: flex; flex-direction: column; gap: 32px; }
+        .capture-item { }
+        .capture-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .capture-label::before { content: ''; width: 16px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .capture-item img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); display: block; transition: border-color 0.25s; }
+        .capture-item img:hover { border-color: var(--border-hover); }
 
-        /* ALERTE DIFFICULTE */
-        .alert-box { background: rgba(201,169,110,0.07); border: 1px solid rgba(201,169,110,0.2); border-left: 3px solid var(--primary); border-radius: 10px; padding: 20px 24px; margin-top: 20px; }
-        .alert-box p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
-        .alert-label { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 8px; }
+        /* ALERT */
+        .alert-box { background: rgba(78,144,214,0.06); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--primary); border-radius: 10px; padding: 20px 24px; margin-top: 20px; }
+        .alert-label { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 8px; }
+        .alert-box p { color: var(--text-secondary); font-size: 0.97rem; margin: 0; line-height: 1.8; }
 
-        @media (max-width: 768px) {
-            .page-hero { padding: 100px 20px 40px; }
-            .container { padding: 0 20px; }
+        /* COMPÉTENCES */
+        .skills-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; }
+        .skills-list li:last-child { border-bottom: none; }
+        .skills-list li i { color: var(--primary); margin-top: 4px; flex-shrink: 0; }
+
+        @media (max-width: 700px) {
+            .page-wrap { padding: 0 20px; }
             nav { padding: 0 20px; }
-            .card, .bilan-card { padding: 24px; }
+            .page-hero h1 { font-size: 1.55rem; }
+            .tools-grid { grid-template-columns: 1fr; }
             .nav-label { display: none; }
-            .tools-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -125,38 +142,43 @@
         <nav>
             <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
             <div class="nav-right">
-                <span class="nav-label">Projet Entreprise</span>
-                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+                <span class="nav-label">Entreprise · Palais des Thés</span>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
             </div>
         </nav>
     </header>
 
-    <div class="page-hero">
-        <div class="page-label-top">Projet Entreprise · Palais des Thés</div>
-        <h1>Outil de Ticketing RH</h1>
-        <div class="tags">
-            <span class="tag">Freshservice</span>
-            <span class="tag">Monday</span>
-            <span class="tag blue">Ressources Humaines</span>
-            <span class="tag green">ITSM</span>
-        </div>
-    </div>
+    <div class="page-wrap">
 
-    <div class="container">
-
-        <!-- CONTEXTE -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-building"></i> Contexte du projet</div>
-            <div class="context-box">
-                <p><strong style="color:var(--secondary);">Service RH — Palais des Thés —</strong> Le service des Ressources Humaines avait besoin de centraliser et structurer les demandes des employés. L'objectif était de faciliter le suivi, le traitement et la traçabilité des requêtes, tout en améliorant la communication interne.</p>
+        <!-- HERO -->
+        <div class="page-hero">
+            <div class="hero-label">Projet Entreprise · Palais des Thés</div>
+            <h1>Outil de Ticketing RH</h1>
+            <div class="tags">
+                <span class="tag">Freshservice</span>
+                <span class="tag">Monday</span>
+                <span class="tag grey">Ressources Humaines</span>
+                <span class="tag green">ITSM</span>
             </div>
         </div>
 
+        <hr class="divider" style="margin-top:0;">
+
+        <!-- CONTEXTE -->
+        <div class="section">
+            <h2>Contexte du projet</h2>
+            <div class="context-box">
+                <p>Le service des Ressources Humaines du <strong>Palais des Thés</strong> avait besoin de centraliser et structurer les demandes des employés. L'objectif était de faciliter le suivi, le traitement et la traçabilité des requêtes, tout en améliorant la communication interne.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
         <!-- BESOIN -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-clipboard-list"></i> Le Besoin</div>
+        <div class="section">
+            <h2>Le Besoin</h2>
             <p>Face à un volume croissant de demandes RH traitées de manière informelle, le service avait besoin d'un outil dédié permettant :</p>
-            <ul class="detail-list">
+            <ul class="bullet-list">
                 <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Centralisation</strong> — regrouper toutes les demandes des employés en un seul point d'entrée.</div></li>
                 <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Suivi & traçabilité</strong> — historiser chaque demande et son état d'avancement en temps réel.</div></li>
                 <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Communication interne</strong> — améliorer les échanges entre employés et service RH via un canal structuré.</div></li>
@@ -164,9 +186,11 @@
             </ul>
         </div>
 
+        <hr class="divider">
+
         <!-- RÉALISATION -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-cogs"></i> Réalisation & Outils</div>
+        <div class="section">
+            <h2>Réalisation & Outils</h2>
             <p>Après recueil des besoins auprès du service RH et définition des fonctionnalités essentielles, les outils suivants ont été retenus et mis en place :</p>
 
             <div class="tools-grid">
@@ -186,23 +210,58 @@
                 </div>
             </div>
 
-            <ul class="detail-list" style="margin-top:20px;">
+            <ul class="bullet-list">
                 <li><i class="fas fa-angle-right"></i><div>Recueil des besoins auprès du service RH et identification des fonctionnalités prioritaires.</div></li>
                 <li><i class="fas fa-angle-right"></i><div>Création et configuration d'un formulaire Freshservice adapté aux cas d'usage RH.</div></li>
                 <li><i class="fas fa-angle-right"></i><div>Mise en place d'un tableau de suivi Monday pour piloter l'avancement du projet.</div></li>
                 <li><i class="fas fa-angle-right"></i><div>Contact et coordination avec le prestataire pour les aspects techniques.</div></li>
             </ul>
+
+            <!-- CAPTURES PLEINE LARGEUR -->
+            <div class="capture-block">
+
+                <div class="capture-item">
+                    <div class="capture-label">Accès depuis l'intranet Palais des Thés</div>
+                    <img src="rh_intranet.png" alt="Bouton Faire une demande RH sur l'intranet">
+                </div>
+
+                <div class="capture-item">
+                    <div class="capture-label">Formulaire de création de ticket RH (Freshservice)</div>
+                    <img src="rh_formulaire.png" alt="Formulaire Freshservice RH">
+                </div>
+
+                <div class="capture-item">
+                    <div class="capture-label">Vue backlog côté service RH — 485 tickets traités</div>
+                    <img src="rh_backlog.png" alt="Vue backlog tickets RH">
+                </div>
+
+            </div>
         </div>
 
+        <hr class="divider">
+
         <!-- BILAN -->
-        <div class="bilan-card">
-            <div class="card-heading"><i class="fas fa-chart-line"></i> Bilan & Difficultés</div>
+        <div class="section">
+            <h2>Bilan & Difficultés</h2>
             <p>Le projet a permis de structurer le traitement des demandes RH au sein du Palais des Thés, en fournissant un canal dédié et traçable pour les employés.</p>
 
             <div class="alert-box">
                 <div class="alert-label"><i class="fas fa-exclamation-triangle" style="margin-right:6px;"></i> Point de vigilance</div>
                 <p>Le projet a connu des ralentissements dus à des retours tardifs du service RH, freinant la validation des étapes. Face à ces blocages, je me suis maintenu mobilisé pour relancer les interlocuteurs et reprendre l'avancement dès réception des validations.</p>
             </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- COMPÉTENCES -->
+        <div class="section">
+            <h2>Compétences acquises</h2>
+            <ul class="skills-list">
+                <li><i class="fas fa-check-circle"></i><div><strong>Gestion de projet :</strong>&nbsp; Recueil des besoins, coordination avec les parties prenantes, suivi sur Monday.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>ITSM :</strong>&nbsp; Configuration d'un outil de ticketing (Freshservice) adapté à un usage métier non-IT.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Communication :</strong>&nbsp; Interface avec les équipes RH et les prestataires techniques.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Adaptabilité :</strong>&nbsp; Gestion des blocages et relances dans un contexte multi-interlocuteurs.</div></li>
+            </ul>
         </div>
 
     </div>
@@ -220,21 +279,6 @@
             const isLight = body.classList.contains('light-mode');
             icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.style.opacity = '1';
-                    e.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.card, .bilan-card, .tool-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
-            observer.observe(el);
         });
     </script>
 
