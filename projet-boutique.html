@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déplacement en boutique - Aurélien GAILLARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #252836;
+            --bg-card: #2f3447;
+            --bg-card-hover: #363c52;
+            --bg-elevated: #323749;
+            --text-main: #f8f9fd;
+            --text-secondary: #c2c8dc;
+            --text-muted: #8891ae;
+            --primary: #4e90d6;
+            --primary-dim: rgba(78,144,214,0.14);
+            --primary-bright: #6faee8;
+            --accent-dim: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(78,144,214,0.45);
+            --shadow-glow: rgba(78,144,214,0.18);
+            --nav-bg: rgba(37,40,54,0.95);
+        }
+        body.light-mode {
+            --bg-body: #f5f7ff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f7f9fc;
+            --bg-elevated: #eaf0fb;
+            --text-main: #0d1020;
+            --text-secondary: #3a4260;
+            --text-muted: #7a82a0;
+            --primary: #1a6bc4;
+            --primary-dim: rgba(26,107,196,0.12);
+            --primary-bright: #1a6bc4;
+            --accent-dim: rgba(13,16,32,0.05);
+            --border: rgba(26,107,196,0.12);
+            --border-hover: rgba(26,107,196,0.4);
+            --shadow-glow: rgba(26,107,196,0.14);
+            --nav-bg: rgba(245,247,255,0.97);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.75; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
+        a { text-decoration: none; color: inherit; transition: all 0.25s; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 600; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
+
+        /* NAV */
+        header { background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+        .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* LAYOUT */
+        .page-wrap { max-width: 860px; margin: auto; padding: 0 32px; }
+
+        /* HERO */
+        .page-hero { padding-top: 108px; padding-bottom: 48px; }
+        .hero-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .hero-label::before { content: ''; width: 24px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .page-hero h1 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--text-main); line-height: 1.3; margin-bottom: 20px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.22); padding: 4px 12px; border-radius: 20px; }
+        .tag.grey { color: var(--text-muted); background: var(--accent-dim); border-color: var(--border); }
+        .tag.green { color: #5fba7d; background: rgba(95,186,125,0.1); border-color: rgba(95,186,125,0.25); }
+
+        /* DIVIDER */
+        .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+        /* SECTION */
+        .section { margin-bottom: 48px; }
+        .section h2 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--text-main); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: var(--primary); font-size: 1rem; }
+        .section p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 14px; }
+
+        /* CONTEXT BOX */
+        .context-box { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--primary); border-radius: 12px; padding: 22px 26px; }
+        .context-box p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin: 0; }
+
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; margin-bottom: 16px; transition: border-color 0.3s, box-shadow 0.3s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+
+        /* MISSIONS GRID */
+        .missions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+        .mission-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 22px; transition: all 0.25s; }
+        .mission-card:hover { border-color: var(--border-hover); }
+        .mission-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+        .mission-icon i { color: var(--primary); font-size: 1rem; }
+        .mission-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.92rem; color: var(--text-main); margin-bottom: 6px; }
+        .mission-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* LISTE */
+        .bullet-list { margin-top: 8px; }
+        .bullet-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
+        .bullet-list li:last-child { border-bottom: none; }
+        .bullet-list li i { color: var(--primary); font-size: 0.75rem; margin-top: 6px; flex-shrink: 0; }
+
+        /* CAPTURES */
+        .capture-block { display: flex; flex-direction: column; gap: 32px; margin-top: 32px; }
+        .capture-item {}
+        .capture-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .capture-label::before { content: ''; width: 16px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .capture-item img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); display: block; transition: border-color 0.25s; }
+        .capture-item img:hover { border-color: var(--border-hover); }
+        .capture-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .capture-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); display: block; transition: border-color 0.25s; }
+        .capture-grid img:hover { border-color: var(--border-hover); }
+
+        /* ALERT */
+        .bilan-box { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-radius: 12px; padding: 24px 28px; margin-top: 16px; }
+        .bilan-box p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin: 0; }
+
+        /* COMPÉTENCES */
+        .skills-list li { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; }
+        .skills-list li:last-child { border-bottom: none; }
+        .skills-list li i { color: var(--primary); margin-top: 4px; flex-shrink: 0; }
+
+        @media (max-width: 700px) {
+            .page-wrap { padding: 0 20px; }
+            nav { padding: 0 20px; }
+            .card { padding: 24px; }
+            .missions-grid, .capture-grid { grid-template-columns: 1fr; }
+            .nav-label { display: none; }
+            .capture-grid img { height: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+            <div class="nav-right">
+                <span class="nav-label">Entreprise · Palais des Thés</span>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-wrap">
+
+        <!-- HERO -->
+        <div class="page-hero">
+            <div class="hero-label">Projet Entreprise · Palais des Thés</div>
+            <h1>Déplacement en boutique pour installation matériel informatique et configuration réseau</h1>
+            <div class="tags">
+                <span class="tag">Réseau</span>
+                <span class="tag">Cisco Meraki</span>
+                <span class="tag">Déploiement</span>
+                <span class="tag grey">TPE / Caisse</span>
+                <span class="tag green">Ouverture boutique</span>
+            </div>
+        </div>
+
+        <hr class="divider" style="margin-top:0;">
+
+        <!-- CONTEXTE -->
+        <div class="section">
+            <h2><i class="fas fa-store"></i> Contexte du projet</h2>
+            <div class="context-box">
+                <p>Dans le cadre du développement de l'enseigne <strong>Palais des Thés</strong>, l'ouverture d'un nouveau point de vente représente une étape stratégique majeure. L'intervention du technicien informatique sur site est le <strong>dernier maillon essentiel</strong> avant l'accueil des premiers clients — assurer la transition entre un local en chantier et une boutique entièrement connectée, opérationnelle et prête à l'emploi.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- MISSIONS -->
+        <div class="section">
+            <h2><i class="fas fa-tasks"></i> Missions réalisées</h2>
+            <p>Cette mission consiste à déployer l'intégralité de l'écosystème numérique de la boutique pour garantir une expérience de vente fluide et une gestion logistique rigoureuse.</p>
+
+            <div class="missions-grid">
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-cash-register"></i></div>
+                    <div class="mission-title">Déploiement des caisses</div>
+                    <div class="mission-desc">Installation physique et raccordement des caisses tactiles, imprimantes à tickets et afficheurs clients (PTA).</div>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-credit-card"></i></div>
+                    <div class="mission-title">Terminaux de paiement (TPE)</div>
+                    <div class="mission-desc">Mise en service et tests des TPE Verifone pour assurer la sécurité et la fluidité des transactions.</div>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-balance-scale"></i></div>
+                    <div class="mission-title">Balances connectées</div>
+                    <div class="mission-desc">Installation et synchronisation des balances, outils indispensables pour la vente de thé au détail avec remontée directe vers le logiciel de caisse.</div>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="mission-title">Infrastructure réseau</div>
+                    <div class="mission-desc">Configuration du switch Cisco Meraki, brassage des câbles RJ45, déploiement des bornes Wi-Fi et sécurisation du réseau boutique.</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- RÉALISATION + PHOTOS -->
+        <div class="section">
+            <h2><i class="fas fa-camera"></i> Réalisation en images</h2>
+            <p>Voici quelques captures prises directement sur le terrain lors de différentes interventions en boutique.</p>
+
+            <div class="capture-block">
+
+                <div class="capture-item">
+                    <div class="capture-label">Baie réseau installée en réserve boutique</div>
+                    <img src="boutique_baie.jpg" alt="Baie réseau boutique Palais des Thés">
+                </div>
+
+                <div class="capture-item">
+                    <div class="capture-label">Caisses tactiles et TPE installés en boutique</div>
+                    <img src="boutique_caisses.jpg" alt="Caisses et balances installées en boutique">
+                </div>
+
+                <div class="capture-item">
+                    <div class="capture-label">Postes de travail déployés au comptoir</div>
+                    <img src="boutique_postes.jpg" alt="Postes de travail déployés au comptoir">
+                </div>
+
+                <div>
+                    <div class="capture-label">Équipements réseau et TPE configurés</div>
+                    <div class="capture-grid">
+                        <img src="boutique_cisco_ap.jpg" alt="Borne Wi-Fi Cisco déployée">
+                        <img src="boutique_tpe.jpg" alt="Configuration IP du TPE Verifone">
+                    </div>
+                </div>
+
+                <div class="capture-item">
+                    <div class="capture-label">Supervision réseau via Cisco Meraki Dashboard</div>
+                    <img src="boutique_meraki.png" alt="Dashboard Cisco Meraki - supervision switch boutique">
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- BILAN -->
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Bilan</h2>
+            <p>Ces interventions sur site constituent l'une des missions les plus complètes et valorisantes de mon alternance. Elles mobilisent simultanément des compétences en infrastructure réseau, en déploiement matériel et en gestion de projet terrain — dans des délais courts imposés par la date d'ouverture.</p>
+            <div class="bilan-box">
+                <p><strong>Résultat :</strong> À l'issue de chaque intervention, la boutique est entièrement opérationnelle — réseau fonctionnel, caisses actives, paiements testés et validés — permettant aux conseillers de se concentrer exclusivement sur l'expertise du thé dès l'ouverture des portes.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- COMPÉTENCES -->
+        <div class="section">
+            <h2><i class="fas fa-star"></i> Compétences acquises</h2>
+            <ul class="skills-list">
+                <li><i class="fas fa-check-circle"></i><div><strong>Infrastructure réseau terrain :</strong>&nbsp; Configuration de switches Cisco Meraki, brassage RJ45, déploiement de bornes Wi-Fi.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Déploiement matériel :</strong>&nbsp; Installation et mise en service de caisses tactiles, imprimantes, afficheurs et balances connectées.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Configuration TPE :</strong>&nbsp; Paramétrage réseau et tests de terminaux Verifone pour la sécurisation des paiements.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Supervision réseau :</strong>&nbsp; Utilisation du dashboard Cisco Meraki pour le monitoring et le diagnostic des équipements.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Gestion de projet terrain :</strong>&nbsp; Autonomie, réactivité et coordination dans un environnement de chantier sous contrainte de délai.</div></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.07 });
+        document.querySelectorAll('.card, .mission-card, .capture-item, .bilan-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
