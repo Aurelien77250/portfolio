@@ -5,112 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet Active Directory - Aurélien GAILLARD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #0a0c10;
-            --bg-card: #111318;
-            --bg-card-hover: #161a22;
-            --text-main: #e8eaf0;
-            --text-secondary: #7a8099;
-            --text-muted: #4a5068;
-            --primary: #c9a96e;
-            --primary-dim: rgba(201,169,110,0.12);
-            --secondary: #4e90d6;
-            --accent-soft: rgba(201,169,110,0.08);
-            --border: rgba(255,255,255,0.07);
-            --border-hover: rgba(201,169,110,0.3);
-            --shadow-glow: rgba(201,169,110,0.15);
-            --nav-bg: rgba(10,12,16,0.92);
+            --bg-body: #252836;
+            --bg-card: #2f3447;
+            --bg-card-hover: #363c52;
+            --bg-elevated: #323749;
+            --text-main: #f8f9fd;
+            --text-secondary: #c2c8dc;
+            --text-muted: #8891ae;
+            --primary: #4e90d6;
+            --primary-dim: rgba(78,144,214,0.14);
+            --primary-bright: #6faee8;
+            --accent-dim: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(78,144,214,0.45);
+            --shadow-glow: rgba(78,144,214,0.18);
+            --nav-bg: rgba(37,40,54,0.95);
         }
         body.light-mode {
-            --bg-body: #f0efe9;
+            --bg-body: #f5f7ff;
             --bg-card: #ffffff;
-            --bg-card-hover: #faf9f6;
-            --text-main: #0e1018;
-            --text-secondary: #38404e;
-            --text-muted: #767c90;
-            --primary: #7a5520;
-            --primary-dim: rgba(122,85,32,0.12);
-            --secondary: #1a539a;
-            --accent-soft: rgba(122,85,32,0.08);
-            --border: rgba(0,0,0,0.12);
-            --border-hover: rgba(122,85,32,0.45);
-            --shadow-glow: rgba(122,85,32,0.12);
-            --nav-bg: rgba(240,239,233,0.97);
+            --bg-card-hover: #f7f9fc;
+            --bg-elevated: #eaf0fb;
+            --text-main: #0d1020;
+            --text-secondary: #3a4260;
+            --text-muted: #7a82a0;
+            --primary: #1a6bc4;
+            --primary-dim: rgba(26,107,196,0.12);
+            --primary-bright: #1a6bc4;
+            --accent-dim: rgba(13,16,32,0.05);
+            --border: rgba(26,107,196,0.12);
+            --border-hover: rgba(26,107,196,0.4);
+            --shadow-glow: rgba(26,107,196,0.14);
+            --nav-bg: rgba(245,247,255,0.97);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.8; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
         a { text-decoration: none; color: inherit; transition: all 0.25s; }
-        ul { list-style: none; }
-        strong { font-weight: 500; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 600; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
         /* NAV */
-        header { background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
-        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        header { background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
         .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
-        .back-btn i { font-size: 0.8rem; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
-        .page-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .nav-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
         .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
         .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* HERO PAGE */
-        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
-        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
-        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
-        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); color: #ffffff; letter-spacing: -0.01em; line-height: 1.28; margin-bottom: 20px; }
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0; }
-        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
-        .tag.blue { color: var(--secondary); background: rgba(78,144,214,0.08); border-color: rgba(78,144,214,0.2); }
+        /* LAYOUT */
+        .page-wrap { max-width: 860px; margin: auto; padding: 0 32px; }
 
-        /* CONTENU */
-        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+        /* HERO */
+        .page-hero { padding-top: 108px; padding-bottom: 48px; }
+        .hero-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .hero-label::before { content: ''; width: 24px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .page-hero h1 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--text-main); line-height: 1.3; margin-bottom: 20px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.22); padding: 4px 12px; border-radius: 20px; }
+        .tag.grey { color: var(--text-muted); background: var(--accent-dim); border-color: var(--border); }
+        .tag.green { color: #5fba7d; background: rgba(95,186,125,0.1); border-color: rgba(95,186,125,0.25); }
 
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
+        /* DIVIDER */
+        .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+        /* BOUTON PDF */
+        .pdf-btn { display: flex; align-items: center; gap: 18px; background: var(--bg-card); border: 1.5px solid var(--border-hover); border-radius: 14px; padding: 22px 26px; margin-bottom: 40px; transition: all 0.25s; }
+        .pdf-btn:hover { background: var(--primary-dim); box-shadow: 0 6px 24px var(--shadow-glow); transform: translateY(-2px); }
+        .pdf-btn-icon { width: 56px; height: 56px; border-radius: 12px; background: rgba(224,90,90,0.15); border: 1px solid rgba(224,90,90,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.5rem; color: #e05a5a; }
+        .pdf-btn-body { flex-grow: 1; }
+        .pdf-btn-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 3px; }
+        .pdf-btn-sub { font-size: 0.85rem; color: var(--text-muted); }
+        .pdf-btn-arrow { color: var(--primary); font-size: 1.1rem; flex-shrink: 0; }
+
+        /* SECTION */
+        .section { margin-bottom: 48px; }
+        .section h2 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+        .section h2 i { color: var(--primary); font-size: 1rem; }
+        .section p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 14px; }
+
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; margin-bottom: 20px; transition: border-color 0.3s, box-shadow 0.3s; }
         .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        .card-heading { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--text-main); display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading i { color: var(--primary); }
 
-        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-        .card-heading i { color: var(--primary); font-size: 1rem; }
+        /* SERVICE BLOCK */
+        .service-block { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .service-block:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+        .service-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.97rem; color: var(--text-main); display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .service-title i { color: var(--primary); width: 16px; text-align: center; }
+        .service-block p { color: var(--text-secondary); font-size: 0.97rem; margin-bottom: 12px; }
+        .role-box { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--primary); border-radius: 10px; padding: 14px 18px; font-size: 0.95rem; color: var(--text-main); margin-top: 10px; }
 
-        .card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
-        .card p:last-child { margin-bottom: 0; }
+        /* LISTE */
+        .bullet-list { margin-top: 12px; }
+        .bullet-list li { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
+        .bullet-list li:last-child { border-bottom: none; }
+        .bullet-list li i { color: var(--primary); font-size: 0.75rem; margin-top: 6px; flex-shrink: 0; }
 
-        /* Sous-sections */
-        .sub-section { margin-top: 28px; }
-        .sub-heading { display: flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text-main); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-        .sub-heading i { color: var(--secondary); font-size: 0.9rem; }
+        /* IMAGE */
+        .img-wrap { margin: 20px 0; }
+        .img-wrap img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); display: block; }
+        .img-caption { font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; text-align: center; font-style: italic; }
+        .img-placeholder { border: 2px dashed var(--border); border-radius: 12px; padding: 48px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(78,144,214,0.02); }
+        .img-placeholder i { font-size: 2rem; color: var(--text-muted); }
+        .img-placeholder span { font-size: 0.85rem; color: var(--text-muted); }
 
-        .role-box { background: var(--accent-soft); border: 1px solid var(--border-hover); border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 0.88rem; color: var(--text-main); }
-        .role-box strong { color: var(--primary); }
+        /* COMPÉTENCES */
+        .skills-list li { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; }
+        .skills-list li:last-child { border-bottom: none; }
+        .skills-list li i { color: var(--primary); margin-top: 4px; flex-shrink: 0; }
 
-        /* Liste à puces stylisée */
-        .detail-list { padding: 0; margin-top: 12px; }
-        .detail-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
-        .detail-list li:last-child { border-bottom: none; }
-        .detail-list li::before { content: none; }
-        .detail-list li i { color: var(--primary); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; width: 14px; }
-
-        .divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
-
-        /* Image placeholder */
-        .img-placeholder { border: 1px dashed var(--border-hover); border-radius: 10px; padding: 48px 32px; text-align: center; margin-top: 20px; color: var(--text-muted); font-size: 0.88rem; }
-        .img-placeholder i { font-size: 2.5rem; color: var(--border-hover); display: block; margin-bottom: 12px; }
-        .img-placeholder small { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--text-muted); }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .page-hero { padding: 100px 20px 40px; }
-            .container { padding: 0 20px; }
+        @media (max-width: 700px) {
+            .page-wrap { padding: 0 20px; }
             nav { padding: 0 20px; }
             .card { padding: 24px; }
-            .page-label { display: none; }
+            .pdf-btn { flex-wrap: wrap; }
+            .nav-label { display: none; }
         }
     </style>
 </head>
@@ -120,83 +141,117 @@
         <nav>
             <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
             <div class="nav-right">
-                <span class="page-label">Projet E6</span>
-                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+                <span class="nav-label">Projet E6 · BTS SIO SISR</span>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
             </div>
         </nav>
     </header>
 
-    <!-- HERO -->
-    <div class="page-hero">
-        <div class="page-label-top">Projet E6 · BTS SIO SISR</div>
-        <h1>Architecture Active Directory & PfSense</h1>
-        <div class="tags">
-            <span class="tag">Windows Server 2022</span>
-            <span class="tag">PfSense</span>
-            <span class="tag">Proxmox</span>
-            <span class="tag blue">Réseau & Infra</span>
-        </div>
-    </div>
+    <div class="page-wrap">
 
-    <div class="container">
+        <!-- HERO -->
+        <div class="page-hero">
+            <div class="hero-label">Projet E6 · BTS SIO SISR</div>
+            <h1>Architecture Active Directory & PfSense</h1>
+            <div class="tags">
+                <span class="tag">Windows Server 2022</span>
+                <span class="tag">PfSense</span>
+                <span class="tag">Proxmox</span>
+                <span class="tag grey">Réseau & Infra</span>
+            </div>
+        </div>
+
+        <!-- BOUTON FICHE PDF -->
+        <a href="fiche_projet_e6_ad.pdf" target="_blank" class="pdf-btn">
+            <div class="pdf-btn-icon"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-btn-body">
+                <div class="pdf-btn-title">Fiche du projet E6 — Active Directory & PfSense</div>
+                <div class="pdf-btn-sub">Document officiel de présentation du projet pour le jury BTS SIO</div>
+            </div>
+            <i class="fas fa-download pdf-btn-arrow"></i>
+        </a>
+
+        <hr class="divider" style="margin-top:0;">
 
         <!-- CONTEXTE -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-project-diagram"></i> Contexte du projet</div>
-            <p>Ce projet a été réalisé dans le cadre de ma formation BTS SIO. L'objectif était de concevoir et déployer une infrastructure réseau d'entreprise simulée, capable de gérer de manière centralisée les utilisateurs et la sécurité.</p>
-            <p>L'ensemble de cette infrastructure est <strong>hébergé sur le serveur Proxmox de l'école</strong>, ce qui nous a permis de travailler dans un environnement de virtualisation professionnel (Type 1), simulant ainsi des conditions réelles de production avec des ressources partagées et une gestion fine des machines virtuelles (VM).</p>
+        <div class="section">
+            <div class="card">
+                <div class="card-heading"><i class="fas fa-project-diagram"></i> Contexte du projet</div>
+                <p>Ce projet a été réalisé dans le cadre de ma formation BTS SIO. L'objectif était de concevoir et déployer une <strong>infrastructure réseau d'entreprise simulée</strong>, capable de gérer de manière centralisée les utilisateurs et la sécurité.</p>
+                <p>L'ensemble de cette infrastructure est <strong>hébergé sur le serveur Proxmox de l'école</strong>, ce qui nous a permis de travailler dans un environnement de virtualisation professionnel (Type 1), simulant des conditions réelles de production avec des ressources partagées et une gestion fine des machines virtuelles.</p>
+            </div>
         </div>
+
+        <hr class="divider">
 
         <!-- SERVICES & RÔLES -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-cogs"></i> Services et Rôles techniques</div>
-            <p>Pour assurer le bon fonctionnement du domaine, j'ai installé et configuré les services suivants sur un serveur Windows Server :</p>
+        <div class="section">
+            <div class="card">
+                <div class="card-heading"><i class="fas fa-cogs"></i> Services et Rôles techniques</div>
+                <p>Pour assurer le bon fonctionnement du domaine, j'ai installé et configuré les services suivants sur un serveur Windows Server :</p>
 
-            <div class="sub-section">
-                <div class="sub-heading"><i class="fab fa-windows"></i> AD DS — Active Directory Domain Services</div>
-                <p style="color: var(--text-secondary); font-size: 0.92rem;">C'est le cœur du réseau. Il permet de centraliser la gestion des identités et des ressources.</p>
-                <div class="role-box">
-                    <strong><i class="fas fa-user-cog"></i> Mon rôle :</strong> Création du domaine, organisation des Unités d'Organisation (OU) par services (Compta, RH, IT), création des utilisateurs et application des Stratégies de Groupe (GPO) pour sécuriser les postes et monter automatiquement des lecteurs réseau.
+                <!-- AD DS -->
+                <div class="service-block">
+                    <div class="service-title"><i class="fab fa-windows"></i> AD DS — Active Directory Domain Services</div>
+                    <p>Cœur du réseau. Il permet de centraliser la gestion des identités et des ressources.</p>
+                    <div class="role-box"><strong><i class="fas fa-user-cog" style="margin-right:6px;"></i> Mon rôle :</strong> Création du domaine, organisation des Unités d'Organisation (OU) par services (Compta, RH, IT), création des utilisateurs et application des Stratégies de Groupe (GPO) pour sécuriser les postes et monter automatiquement des lecteurs réseau.</div>
                 </div>
-            </div>
 
-            <div class="sub-section">
-                <div class="sub-heading"><i class="fas fa-globe"></i> DNS — Domain Name System</div>
-                <p style="color: var(--text-secondary); font-size: 0.92rem;">Service indispensable au fonctionnement d'Active Directory. Il assure la traduction des noms de domaine en adresses IP.</p>
-                <div class="role-box">
-                    <strong><i class="fas fa-user-cog"></i> Mon rôle :</strong> Configuration des zones de recherche directe et inversée pour permettre aux machines du parc de communiquer et de s'inscrire correctement dans le domaine.
+                <!-- DNS -->
+                <div class="service-block">
+                    <div class="service-title"><i class="fas fa-globe"></i> DNS — Domain Name System</div>
+                    <p>Service indispensable au fonctionnement d'Active Directory. Il assure la traduction des noms de domaine en adresses IP.</p>
+                    <div class="role-box"><strong><i class="fas fa-user-cog" style="margin-right:6px;"></i> Mon rôle :</strong> Configuration des zones de recherche directe et inversée pour permettre aux machines du parc de communiquer et de s'inscrire correctement dans le domaine.</div>
                 </div>
-            </div>
 
-            <div class="sub-section">
-                <div class="sub-heading"><i class="fas fa-network-wired"></i> DHCP — Dynamic Host Configuration Protocol</div>
-                <p style="color: var(--text-secondary); font-size: 0.92rem;">Assure la distribution automatique des configurations IP aux clients.</p>
-                <div class="role-box">
-                    <strong><i class="fas fa-user-cog"></i> Mon rôle :</strong> Création d'étendues (scopes), configuration de la passerelle par défaut et des serveurs DNS distribués aux clients, et mise en place de baux statiques pour les serveurs et imprimantes.
+                <!-- DHCP -->
+                <div class="service-block">
+                    <div class="service-title"><i class="fas fa-network-wired"></i> DHCP — Dynamic Host Configuration Protocol</div>
+                    <p>Assure la distribution automatique des configurations IP aux clients.</p>
+                    <div class="role-box"><strong><i class="fas fa-user-cog" style="margin-right:6px;"></i> Mon rôle :</strong> Création d'étendues (scopes), configuration de la passerelle par défaut et des serveurs DNS distribués aux clients, et mise en place de baux statiques pour les serveurs et imprimantes.</div>
                 </div>
-            </div>
 
-            <hr class="divider">
-
-            <div class="sub-section">
-                <div class="sub-heading"><i class="fas fa-shield-alt"></i> Sécurité Réseau — PfSense</div>
-                <p style="color: var(--text-secondary); font-size: 0.92rem;">En amont du serveur Windows, j'ai déployé une machine virtuelle <strong>PfSense</strong> pour agir comme routeur et pare-feu.</p>
-                <ul class="detail-list">
-                    <li><i class="fas fa-angle-right"></i><div><strong style="color: var(--text-main);">Routage & Passerelle</strong> — fait le lien entre le réseau local (LAN) virtualisé et le réseau de l'école (WAN).</div></li>
-                    <li><i class="fas fa-angle-right"></i><div><strong style="color: var(--text-main);">Sécurité</strong> — filtrage des paquets et règles de pare-feu pour n'autoriser que les flux nécessaires.</div></li>
-                    <li><i class="fas fa-angle-right"></i><div><strong style="color: var(--text-main);">Segmentation</strong> — gestion de différents VLANs pour isoler les serveurs des postes clients.</div></li>
-                </ul>
+                <!-- PFSENSE -->
+                <div class="service-block">
+                    <div class="service-title"><i class="fas fa-shield-alt"></i> Sécurité Réseau — PfSense</div>
+                    <p>En amont du serveur Windows, j'ai déployé une machine virtuelle <strong>PfSense</strong> pour agir comme routeur et pare-feu.</p>
+                    <ul class="bullet-list">
+                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Routage & Passerelle</strong> — fait le lien entre le réseau local (LAN) virtualisé et le réseau de l'école (WAN).</div></li>
+                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Sécurité</strong> — filtrage des paquets et règles de pare-feu pour n'autoriser que les flux nécessaires.</div></li>
+                        <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Segmentation</strong> — gestion de différents VLANs pour isoler les serveurs des postes clients.</div></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <hr class="divider">
+
         <!-- ARCHITECTURE -->
-        <div class="card">
-            <div class="card-heading"><i class="fas fa-sitemap"></i> Architecture Technique</div>
-            <p>Voici un aperçu de la topologie réseau mise en place sur le cluster Proxmox :</p>
-            <div class="img-placeholder">
-                <i class="fas fa-image"></i>
-                Insérez ici votre capture d'écran Proxmox ou schéma réseau
-                <small>Remplacez ce bloc par : &lt;img src="nom_image.png" style="width:100%; border-radius:8px;"&gt;</small>
+        <div class="section">
+            <div class="card">
+                <div class="card-heading"><i class="fas fa-sitemap"></i> Architecture Technique</div>
+                <p>Voici un aperçu de la topologie réseau mise en place sur le cluster Proxmox :</p>
+                <div class="img-placeholder">
+                    <i class="fas fa-image"></i>
+                    <span>schema_ad.png</span>
+                    <span style="font-size:0.78rem; opacity:0.6;">Schéma réseau / capture Proxmox</span>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- COMPÉTENCES -->
+        <div class="section">
+            <div class="card">
+                <div class="card-heading"><i class="fas fa-star"></i> Compétences acquises</div>
+                <ul class="skills-list">
+                    <li><i class="fas fa-check-circle"></i><div><strong>Active Directory :</strong>&nbsp; Création de domaine, OU, GPO, gestion des utilisateurs et des droits.</div></li>
+                    <li><i class="fas fa-check-circle"></i><div><strong>Services réseau :</strong>&nbsp; DNS (zones directe/inversée), DHCP (scopes, baux statiques).</div></li>
+                    <li><i class="fas fa-check-circle"></i><div><strong>Sécurité réseau :</strong>&nbsp; Configuration PfSense, règles de filtrage, segmentation VLAN.</div></li>
+                    <li><i class="fas fa-check-circle"></i><div><strong>Virtualisation :</strong>&nbsp; Déploiement de VMs sous Proxmox (hyperviseur Type 1).</div></li>
+                    <li><i class="fas fa-check-circle"></i><div><strong>Administration Windows Server :</strong>&nbsp; Installation des rôles, configuration des services, jonction de postes au domaine.</div></li>
+                </ul>
             </div>
         </div>
 
@@ -206,7 +261,6 @@
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         const icon = themeToggle.querySelector('i');
-
         if (localStorage.getItem('theme') === 'light') {
             body.classList.add('light-mode');
             icon.classList.replace('fa-moon', 'fa-sun');
@@ -216,6 +270,17 @@
             const isLight = body.classList.contains('light-mode');
             icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.card, .pdf-btn').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+            observer.observe(el);
         });
     </script>
 
