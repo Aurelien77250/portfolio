@@ -145,7 +145,7 @@
         </div>
 
         <!-- BOUTON PROCÉDURE -->
-        <a href="Procédure___Mise_en_place_d_un_pare-feu_PFSENSE_Aurélien_GAILLARD__1_.pdf" target="_blank" class="proc-btn">
+        <a href="rocédure__Mise_en_place_d_un_pare-feu_PFSENSE_Aurélien_GAILLARD__1_.pdf" target="_blank" class="proc-btn">
             <div class="proc-btn-icon"><i class="fas fa-file-pdf"></i></div>
             <div class="proc-btn-text">
                 <div class="proc-btn-title">Procédure de mise en place du PfSense</div>
@@ -183,17 +183,15 @@
                 <li><strong>SW-PDT</strong> : Zone Poste de Travail — clients du domaine.</li>
             </ul>
 
-            <div class="img-placeholder">
-                <i class="fas fa-project-diagram"></i>
-                <span>pfsense_schema_reseau.png</span>
+            <div class="img-wrap">
+                <img src="pfsense_schema_reseau.png" alt="Schéma de l'architecture réseau">
+                <p class="img-caption">Schéma de l'architecture réseau</p>
             </div>
-            <p class="img-caption">Schéma de l'architecture réseau</p>
 
-            <div class="img-placeholder">
-                <i class="fas fa-table"></i>
-                <span>pfsense_plan_adressage.png</span>
+            <div class="img-wrap">
+                <img src="pfsense_plan_adressage.png" alt="Plan d'adressage IP">
+                <p class="img-caption">Plan d'adressage IP</p>
             </div>
-            <p class="img-caption">Plan d'adressage IP</p>
         </div>
 
         <hr class="divider">
@@ -204,11 +202,10 @@
             <h2>Configuration PfSense et règles de filtrage</h2>
             <p>La configuration initiale a consisté à assigner les interfaces du PfSense pour correspondre au plan d'adressage.</p>
 
-            <div class="img-placeholder">
-                <i class="fas fa-image"></i>
-                <span>pfsense_interfaces.png</span>
+            <div class="img-wrap">
+                <img src="pfsense_interfaces.png" alt="Interfaces assignées sur PfSense">
+                <p class="img-caption">Interfaces assignées sur PfSense</p>
             </div>
-            <p class="img-caption">Interfaces assignées sur PfSense</p>
 
             <p style="margin-top:20px;">Pour simplifier la gestion des règles, j'ai utilisé des <strong>Alias</strong> :</p>
             <ul class="bullet-list">
@@ -217,11 +214,10 @@
             </ul>
             <p>J'ai ensuite créé les règles de filtrage pour autoriser le trafic nécessaire entre le DC1, le PDT et l'extérieur.</p>
 
-            <div class="img-placeholder">
-                <i class="fas fa-image"></i>
-                <span>pfsense_regle_web.png</span>
+            <div class="img-wrap">
+                <img src="pfsense_regle_web.png" alt="Règles de filtrage Web et DNS">
+                <p class="img-caption">Règles de filtrage Web et DNS</p>
             </div>
-            <p class="img-caption">Règles de filtrage Web et DNS</p>
         </div>
 
         <hr class="divider">
@@ -232,19 +228,17 @@
             <h2>DHCP Relay et jonction de domaine</h2>
             <p>Le serveur DHCP étant situé dans la zone Serveur (réseau différent du PDT), j'ai configuré le <strong>Relais DHCP</strong> sur PfSense pour permettre aux requêtes des postes clients de traverser le routeur et d'atteindre le serveur DC1.</p>
 
-            <div class="img-placeholder">
-                <i class="fas fa-image"></i>
-                <span>pfsense_relay.png</span>
+            <div class="img-wrap">
+                <img src="pfsense_relay.png" alt="Configuration du DHCP Relay">
+                <p class="img-caption">Configuration du DHCP Relay</p>
             </div>
-            <p class="img-caption">Configuration du DHCP Relay</p>
 
             <p style="margin-top:20px;">Pour joindre le Poste de Travail au domaine Windows, j'ai identifié et ouvert les ports spécifiques à Active Directory (DNS, Kerberos, LDAP, SMB…). Ces ports ont été regroupés dans un alias nommé <strong>AjoutDomaine</strong>.</p>
 
-            <div class="img-placeholder">
-                <i class="fas fa-image"></i>
-                <span>pfsense_domaine.png</span>
+            <div class="img-wrap">
+                <img src="pfsense_domaine.png" alt="Alias AjoutDomaine — ports Active Directory">
+                <p class="img-caption">Alias AjoutDomaine — ports Active Directory</p>
             </div>
-            <p class="img-caption">Alias AjoutDomaine — ports Active Directory</p>
 
         </div>
 
@@ -276,7 +270,7 @@
                 <li><i class="fas fa-check-circle"></i> <strong>Virtualisation :</strong> Gestion de commutateurs virtuels (vSwitch) sous VMware.</li>
             </ul>
 
-            <a href="Procédure___Mise_en_place_d_un_pare-feu_PFSENSE_Aurélien_GAILLARD__1_.pdf" target="_blank" class="doc-link">
+            <a href="rocédure__Mise_en_place_d_un_pare-feu_PFSENSE_Aurélien_GAILLARD__1_.pdf" target="_blank" class="doc-link">
                 <i class="fas fa-file-pdf"></i> Voir la procédure complète (PDF)
             </a>
         </div>
