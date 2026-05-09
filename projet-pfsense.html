@@ -24,18 +24,18 @@
             --green-dim: rgba(95,186,125,0.12);
         }
         body.light-mode {
-            --bg-body: #f2f4f9;
+            --bg-body: #f5f7ff;
             --bg-card: #ffffff;
-            --bg-elevated: #eef1f8;
+            --bg-elevated: #eaf0fb;
             --text-main: #0d1020;
             --text-secondary: #3a4260;
             --text-muted: #7a82a0;
             --primary: #1a6bc4;
             --primary-dim: rgba(26,107,196,0.12);
-            --border: rgba(0,0,0,0.1);
+            --border: rgba(26,107,196,0.12);
             --border-hover: rgba(26,107,196,0.4);
             --shadow-glow: rgba(26,107,196,0.14);
-            --nav-bg: rgba(242,244,249,0.96);
+            --nav-bg: rgba(245,247,255,0.97);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -105,6 +105,14 @@
         .doc-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--primary); font-weight: 600; font-size: 0.95rem; border-bottom: 1px solid transparent; transition: all 0.2s; }
         .doc-link:hover { border-bottom-color: var(--primary); }
 
+        /* BOUTON PROCÉDURE */
+        .proc-btn { display: flex; align-items: center; gap: 18px; background: var(--bg-elevated); border: 1.5px solid var(--border-hover); border-radius: 14px; padding: 20px 24px; margin-bottom: 40px; transition: all 0.25s; }
+        .proc-btn:hover { background: var(--primary-dim); box-shadow: 0 6px 24px var(--shadow-glow); transform: translateY(-2px); }
+        .proc-btn-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(224,90,90,0.15); border: 1px solid rgba(224,90,90,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.4rem; color: #e05a5a; }
+        .proc-btn-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 3px; }
+        .proc-btn-sub { font-size: 0.85rem; color: var(--text-muted); }
+        .proc-btn-arrow { color: var(--primary); font-size: 1rem; margin-left: auto; flex-shrink: 0; }
+
         @media (max-width: 700px) {
             .page-wrap { padding: 0 20px; }
             nav { padding: 0 20px; }
@@ -135,6 +143,16 @@
                 <span class="tag grey">VMware</span>
             </div>
         </div>
+
+        <!-- BOUTON PROCÉDURE -->
+        <a href="Procédure___Mise_en_place_d_un_pare-feu_PFSENSE_Aurélien_GAILLARD__1_.pdf" target="_blank" class="proc-btn">
+            <div class="proc-btn-icon"><i class="fas fa-file-pdf"></i></div>
+            <div class="proc-btn-text">
+                <div class="proc-btn-title">Procédure de mise en place du PfSense</div>
+                <div class="proc-btn-sub">Document complet — configuration, règles et captures d'écran</div>
+            </div>
+            <i class="fas fa-download proc-btn-arrow"></i>
+        </a>
 
         <hr class="divider" style="margin-top:0;">
 
