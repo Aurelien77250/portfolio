@@ -127,6 +127,15 @@
         .skills-list li:last-child { border-bottom: none; }
         .skills-list li i { color: var(--primary); margin-top: 4px; flex-shrink: 0; }
 
+        /* DOC BTNS */
+        .doc-btn { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 260px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; transition: all 0.25s; cursor: pointer; }
+        .doc-btn:hover { border-color: var(--border-hover); box-shadow: 0 4px 20px var(--shadow-glow); transform: translateY(-2px); }
+        .doc-btn-icon { width: 44px; height: 44px; border-radius: 10px; border: 1px solid; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
+        .doc-btn-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text-main); margin-bottom: 2px; }
+        .doc-btn-sub { font-size: 0.82rem; color: var(--text-muted); }
+        .doc-btn-arrow { color: var(--text-muted); font-size: 0.85rem; margin-left: auto; flex-shrink: 0; }
+        .doc-btn:hover .doc-btn-arrow { color: var(--primary); }
+
         @media (max-width: 700px) {
             .page-wrap { padding: 0 20px; }
             nav { padding: 0 20px; }
@@ -162,6 +171,26 @@
                 <span class="tag grey">TPE / Caisse</span>
                 <span class="tag green">Ouverture boutique</span>
             </div>
+        </div>
+
+        <!-- BOUTONS DOCS -->
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:48px;">
+            <a href="procedure_parametrage_tpe.pdf" target="_blank" class="doc-btn">
+                <div class="doc-btn-icon" style="background:var(--primary-dim); border-color:rgba(78,144,214,0.2);"><i class="fas fa-file-alt" style="color:var(--primary);"></i></div>
+                <div>
+                    <div class="doc-btn-title">Procédure de paramétrage TPE</div>
+                    <div class="doc-btn-sub">Guide de configuration des terminaux Verifone</div>
+                </div>
+                <i class="fas fa-download doc-btn-arrow"></i>
+            </a>
+            <a href="checklist_installation_boutique.pdf" target="_blank" class="doc-btn">
+                <div class="doc-btn-icon" style="background:rgba(95,186,125,0.1); border-color:rgba(95,186,125,0.25);"><i class="fas fa-clipboard-check" style="color:#5fba7d;"></i></div>
+                <div>
+                    <div class="doc-btn-title">Checklist installation boutique</div>
+                    <div class="doc-btn-sub">Liste des tâches à réaliser lors de l'intervention</div>
+                </div>
+                <i class="fas fa-download doc-btn-arrow"></i>
+            </a>
         </div>
 
         <hr class="divider" style="margin-top:0;">
