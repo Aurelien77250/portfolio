@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet GLPI Formation - Aurélien GAILLARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #252836; --bg-card: #2f3447; --bg-card-hover: #363c52;
+            --bg-elevated: #323749; --text-main: #f8f9fd; --text-secondary: #c2c8dc;
+            --text-muted: #8891ae; --primary: #4e90d6; --primary-dim: rgba(78,144,214,0.14);
+            --primary-bright: #6faee8; --accent-dim: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.08); --border-hover: rgba(78,144,214,0.45);
+            --shadow-glow: rgba(78,144,214,0.18); --nav-bg: rgba(37,40,54,0.95);
+            --green: #5fba7d; --green-dim: rgba(95,186,125,0.12); --green-border: rgba(95,186,125,0.25);
+        }
+        body.light-mode {
+            --bg-body: #f5f7ff; --bg-card: #ffffff; --bg-card-hover: #f7f9fc;
+            --bg-elevated: #eaf0fb; --text-main: #0d1020; --text-secondary: #3a4260;
+            --text-muted: #7a82a0; --primary: #1a6bc4; --primary-dim: rgba(26,107,196,0.12);
+            --primary-bright: #1a6bc4; --accent-dim: rgba(13,16,32,0.05);
+            --border: rgba(26,107,196,0.12); --border-hover: rgba(26,107,196,0.4);
+            --shadow-glow: rgba(26,107,196,0.14); --nav-bg: rgba(245,247,255,0.97);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.8; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
+        a { text-decoration: none; color: inherit; transition: all 0.25s; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 600; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
+
+        header { background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .nav-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+        .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+        .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
+        .page-wrap { max-width: 860px; margin: auto; padding: 0 32px; }
+
+        .page-hero { padding-top: 108px; padding-bottom: 48px; }
+        .hero-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .hero-label::before { content: ''; width: 24px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .page-hero h1 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-main); line-height: 1.3; margin-bottom: 20px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.22); padding: 4px 12px; border-radius: 20px; }
+        .tag.grey { color: var(--text-muted); background: var(--accent-dim); border-color: var(--border); }
+        .tag.green { color: var(--green); background: var(--green-dim); border-color: var(--green-border); }
+
+        .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+        /* PDF BTNS */
+        .pdf-btns { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+        .pdf-btn { display: flex; align-items: center; gap: 18px; background: var(--bg-card); border: 1.5px solid var(--border-hover); border-radius: 14px; padding: 20px 24px; transition: all 0.25s; }
+        .pdf-btn:hover { background: var(--primary-dim); box-shadow: 0 6px 24px var(--shadow-glow); transform: translateY(-2px); }
+        .pdf-btn-icon { width: 50px; height: 50px; border-radius: 11px; background: rgba(224,90,90,0.15); border: 1px solid rgba(224,90,90,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem; color: #e05a5a; }
+        .pdf-btn-body { flex-grow: 1; }
+        .pdf-btn-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.97rem; color: var(--text-main); margin-bottom: 2px; }
+        .pdf-btn-sub { font-size: 0.82rem; color: var(--text-muted); }
+        .pdf-btn-arrow { color: var(--primary); font-size: 1rem; flex-shrink: 0; }
+
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; margin-bottom: 20px; transition: border-color 0.3s, box-shadow 0.3s; }
+        .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
+        .card-heading { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--text-main); display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading i { color: var(--primary); }
+        .card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 14px; }
+        .card p:last-child { margin-bottom: 0; }
+
+        /* PRÉSENTATION OUTILS */
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+        .tool-block { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 22px; transition: all 0.25s; }
+        .tool-block:hover { border-color: var(--border-hover); }
+        .tool-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .tool-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tool-icon i { color: var(--primary); font-size: 1.1rem; }
+        .tool-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main); }
+        .tool-block p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.75; margin: 0; }
+
+        /* CONTEXTE */
+        .context-box { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--primary); border-radius: 10px; padding: 20px 24px; }
+        .context-box p { color: var(--text-secondary); font-size: 0.97rem; margin: 0; line-height: 1.85; }
+
+        /* BULLET LIST */
+        .bullet-list { margin-top: 12px; }
+        .bullet-list li { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.97rem; line-height: 1.75; }
+        .bullet-list li:last-child { border-bottom: none; }
+        .bullet-list li i { color: var(--primary); font-size: 0.75rem; margin-top: 6px; flex-shrink: 0; }
+
+        /* PHASES */
+        .phases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+        .phase { background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 12px; padding: 20px 22px; transition: all 0.25s; }
+        .phase:hover { border-color: var(--border-hover); }
+        .phase-num { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.25); padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+        .phase-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text-main); margin-bottom: 8px; }
+        .phase p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; margin: 0; }
+
+        /* BADGE BINÔME */
+        .binome-box { display: flex; align-items: center; gap: 14px; background: var(--green-dim); border: 1px solid var(--green-border); border-radius: 10px; padding: 16px 20px; margin-top: 20px; }
+        .binome-box i { color: var(--green); font-size: 1.2rem; flex-shrink: 0; }
+        .binome-box p { color: var(--text-secondary); font-size: 0.95rem; margin: 0; line-height: 1.7; }
+
+        /* COMPÉTENCES */
+        .skills-list li { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; }
+        .skills-list li:last-child { border-bottom: none; }
+        .skills-list li i { color: var(--primary); margin-top: 4px; flex-shrink: 0; }
+
+        @media (max-width: 700px) {
+            .page-wrap { padding: 0 20px; }
+            nav { padding: 0 20px; }
+            .card { padding: 24px; }
+            .tools-grid, .phases-grid { grid-template-columns: 1fr; }
+            .nav-label { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
+            <div class="nav-right">
+                <span class="nav-label">Formation · BTS SIO SISR</span>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-wrap">
+
+        <div class="page-hero">
+            <div class="hero-label">Formation · BTS SIO SISR — Projet Binôme</div>
+            <h1>Installation d'un serveur GLPI sur Debian</h1>
+            <div class="tags">
+                <span class="tag">Debian</span>
+                <span class="tag">GLPI</span>
+                <span class="tag">MariaDB</span>
+                <span class="tag">Apache2</span>
+                <span class="tag grey">PHP</span>
+                <span class="tag green">Projet en binôme</span>
+            </div>
+        </div>
+
+        <!-- BOUTONS PROCÉDURES -->
+        <div class="pdf-btns">
+            <a href="procedure_installation_glpi.pdf" target="_blank" class="pdf-btn">
+                <div class="pdf-btn-icon"><i class="fas fa-file-pdf"></i></div>
+                <div class="pdf-btn-body">
+                    <div class="pdf-btn-title">Procédure 1 — Installation du serveur GLPI sur Debian</div>
+                    <div class="pdf-btn-sub">Installation pile LAMP, configuration Apache, MariaDB et déploiement GLPI</div>
+                </div>
+                <i class="fas fa-download pdf-btn-arrow"></i>
+            </a>
+            <a href="procedure_configuration_glpi.pdf" target="_blank" class="pdf-btn">
+                <div class="pdf-btn-icon"><i class="fas fa-file-pdf"></i></div>
+                <div class="pdf-btn-body">
+                    <div class="pdf-btn-title">Procédure 2 — Configuration et prise en main de GLPI</div>
+                    <div class="pdf-btn-sub">Paramétrage des profils, inventaire automatisé et gestion des tickets</div>
+                </div>
+                <i class="fas fa-download pdf-btn-arrow"></i>
+            </a>
+        </div>
+
+        <hr class="divider" style="margin-top:0;">
+
+        <!-- PRÉSENTATION -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-info-circle"></i> Présentation des outils</div>
+
+            <div class="tools-grid">
+                <div class="tool-block">
+                    <div class="tool-header">
+                        <div class="tool-icon"><i class="fas fa-ticket-alt"></i></div>
+                        <div class="tool-name">GLPI</div>
+                    </div>
+                    <p><strong>GLPI</strong> (Gestionnaire Libre de Parc Informatique) est une solution open source de gestion de parc informatique et de Helpdesk. Il permet de centraliser l'inventaire du matériel et des logiciels, de gérer les tickets d'incidents et de demandes (conforme ITIL), ainsi que de suivre les contrats, licences et garanties. C'est un outil de référence dans les entreprises et administrations françaises.</p>
+                </div>
+                <div class="tool-block">
+                    <div class="tool-header">
+                        <div class="tool-icon"><i class="fab fa-linux"></i></div>
+                        <div class="tool-name">Debian</div>
+                    </div>
+                    <p><strong>Debian</strong> est une distribution Linux reconnue pour sa stabilité, sa sécurité et sa fiabilité en environnement serveur. Elle constitue la base idéale pour héberger des applications critiques comme GLPI : cycle de maintenance long, mises à jour de sécurité régulières, grande communauté et compatibilité avec la pile LAMP (Linux, Apache, MariaDB, PHP).</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- CONTEXTE -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-question-circle"></i> Pourquoi mettre en place GLPI ?</div>
+
+            <p>Dans un environnement informatique en croissance, la gestion manuelle du parc (via tableurs Excel) devient rapidement inefficace et source d'erreurs. L'absence d'outil dédié génère plusieurs problèmes concrets :</p>
+
+            <ul class="bullet-list">
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Méconnaissance du parc</strong> — pas de vision centralisée des équipements, de leurs versions logicielles ni de leur obsolescence.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Perte de temps</strong> — les tickets d'incidents traités par mail ou téléphone ne sont pas tracés ni priorisés.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Manque de visibilité financière</strong> — aucun suivi des contrats, garanties ou licences logicielles.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Absence d'historique</strong> — impossibilité de consulter les interventions passées sur un équipement.</div></li>
+            </ul>
+
+            <p style="margin-top:16px;">GLPI répond à l'ensemble de ces besoins en proposant une solution unifiée : <strong>inventaire automatisé</strong> via un agent déployé sur les postes, <strong>Helpdesk</strong> conforme ITIL, suivi financier et base de connaissances.</p>
+
+            <div class="binome-box">
+                <i class="fas fa-users"></i>
+                <p>Ce projet a été réalisé <strong>en binôme</strong> dans le cadre de la formation BTS SIO. Chaque étape a été partagée : l'un configurait le système pendant que l'autre documentait et vérifiait, simulant ainsi un vrai contexte de travail en équipe technique.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- RÉALISATION -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-list-ol"></i> Étapes de réalisation</div>
+            <p>Le projet a été structuré en 4 phases progressives, de l'installation du serveur Debian jusqu'à la mise en production du Helpdesk.</p>
+
+            <div class="phases-grid">
+                <div class="phase">
+                    <div class="phase-num">Phase 1</div>
+                    <div class="phase-title">Installation du serveur Debian</div>
+                    <p>Déploiement d'une VM Debian, sécurisation SSH, configuration réseau et installation de la pile LAMP (Apache2, MariaDB, PHP et les extensions requises).</p>
+                </div>
+                <div class="phase">
+                    <div class="phase-num">Phase 2</div>
+                    <div class="phase-title">Déploiement de GLPI</div>
+                    <p>Téléchargement de la dernière version stable de GLPI, création de la base de données MariaDB dédiée, configuration du VirtualHost Apache et finalisation via l'assistant web.</p>
+                </div>
+                <div class="phase">
+                    <div class="phase-num">Phase 3</div>
+                    <div class="phase-title">Inventaire automatisé</div>
+                    <p>Installation du plugin GLPI Inventory et déploiement de l'agent sur les postes clients Windows et Linux pour automatiser la remontée des données matérielles et logicielles.</p>
+                </div>
+                <div class="phase">
+                    <div class="phase-num">Phase 4</div>
+                    <div class="phase-title">Helpdesk & Profils</div>
+                    <p>Création des profils utilisateurs (Admin, Technicien, Utilisateur), configuration des notifications par e-mail, catégorisation des tickets et tests de bout en bout.</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- COMPÉTENCES -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-star"></i> Compétences acquises</div>
+            <ul class="skills-list">
+                <li><i class="fas fa-check-circle"></i><div><strong>Administration Linux (Debian) :</strong>&nbsp; Installation, configuration système, gestion des paquets et sécurisation SSH.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Pile LAMP :</strong>&nbsp; Déploiement et configuration d'Apache2, MariaDB et PHP en environnement de production.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>GLPI :</strong>&nbsp; Déploiement, configuration, gestion des profils et des droits, inventaire automatisé.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>ITIL / Helpdesk :</strong>&nbsp; Mise en place d'un processus de gestion des incidents et des demandes.</div></li>
+                <li><i class="fas fa-check-circle"></i><div><strong>Travail en équipe :</strong>&nbsp; Coordination avec un camarade, répartition des tâches et documentation commune.</div></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.card, .phase, .tool-block, .pdf-btn').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(14px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
