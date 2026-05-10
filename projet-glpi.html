@@ -5,144 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet GLPI - Aurélien GAILLARD</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #0a0c10;
-            --bg-card: #111318;
-            --bg-card-hover: #161a22;
-            --text-main: #e8eaf0;
-            --text-secondary: #7a8099;
-            --text-muted: #4a5068;
-            --primary: #c9a96e;
-            --primary-dim: rgba(201,169,110,0.12);
-            --secondary: #4e90d6;
-            --secondary-dim: rgba(78,144,214,0.10);
-            --accent-soft: rgba(201,169,110,0.08);
-            --border: rgba(255,255,255,0.07);
-            --border-hover: rgba(201,169,110,0.3);
-            --shadow-glow: rgba(201,169,110,0.15);
-            --nav-bg: rgba(10,12,16,0.92);
+            --bg-body: #252836;
+            --bg-card: #2f3447;
+            --bg-card-hover: #363c52;
+            --bg-elevated: #323749;
+            --text-main: #f8f9fd;
+            --text-secondary: #c2c8dc;
+            --text-muted: #8891ae;
+            --primary: #4e90d6;
+            --primary-dim: rgba(78,144,214,0.14);
+            --primary-bright: #6faee8;
+            --accent-dim: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(78,144,214,0.45);
+            --shadow-glow: rgba(78,144,214,0.18);
+            --nav-bg: rgba(37,40,54,0.95);
         }
         body.light-mode {
-            --bg-body: #f0efe9;
+            --bg-body: #f5f7ff;
             --bg-card: #ffffff;
-            --bg-card-hover: #faf9f6;
-            --text-main: #0e1018;
-            --text-secondary: #38404e;
-            --text-muted: #767c90;
-            --primary: #7a5520;
-            --primary-dim: rgba(122,85,32,0.12);
-            --secondary: #1a539a;
-            --secondary-dim: rgba(26,83,154,0.08);
-            --accent-soft: rgba(122,85,32,0.08);
-            --border: rgba(0,0,0,0.12);
-            --border-hover: rgba(122,85,32,0.45);
-            --shadow-glow: rgba(122,85,32,0.12);
-            --nav-bg: rgba(240,239,233,0.97);
+            --bg-card-hover: #f7f9fc;
+            --bg-elevated: #eaf0fb;
+            --text-main: #0d1020;
+            --text-secondary: #3a4260;
+            --text-muted: #7a82a0;
+            --primary: #1a6bc4;
+            --primary-dim: rgba(26,107,196,0.12);
+            --primary-bright: #1a6bc4;
+            --accent-dim: rgba(13,16,32,0.05);
+            --border: rgba(26,107,196,0.12);
+            --border-hover: rgba(26,107,196,0.4);
+            --shadow-glow: rgba(26,107,196,0.14);
+            --nav-bg: rgba(245,247,255,0.97);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.8; color: var(--text-main); background-color: var(--bg-body); transition: background-color 0.4s, color 0.4s; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
         a { text-decoration: none; color: inherit; transition: all 0.25s; }
-        ul { list-style: none; }
-        strong { font-weight: 500; }
+        ul { list-style: none; padding: 0; }
+        strong { font-weight: 600; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
         /* NAV */
-        header { background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; transition: background 0.4s; }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: auto; padding: 0 32px; height: 68px; }
-        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.05em; border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
+        header { background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: auto; padding: 0 32px; height: 68px; }
+        .back-btn { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; transition: all 0.25s; }
         .back-btn:hover { border-color: var(--border-hover); color: var(--primary); }
-        .back-btn i { font-size: 0.8rem; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
-        .nav-label { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .nav-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
         .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
         .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
 
+        .page-wrap { max-width: 860px; margin: auto; padding: 0 32px; }
+
         /* HERO */
-        .page-hero { padding: 120px 32px 60px; max-width: 960px; margin: auto; }
-        .page-label-top { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 20px; }
-        .page-label-top::before { content: ''; width: 28px; height: 1px; background: var(--primary); flex-shrink: 0; }
-        .page-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: #ffffff; letter-spacing: -0.01em; line-height: 1.6; margin-bottom: 20px; max-width: 700px; }
+        .page-hero { padding-top: 108px; padding-bottom: 48px; }
+        .hero-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .hero-label::before { content: ''; width: 24px; height: 2px; background: var(--primary); border-radius: 1px; }
+        .page-hero h1 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-main); line-height: 1.3; margin-bottom: 20px; }
         .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 4px 12px; border-radius: 20px; }
-        .tag.blue { color: var(--secondary); background: var(--secondary-dim); border-color: rgba(78,144,214,0.2); }
+        .tag { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.22); padding: 4px 12px; border-radius: 20px; }
+        .tag.grey { color: var(--text-muted); background: var(--accent-dim); border-color: var(--border); }
+        .tag.green { color: #5fba7d; background: rgba(95,186,125,0.1); border-color: rgba(95,186,125,0.25); }
 
-        /* CONTENU */
-        .container { max-width: 960px; margin: auto; padding: 0 32px; }
+        .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
 
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 40px; margin-bottom: 24px; transition: border-color 0.3s, box-shadow 0.3s, background 0.4s; }
+        /* PDF BTN */
+        .pdf-btn { display: flex; align-items: center; gap: 18px; background: var(--bg-card); border: 1.5px solid var(--border-hover); border-radius: 14px; padding: 22px 26px; margin-bottom: 40px; transition: all 0.25s; }
+        .pdf-btn:hover { background: var(--primary-dim); box-shadow: 0 6px 24px var(--shadow-glow); transform: translateY(-2px); }
+        .pdf-btn-icon { width: 56px; height: 56px; border-radius: 12px; background: rgba(224,90,90,0.15); border: 1px solid rgba(224,90,90,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.5rem; color: #e05a5a; }
+        .pdf-btn-body { flex-grow: 1; }
+        .pdf-btn-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main); margin-bottom: 3px; }
+        .pdf-btn-sub { font-size: 0.85rem; color: var(--text-muted); }
+        .pdf-btn-arrow { color: var(--primary); font-size: 1.1rem; flex-shrink: 0; }
+
+        /* CARD */
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; margin-bottom: 20px; transition: border-color 0.3s, box-shadow 0.3s; }
         .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px var(--shadow-glow); }
-        .card-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .card-heading { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--text-main); display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
         .card-heading i { color: var(--primary); }
-        .card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 14px; }
+        .card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; margin-bottom: 14px; }
         .card p:last-child { margin-bottom: 0; }
 
-        /* Info grid */
-        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
-        .info-item { background: var(--bg-card); padding: 18px 20px; }
-        .info-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
-        .info-value { font-size: 0.9rem; color: var(--text-main); font-weight: 400; }
+        /* INFO GRID */
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+        .info-item { background: var(--bg-elevated); padding: 16px 18px; }
+        .info-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 5px; }
+        .info-value { font-size: 0.92rem; color: var(--text-main); }
 
-        /* Contexte box */
-        .context-box { background: var(--secondary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--secondary); border-radius: 10px; padding: 22px 24px; margin-bottom: 0; }
-        .context-box p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
+        /* LOGOS */
+        .logos-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+        .logo-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .logo-box { width: 88px; height: 88px; background: #fff; border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 10px; overflow: hidden; }
+        .logo-box img { width: 100%; height: 100%; object-fit: contain; }
+        .logo-lbl { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); }
 
-        /* Liste à puces */
-        .detail-list { padding: 0; margin-top: 12px; }
-        .detail-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
-        .detail-list li:last-child { border-bottom: none; }
-        .detail-list li i { color: var(--primary); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; width: 14px; }
+        /* CONTEXT BOX */
+        .context-box { background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.2); border-left: 3px solid var(--primary); border-radius: 10px; padding: 20px 24px; }
+        .context-box p { color: var(--text-secondary); font-size: 0.97rem; margin: 0; }
 
-        /* Stack technique */
-        .stack-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-        .stack-pill { display: flex; align-items: center; gap: 7px; background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 0.85rem; color: var(--text-secondary); transition: all 0.25s; }
-        .stack-pill:hover { border-color: var(--border-hover); color: var(--text-main); }
-        .stack-pill i { color: var(--primary); font-size: 0.8rem; }
+        /* LISTE */
+        .bullet-list { margin-top: 12px; }
+        .bullet-list li { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
+        .bullet-list li:last-child { border-bottom: none; }
+        .bullet-list li i { color: var(--primary); font-size: 0.75rem; margin-top: 6px; flex-shrink: 0; }
 
-        /* Image */
-        .img-wrap { margin-top: 20px; }
-        .img-wrap img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block; }
-        .img-caption { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; letter-spacing: 0.04em; }
+        /* STACK PILLS */
+        .stack-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+        .stack-pill { display: flex; align-items: center; gap: 8px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 0.88rem; color: var(--text-secondary); }
+        .stack-pill i { color: var(--primary); }
 
-        /* Phases */
-        .phases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 8px; }
-        .phase-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: all 0.25s; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden; }
-        .phase-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--primary); border-radius: 12px 0 0 12px; }
-        .phase-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow-glow); }
-        .phase-num { font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(201,169,110,0.2); padding: 3px 10px; border-radius: 20px; display: inline-block; align-self: flex-start; }
-        .phase-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text-main); }
-        .phase-card p { color: var(--text-secondary); font-size: 0.88rem; margin: 0; }
-        .phase-list { padding: 0; }
-        .phase-list li { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; color: var(--text-secondary); font-size: 0.85rem; border-bottom: 1px solid var(--border); }
+        /* PLAN D'ADRESSAGE */
+        .addr-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.88rem; }
+        .addr-table th { background: var(--primary-dim); color: var(--primary); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.07em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border-hover); }
+        .addr-table td { padding: 10px 14px; color: var(--text-secondary); border-bottom: 1px solid var(--border); font-family: monospace; font-size: 0.9rem; }
+        .addr-table tr:last-child td { border-bottom: none; }
+        .addr-table tr:hover td { background: rgba(78,144,214,0.05); }
+        .eq-name { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--text-main); font-size: 0.88rem; }
+
+        /* IMAGE */
+        .img-wrap { margin: 20px 0; }
+        .img-wrap img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); display: block; }
+        .img-caption { font-size: 0.82rem; color: var(--text-muted); margin-top: 8px; text-align: center; font-style: italic; }
+
+        .schema-block { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-top: 20px; }
+        .schema-label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--primary); display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+
+        /* PHASES */
+        .phases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+        .phase-card { background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 12px; padding: 24px; transition: all 0.25s; }
+        .phase-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow-glow); }
+        .phase-num { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); background: var(--primary-dim); border: 1px solid rgba(78,144,214,0.25); padding: 3px 11px; border-radius: 20px; margin-bottom: 10px; }
+        .phase-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.97rem; color: var(--text-main); margin-bottom: 8px; }
+        .phase-card p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 10px; }
+        .phase-list li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.88rem; }
         .phase-list li:last-child { border-bottom: none; }
         .phase-list li i { color: var(--primary); font-size: 0.65rem; margin-top: 6px; flex-shrink: 0; }
-        .phase-img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); margin-top: 4px; }
+        .phase-img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); margin-top: 14px; display: block; }
 
-        /* Bilan */
-        .bilan-card { background: linear-gradient(135deg, var(--primary-dim), rgba(78,144,214,0.08)); border: 1px solid var(--border-hover); border-radius: 14px; padding: 40px; margin-bottom: 24px; }
-        .bilan-card .card-heading { border-bottom-color: rgba(201,169,110,0.2); }
-        .bilan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 20px; }
-        .bilan-item { background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 12px; }
-        body.light-mode .bilan-item { background: rgba(255,255,255,0.5); }
-        .bilan-item i { color: var(--primary); font-size: 1.1rem; flex-shrink: 0; width: 20px; text-align: center; }
-        .bilan-item span { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; }
+        /* COMPÉTENCES */
+        .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+        .comp-item { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; }
+        .comp-item i { color: var(--primary); margin-top: 2px; flex-shrink: 0; }
+        .comp-item span { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5; }
 
-        .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-
-        @media (max-width: 768px) {
-            .page-hero { padding: 100px 20px 40px; }
-            .container { padding: 0 20px; }
+        @media (max-width: 700px) {
+            .page-wrap { padding: 0 20px; }
             nav { padding: 0 20px; }
             .card { padding: 24px; }
+            .phases-grid, .info-grid, .comp-grid { grid-template-columns: 1fr; }
             .nav-label { display: none; }
-            .info-grid { grid-template-columns: 1fr; }
-            .phases-grid { grid-template-columns: 1fr; }
-            .bilan-grid { grid-template-columns: 1fr 1fr; }
+            .addr-table { font-size: 0.78rem; }
+            .addr-table th, .addr-table td { padding: 8px 10px; }
         }
     </style>
 </head>
@@ -152,167 +172,267 @@
         <nav>
             <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au portfolio</a>
             <div class="nav-right">
-                <span class="nav-label">Projet E6</span>
-                <button class="theme-toggle" id="themeToggle" title="Changer de thème"><i class="fas fa-moon"></i></button>
+                <span class="nav-label">Projet E6 · BTS SIO SISR</span>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
             </div>
         </nav>
     </header>
 
-    <!-- HERO -->
-    <div class="page-hero">
-        <div class="page-label-top">Projet E6 · BTS SIO SISR</div>
-        <h1>Mise en place d'un serveur GLPI sur Debian 11</h1>
-        <div class="tags">
-            <span class="tag">Debian 11</span>
-            <span class="tag">GLPI 10</span>
-            <span class="tag">MariaDB</span>
-            <span class="tag">Apache2</span>
-            <span class="tag blue">ITSM · Helpdesk</span>
+    <div class="page-wrap">
+
+        <!-- HERO -->
+        <div class="page-hero">
+            <div class="hero-label">Projet E6 · BTS SIO SISR — Réalisation N°1</div>
+            <h1>Déploiement de GLPI sur Debian, intégration LDAP/Active Directory et automatisation de l'inventaire par GPO</h1>
+            <div class="tags">
+                <span class="tag">Debian 12</span>
+                <span class="tag">GLPI 10</span>
+                <span class="tag">MariaDB</span>
+                <span class="tag">Apache2</span>
+                <span class="tag">LDAP</span>
+                <span class="tag grey">Active Directory</span>
+                <span class="tag green">ITSM · Helpdesk</span>
+            </div>
         </div>
-    </div>
 
-    <div class="container">
+        <!-- BOUTON FICHE PDF -->
+        <a href="fiche_projet_e6_glpi.pdf" target="_blank" class="pdf-btn">
+            <div class="pdf-btn-icon"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-btn-body">
+                <div class="pdf-btn-title">Fiche E6 — Réalisation N°1 · GLPI</div>
+                <div class="pdf-btn-sub">Document officiel de présentation du projet pour le jury BTS SIO</div>
+            </div>
+            <i class="fas fa-download pdf-btn-arrow"></i>
+        </a>
 
-        <!-- INFOS + CONTEXTE -->
+        <hr class="divider" style="margin-top:0;">
+
+        <!-- PRÉSENTATION -->
         <div class="card">
             <div class="card-heading"><i class="fas fa-info-circle"></i> Présentation du projet</div>
 
+            <div class="logos-row">
+                <div class="logo-item">
+                    <div class="logo-box"><img src="logo_glpi.png" alt="Logo GLPI"></div>
+                    <span class="logo-lbl">GLPI 10</span>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-box"><img src="logo_debian.png" alt="Logo Debian"></div>
+                    <span class="logo-lbl">Debian 12</span>
+                </div>
+            </div>
+
             <div class="info-grid">
                 <div class="info-item">
-                    <div class="info-label"><i class="fas fa-tag"></i> Type</div>
-                    <div class="info-value">Administration Système & ITSM</div>
+                    <div class="info-label">Période</div>
+                    <div class="info-value">Janvier – Mars 2026</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label"><i class="fas fa-user-tie"></i> Rôle</div>
-                    <div class="info-value">Admin Système / Support</div>
+                    <div class="info-label">Lieu</div>
+                    <div class="info-value">Vincennes (IEF2I)</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label"><i class="fas fa-code"></i> Stack</div>
-                    <div class="info-value">Debian 11 · GLPI 10 · MariaDB · Apache2</div>
+                    <div class="info-label">Modalité</div>
+                    <div class="info-value">En équipe — avec Sofiane ENNAHAL</div>
                 </div>
             </div>
 
             <div class="context-box">
-                <p><strong style="color: var(--secondary);">Contexte & Enjeux —</strong> Dans un environnement informatique où le nombre de postes et de licences croît, la gestion manuelle via Excel devient source d'erreurs. Ce projet est né du besoin de centraliser l'information. L'absence d'outil dédié entraînait une méconnaissance du parc (obsolescence), une perte de temps dans le traitement des incidents et un manque de visibilité budgétaire.</p>
+                <p><strong style="color:var(--primary);">Contexte —</strong> L'entreprise F2I dispose d'un parc informatique composé de postes Windows joints au domaine Active Directory. Face au besoin d'automatiser l'inventaire des équipements et de centraliser la gestion des assets, la direction informatique a souhaité déployer un outil GPAO. En tant que technicien système et réseau, j'ai déployé GLPI sur un serveur Debian, intégré l'annuaire Active Directory via LDAP et automatisé le déploiement de l'agent GLPI par GPO.</p>
             </div>
         </div>
+
+        <hr class="divider">
 
         <!-- OBJECTIFS -->
         <div class="card">
-            <div class="card-heading"><i class="fas fa-bullseye"></i> Objectifs du Projet</div>
-            <p>L'objectif principal était de déployer <strong>GLPI</strong> (Gestionnaire Libre de Parc Informatique) pour répondre à quatre besoins essentiels :</p>
-            <ul class="detail-list">
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Inventaire Automatisé</strong> — remonter automatiquement le matériel et les logiciels installés sur le parc.</div></li>
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Service Desk (Helpdesk)</strong> — gérer les incidents et demandes des utilisateurs en conformité ITIL.</div></li>
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Gestion Financière</strong> — suivre les contrats, garanties et cycles de vie du matériel.</div></li>
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Knowledge Base</strong> — créer une FAQ utilisateurs et une documentation technique interne.</div></li>
+            <div class="card-heading"><i class="fas fa-bullseye"></i> Objectifs & Résultats attendus</div>
+            <ul class="bullet-list">
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Inventaire automatisé et exhaustif</strong> — remonter automatiquement le matériel et les logiciels sur le parc.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Service Desk (Helpdesk)</strong> — structurer le support via un système de tickets conforme ITIL.</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Authentification unifiée</strong> — simplifier la connexion via l'annuaire Active Directory existant (LDAP).</div></li>
+                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Isolation & sécurité</strong> — protéger le serveur GLPI en l'isolant du reste du réseau via pfSense.</div></li>
             </ul>
         </div>
+
+        <hr class="divider">
 
         <!-- ARCHITECTURE -->
         <div class="card">
-            <div class="card-heading"><i class="fas fa-sitemap"></i> Architecture Technique</div>
-            <p>Déploiement sur serveur dédié pour garantir stabilité et sécurité de la solution :</p>
+            <div class="card-heading"><i class="fas fa-sitemap"></i> Architecture & Plan d'adressage</div>
+            <p>L'infrastructure est hébergée sur l'hyperviseur <strong>Proxmox VE</strong> de l'école (accessible en local : <code style="background:var(--bg-elevated);padding:2px 6px;border-radius:4px;font-size:0.85rem;">10.100.3.252:8006</code>). Le pare-feu pfSense sépare deux zones : <strong>LAN SRV</strong> (serveurs) et <strong>LAN PDT</strong> (postes de travail).</p>
 
             <div class="stack-pills">
-                <div class="stack-pill"><i class="fab fa-linux"></i> Debian 11 (Stable)</div>
-                <div class="stack-pill"><i class="fas fa-server"></i> Apache2 + PHP</div>
-                <div class="stack-pill"><i class="fas fa-database"></i> MariaDB</div>
-                <div class="stack-pill"><i class="fas fa-ticket-alt"></i> GLPI Agent</div>
+                <div class="stack-pill"><i class="fas fa-server"></i> Proxmox VE</div>
+                <div class="stack-pill"><i class="fas fa-shield-alt"></i> pfSense</div>
+                <div class="stack-pill"><i class="fab fa-windows"></i> Windows Server (DC-01 / DC-02)</div>
+                <div class="stack-pill"><i class="fab fa-linux"></i> SRV GLPI Debian</div>
             </div>
 
-            <ul class="detail-list" style="margin-top: 20px;">
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">OS :</strong> Debian (Stable) — choisi pour sa robustesse et sa stabilité en environnement serveur.</div></li>
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Web :</strong> Apache2 + PHP — requis pour faire tourner l'interface GLPI.</div></li>
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Data :</strong> MariaDB — base de données relationnelle pour le stockage de l'inventaire et des tickets.</div></li>
-                <li><i class="fas fa-angle-right"></i><div><strong style="color:var(--text-main);">Agent :</strong> GLPI Agent déployé sur les postes clients Windows et Linux pour la remontée d'inventaire.</div></li>
-            </ul>
+            <table class="addr-table">
+                <thead>
+                    <tr>
+                        <th>Équipement</th>
+                        <th>Interface</th>
+                        <th>Adresse IP</th>
+                        <th>Masque</th>
+                        <th>Passerelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="eq-name" rowspan="3">Firewall (pfSense)</td>
+                        <td>eth0 (WAN)</td>
+                        <td>192.168.15.105</td>
+                        <td>255.255.255.0</td>
+                        <td>192.168.15.254</td>
+                    </tr>
+                    <tr>
+                        <td>vmbr10096 (LAN SRV)</td>
+                        <td>192.168.2.30</td>
+                        <td>255.255.255.224</td>
+                        <td>FAI</td>
+                    </tr>
+                    <tr>
+                        <td>vmbr20096 (LAN PDT)</td>
+                        <td>192.168.1.254</td>
+                        <td>255.255.255.0</td>
+                        <td>FAI</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-name">DC1 (AD Principal)</td>
+                        <td>vmbr10096</td>
+                        <td>192.168.2.2</td>
+                        <td>255.255.255.224</td>
+                        <td>192.168.2.30</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-name">DC2 (AD Backup)</td>
+                        <td>vmbr10096</td>
+                        <td>192.168.2.4</td>
+                        <td>255.255.255.224</td>
+                        <td>192.168.2.30</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-name">SRV IIS</td>
+                        <td>vmbr10096</td>
+                        <td>192.168.2.5</td>
+                        <td>255.255.255.224</td>
+                        <td>192.168.2.30</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-name">SRV Debian GLPI</td>
+                        <td>vmbr10096</td>
+                        <td>192.168.2.3</td>
+                        <td>255.255.255.224</td>
+                        <td>192.168.2.30</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-name">Poste de Travail (PDT)</td>
+                        <td>vmbr20096</td>
+                        <td>DHCP (192.168.1.0/24)</td>
+                        <td>255.255.255.0</td>
+                        <td>192.168.1.254</td>
+                    </tr>
+                    <tr>
+                        <td class="eq-name">Poste de Test (WAN)</td>
+                        <td>—</td>
+                        <td>192.168.15.240</td>
+                        <td>255.255.255.0</td>
+                        <td>192.168.15.254</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <div class="img-wrap">
-                <img src="glpi_archi.png" alt="Schéma architecture GLPI">
-                <p class="img-caption">Figure 1 : Architecture réseau — Serveur et Agents</p>
+            <div class="schema-block" style="margin-top:24px;">
+                <div class="schema-label"><i class="fas fa-project-diagram"></i> Schéma de l'architecture réseau</div>
+                <div class="img-wrap" style="margin-top:0;">
+                    <img src="glpi_archi.png" alt="Schéma architecture réseau GLPI">
+                    <p class="img-caption">Architecture réseau — pfSense, LAN SRV, LAN PDT, Tunnel VPN et serveurs</p>
+                </div>
             </div>
         </div>
 
-        <!-- PHASES -->
+        <hr class="divider">
+
+        <!-- RÉALISATION -->
         <div class="card">
             <div class="card-heading"><i class="fas fa-list-ol"></i> Étapes de Réalisation</div>
-            <p>Le projet a été décomposé en 4 phases successives, de l'installation du serveur à la mise en production du Helpdesk :</p>
+            <p>Le projet a été décomposé en 5 axes techniques, réalisés sur Proxmox dans un environnement isolé par pfSense :</p>
 
             <div class="phases-grid">
-
                 <div class="phase-card">
                     <div class="phase-num">Phase 1</div>
-                    <div class="phase-title">Installation Serveur (LAMP)</div>
-                    <p>Mise en place de la pile Linux, Apache, MariaDB, PHP sur Debian 11.</p>
+                    <div class="phase-title">Serveur Linux sécurisé</div>
+                    <p>Déploiement d'une VM Debian 12 sur Proxmox, isolée dans le LAN SRV par pfSense.</p>
                     <ul class="phase-list">
-                        <li><i class="fas fa-angle-right"></i> Sécurisation SSH et configuration du pare-feu UFW</li>
-                        <li><i class="fas fa-angle-right"></i> Création de la base de données dédiée à GLPI</li>
-                        <li><i class="fas fa-angle-right"></i> Installation et activation des extensions PHP requises</li>
+                        <li><i class="fas fa-angle-right"></i> Installation et sécurisation SSH + pare-feu UFW</li>
+                        <li><i class="fas fa-angle-right"></i> Pile LAMP : Apache, MariaDB, PHP</li>
+                        <li><i class="fas fa-angle-right"></i> Création de la BDD dédiée GLPI</li>
                     </ul>
                 </div>
 
                 <div class="phase-card">
                     <div class="phase-num">Phase 2</div>
                     <div class="phase-title">Déploiement GLPI</div>
-                    <p>Téléchargement et installation de la version stable GLPI 10.x.</p>
+                    <p>Installation et configuration de l'application GLPI 10 sur le serveur Debian.</p>
                     <ul class="phase-list">
-                        <li><i class="fas fa-angle-right"></i> Configuration des droits fichiers (<code style="background:var(--bg-body);padding:1px 5px;border-radius:4px;font-size:0.8rem;">chown -R www-data</code>)</li>
                         <li><i class="fas fa-angle-right"></i> Configuration du VirtualHost Apache</li>
-                        <li><i class="fas fa-angle-right"></i> Finalisation de l'installation via l'assistant web</li>
+                        <li><i class="fas fa-angle-right"></i> Droits fichiers et extensions PHP</li>
+                        <li><i class="fas fa-angle-right"></i> Finalisation via l'assistant web GLPI</li>
                     </ul>
                     <img src="glpi_login.png" alt="Interface de connexion GLPI" class="phase-img">
                 </div>
 
                 <div class="phase-card">
                     <div class="phase-num">Phase 3</div>
-                    <div class="phase-title">Inventaire Automatisé</div>
-                    <p>Configuration de la remontée d'informations depuis le parc.</p>
+                    <div class="phase-title">Intégration LDAP / AD</div>
+                    <p>Synchronisation GLPI avec l'annuaire Active Directory (DC-01) via LDAP.</p>
                     <ul class="phase-list">
-                        <li><i class="fas fa-angle-right"></i> Installation du plugin GLPI Inventory</li>
-                        <li><i class="fas fa-angle-right"></i> Déploiement de l'agent sur un parc test (Windows/Linux)</li>
-                        <li><i class="fas fa-angle-right"></i> Validation de l'import automatique des données matériel</li>
+                        <li><i class="fas fa-angle-right"></i> Configuration du connecteur LDAP dans GLPI</li>
+                        <li><i class="fas fa-angle-right"></i> Authentification unifiée avec les comptes AD</li>
+                        <li><i class="fas fa-angle-right"></i> Import automatique des utilisateurs du domaine</li>
                     </ul>
-                    <img src="glpi_inventaire.png" alt="Liste du parc informatique" class="phase-img">
                 </div>
 
                 <div class="phase-card">
                     <div class="phase-num">Phase 4</div>
-                    <div class="phase-title">Helpdesk & Profils</div>
-                    <p>Mise en production du système de ticketing et gestion des accès.</p>
+                    <div class="phase-title">Inventaire par GPO</div>
+                    <p>Déploiement silencieux de l'agent GLPI sur les postes clients via GPO Active Directory.</p>
                     <ul class="phase-list">
-                        <li><i class="fas fa-angle-right"></i> Création des profils utilisateurs (Tech, User, Admin)</li>
-                        <li><i class="fas fa-angle-right"></i> Configuration des notifications SMTP par email</li>
-                        <li><i class="fas fa-angle-right"></i> Catégorisation et priorisation des tickets</li>
+                        <li><i class="fas fa-angle-right"></i> Distribution du paquet via le serveur de fichiers</li>
+                        <li><i class="fas fa-angle-right"></i> Création de la GPO de déploiement silencieux</li>
+                        <li><i class="fas fa-angle-right"></i> Validation de la remontée automatique d'inventaire</li>
                     </ul>
-                    <img src="glpi_ticket.png" alt="Interface de gestion des tickets" class="phase-img">
+                    <img src="glpi_inventaire.png" alt="Liste du parc informatique" class="phase-img">
                 </div>
 
+                <div class="phase-card" style="grid-column: span 2;">
+                    <div class="phase-num">Phase 5</div>
+                    <div class="phase-title">Helpdesk & Profils utilisateurs</div>
+                    <p>Mise en production du système de ticketing et gestion des droits d'accès.</p>
+                    <ul class="phase-list">
+                        <li><i class="fas fa-angle-right"></i> Création des profils (Tech, User, Admin)</li>
+                        <li><i class="fas fa-angle-right"></i> Configuration des notifications SMTP</li>
+                        <li><i class="fas fa-angle-right"></i> Catégorisation et priorisation des tickets</li>
+                    </ul>
+                    <img src="glpi_ticket.png" alt="Interface de gestion des tickets" class="phase-img" style="max-width:600px;">
+                </div>
             </div>
         </div>
 
-        <!-- BILAN -->
-        <div class="bilan-card">
-            <div class="card-heading"><i class="fas fa-trophy"></i> Bilan & Compétences validées</div>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">Ce projet a structuré le service informatique. Le passage à GLPI a réduit le temps de résolution des incidents grâce à une connaissance immédiate du matériel impacté et à un historique centralisé des interventions.</p>
+        <hr class="divider">
 
-            <div class="bilan-grid">
-                <div class="bilan-item">
-                    <i class="fab fa-linux"></i>
-                    <span>Administration système Linux (CLI, paquets, droits fichiers)</span>
-                </div>
-                <div class="bilan-item">
-                    <i class="fas fa-database"></i>
-                    <span>Gestion de base de données (SQL, MariaDB, sauvegardes)</span>
-                </div>
-                <div class="bilan-item">
-                    <i class="fas fa-server"></i>
-                    <span>Configuration Web (Apache2, VirtualHosts, PHP)</span>
-                </div>
-                <div class="bilan-item">
-                    <i class="fas fa-tasks"></i>
-                    <span>Processus ITIL — gestion des incidents et demandes</span>
-                </div>
+        <!-- COMPÉTENCES -->
+        <div class="card">
+            <div class="card-heading"><i class="fas fa-star"></i> Compétences travaillées</div>
+            <div class="comp-grid">
+                <div class="comp-item"><i class="fas fa-check-circle"></i><span><strong>Concevoir une solution d'infrastructure réseau</strong> — Architecture Proxmox, segmentation pfSense, plan d'adressage.</span></div>
+                <div class="comp-item"><i class="fas fa-check-circle"></i><span><strong>Installer, tester et déployer</strong> — Déploiement GLPI, pile LAMP, agent GPO, intégration LDAP.</span></div>
+                <div class="comp-item"><i class="fas fa-check-circle"></i><span><strong>Exploiter, dépanner et superviser</strong> — Helpdesk ITIL, inventaire automatisé, gestion des profils.</span></div>
+                <div class="comp-item"><i class="fas fa-check-circle"></i><span><strong>Administration Linux CLI</strong> — Droits fichiers, paquets, configuration Apache, sécurisation SSH.</span></div>
+                <div class="comp-item"><i class="fas fa-check-circle"></i><span><strong>Active Directory & GPO</strong> — Déploiement silencieux de l'agent, synchronisation LDAP.</span></div>
+                <div class="comp-item"><i class="fas fa-check-circle"></i><span><strong>Virtualisation Proxmox</strong> — Gestion des VMs, vmbr, hyperviseur Type 1.</span></div>
             </div>
         </div>
 
@@ -332,18 +452,14 @@
             icon.classList.replace(isLight ? 'fa-moon' : 'fa-sun', isLight ? 'fa-sun' : 'fa-moon');
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.style.opacity = '1';
-                    e.target.style.transform = 'translateY(0)';
-                }
+                if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
             });
         }, { threshold: 0.08 });
-        document.querySelectorAll('.card, .bilan-card, .phase-card').forEach(el => {
+        document.querySelectorAll('.card, .phase-card, .pdf-btn').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
+            el.style.transform = 'translateY(16px)';
             el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
             observer.observe(el);
         });
